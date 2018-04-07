@@ -1,3 +1,12 @@
+# WWW 
+www-final/assets
+www-final/.DS_Store
+www-templating/assets
+www-templating/.DS_Store
+
+# Windows 
+desktop.ini
+
 # Logs
 logs
 *.log
