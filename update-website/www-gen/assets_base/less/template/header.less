@@ -1,0 +1,239 @@
+///////////////////////////////////////////////////////////////////
+//
+//                       Header
+//
+///////////////////////////////////////////////////////////////////
+
+.header{
+	position: relative;
+	width: 100%;
+	background: @primary-site-color;
+	z-index: 100;
+	
+	@media screen and (min-width: @ipad-min){
+		&.absolute{
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: none;
+		}
+	}
+	
+	&.sticky{
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: none;
+		.transition(0.2s);
+		
+		&.scrolling{
+			.rgba(@primary-site-color, 0.95);
+		}
+		
+		@media screen and (max-width: @ipad){
+			+ *{
+				margin-top: 70px;
+			}
+		}
+	}
+}
+
+/* ========================= */
+/*          LOGO    		 */
+/* ========================= */
+
+.logo{
+	float: left;
+	padding: 25px 0;
+	margin: 0;
+	line-height: 0;
+}
+
+/* ========================= */
+/*       NAVIGATION  		 */
+/* ========================= */
+
+.navigation{
+	float: right;
+}
+
+/* ========================= */
+/*      	MENU     		 */
+/* ========================= */
+
+.menu{
+	@media screen and (min-width: @ipad-min){
+		display: block !important;
+	}
+	
+	@media screen and (max-width: @ipad){
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		background: @primary-site-color;
+		display: none;
+	}
+	
+	.menuitem{
+		float: left;
+		list-style: none;
+		
+		@media screen and (min-width: @ipad-min){
+			&.active{
+				> a:before{
+					width: 100%;
+				}
+			}
+		}
+		
+		@media screen and (max-width: @ipad){
+			width: 100%;
+			
+			&.active{
+				> a{
+					color: @secondary-site-color;
+				}
+			}
+		}
+		
+		// DROPDOWN
+		&.dropdown{
+			position: relative;
+			
+			> a{
+				&:after{
+					content: "\f107";
+					font-family: FontAwesome;
+					margin-left: 7px;
+					.font-size(1.2);
+					vertical-align: text-top;
+					
+					@media screen and (max-width: @ipad){
+						float: right;
+						.font-size(1.5);
+					}
+				}
+			}
+			
+			@media screen and (min-width: @ipad-min){
+				&:hover, &:focus{
+					> a:before{
+						width: 100%;
+					}
+
+					.droplist{
+						visibility: visible;
+						.opacity(1);
+						.translateX(0);
+					}
+				}
+			}
+		}
+		
+		> a{
+			position: relative;
+			display: block;
+			padding: 25px;
+			text-transform: uppercase;
+			font-weight: 700;
+			color: @white;
+			.transition(0.2s);
+			
+			@media screen and (min-width: @ipad-min){
+				&:hover, &:focus{
+					color: @secondary-site-color;
+					text-decoration: none;
+
+					&:before{
+						width: 100%;
+					}
+				}
+
+				&:before{
+					content: "";
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 0;
+					height: 2px;
+					background: @secondary-site-color;
+					.transition(0.2s);
+				}
+			}
+			
+			@media screen and (max-width: @ipad){
+				padding: 12px 40px;
+				
+				&:hover, &:focus{
+					color: @secondary-site-color;
+					text-decoration: none;
+				}
+			}
+		}
+		
+		.droplist{
+			background: lighten(@primary-site-color, 5%);
+			
+			@media screen and (min-width: @ipad-min){
+				position: absolute;
+				top: 100%;
+				left: 0;
+				width: 180px;
+				visibility: hidden;
+				.opacity(0);
+				.transition(0.3s);
+				.translateX(-15px);
+				display: block !important;
+			}
+			
+			@media screen and (max-width: @ipad){
+				display: none;
+			}
+			
+			.droplist-item{
+				list-style: none;
+			}
+			
+			a{
+				display: block;
+				padding: 14px 30px;
+				font-weight: 700;
+				text-transform: uppercase;
+				color: @white-light;
+				.transition(0.15s);
+				
+				@media screen and (max-width: @ipad){
+					padding: 12px 40px;
+				}
+				
+				&:hover, &:focus{
+					background: lighten(@primary-site-color, 10%);
+				}
+			}
+		}
+	}
+}
+
+/* ========================= */
+/*       HAMBURGUER    		 */
+/* ========================= */
+
+.btn-hamburguer-menu{
+	float: right;
+	color: @white;
+	padding: 19px 20px;
+	.font-size(2.2);
+	
+	@media screen and (min-width: @ipad-min){
+		display: none;
+	}
+	
+	&:hover, &:focus{
+		color: @secondary-site-color;
+	}
+	
+	&.active{
+		color: @secondary-site-color;
+	}
+}

@@ -1,0 +1,27 @@
+///////////////////////////////////////////////////////////////////
+//
+//                      	PAGINATION
+//
+///////////////////////////////////////////////////////////////////
+
+.pagination > li:first-child > a, .pagination > li:first-child > span{
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.pagination > li:last-child > a, .pagination > li:last-child > span{
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.pagination > li > a, .pagination > li > span{
+	color: @secondary-site-color;
+	background: lighten(@primary-site-color, 8%);
+	border-color: lighten(@primary-site-color, 12%);
+	
+	&:hover, &:focus{
+		color: @secondary-site-color;
+		background: lighten(@primary-site-color, 12%);
+		border-color: lighten(@primary-site-color, 12%);
+	}
+}

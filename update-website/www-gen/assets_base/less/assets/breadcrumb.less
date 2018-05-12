@@ -1,0 +1,24 @@
+///////////////////////////////////////////////////////////////////
+//
+//                       BREADCRUMB
+//
+///////////////////////////////////////////////////////////////////
+
+.breadcrumb{
+	padding: 0;
+	background: none;
+}
+
+.breadcrumb > li + li::before{
+	content: "// ";
+}
+
+.breadcrumb{
+	a{
+		color: @white-light;
+		
+		&:hover, &:focus{
+			color: @white;
+		}
+	}
+}

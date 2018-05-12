@@ -1,0 +1,165 @@
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+
+    <!-- ===== FOOTER CONTENT INFORMATION ===== -->
+    <section class="section-positive">
+        <div class="container">
+
+            <div class="row mt-70 mb-30">
+
+                <!-- ===== SITEMAP ===== -->
+                <div class="col-sm-3 mb-40">
+                    <h2 class="title-separator white">Sitemap</h2>
+                    <ul class="footer-list">
+                        {% for podcast in header.podcasts %}
+                        <li>
+                            <a href="/{{ podcast.podcastPath }}/index.html">{{ podcast.title }}</a>
+                        </li>
+                        {% endfor %}
+
+                        <li>
+                            <a href="/about-us.html">Equipe</a>
+                        </li>
+
+                        <li>
+                            <a href="/contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ===== PODCASTS EPISODES ===== -->
+                <div class="col-sm-3 mb-40">
+                    <h2 class="title-separator white">Dernier épisode</h2>
+                    <ul class="footer-complement">
+                        {% for podcast in header.podcasts %}
+                        <li>
+                            <a href="/{{ podcast.episodes[1].episodePath }}">{{ podcast.episodes[1].title }}</a>
+                            <span>{{ podcast.episodes[1].friendlyDate }}</span>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+                <!-- ===== PODCASTING CONNECTION ===== -->
+                <div class="col-sm-3 mb-40">
+                    <h2 class="title-separator white">Podcasting</h2>
+                    <ul class="social-list">
+
+                        <li class="social-item">
+                            <a href="#" target="_blank">
+                                <i class="fa fa-rss"></i>
+                            </a>
+                        </li>
+                        <li class="social-item">
+                            <a href="#" target="_blank">
+                                <i class="fa fa-podcast"></i>
+                            </a>
+                        </li>
+
+                        <!--   
+                            <li class="social-item">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-soundcloud"></i>
+                                </a>
+                            </li>
+                            <li class="social-item">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-youtube"></i>
+                                </a>
+                            </li>
+                            <li class="social-item">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-spotify"></i>
+                                </a>
+                            </li>
+                        -->
+                    </ul>
+                </div>
+
+                <!-- ===== SOCIAL CONNECTION ===== -->
+                <div class="col-sm-3 mb-40">
+                    <h2 class="title-separator white">Social</h2>
+                    <ul class="social-list">
+                        <li class="social-item">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ header.url }}" rel="noopener" target="_blank">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="social-item">
+                            <a rel="noopener" target="_blank" href="https://twitter.com/share?url={{ header.url }}&via=AnthonyGourraud&related=AnthonyGourraud&hashtags=vocast%2Cradio%2Cpodcast%2Cinnovation&text=L'unvers radio en podcasts ! Archives, actualités, débats et innovation avec Vocast"
+                                <i class="fa fa-twitter">
+                                </i>
+                            </a>
+                        </li>
+                        <li class="social-item">
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ header.url }}" target="_blank">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== FOOTER INFORMATION ===== -->
+    <section class="footer-credits">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- ===== CREDIT LOGO ===== -->
+                <div class="col-sm-6 footer-logo">
+                    <h2>
+                        <a href="/index.html">
+                            <img src="/assets/img/logo.png" alt="Vocast, la radio en podcast" title="Vocast" />
+                        </a>
+                    </h2>
+                </div>
+
+                <!-- ===== CREDIT LOGO ===== -->
+                <div class="col-sm-6 text-right">
+                    Vocast - {{ header.year }}.
+                    <a href="/cgu.html"> CGU </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</footer>
+
+<!-- =================================== -->
+<!-- 			  SCRIPTS 				 -->
+<!-- =================================== -->
+
+<!-- JQUERY -->
+<script src="/assets/js/jquery-1.11.min.js"></script>
+
+<!-- BOOTSTRAP JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+
+<!-- MEDIA ELEMENT -->
+<script src="/assets/js/mediaelement-and-player.min.js"></script>
+
+<!-- MAGNIFIC POPUP -->
+<script src="/assets/js/magnific-popup.min.js"></script>
+
+<!-- FORM VALIDATE -->
+<script src="/assets/js/validate.min.js"></script>
+
+<!-- PLACEHOLDER FOR IE -->
+<script src="/assets/js/placeholder.min.js"></script>
+
+<!-- THEME JS -->
+<script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>

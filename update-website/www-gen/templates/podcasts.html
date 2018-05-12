@@ -1,0 +1,97 @@
+{% include "header.html" %}
+
+
+<!-- ===== LASTEST PODCAST (HERO) ===== -->
+<section class="podcast-hero" style="background-image: url({{ lastEpisode.bgImg }})">
+	<div class="podcast-hero-inner">
+
+		<!-- ===== PODCAST INFO ===== -->
+		<div class="container">
+			<div class="podcast-hero-content">
+				<span class="podcast-hero-date">{{ lastEpisode.friendlyDate }}</span>
+				<h2 class="podcast-hero-title">
+					<a href="/{{ lastEpisode.episodePath }}">{{ lastEpisode.title }}</a>
+				</h2>
+				<ul class="podcast-hero-meta">
+					<li class="item">
+						{{ podcast.name }} S{{ lastEpisode.season }}E{{ lastEpisode.episode }}
+					</li>
+					<li class="item">
+						<i class="fa fa-clock-o"></i> {{ lastEpisode.durationMin }} min
+					</li>
+					<li class="item">
+						<a href="{{ lastEpisode.audioUrl }}" target="_blank" class="podcast-hero-download">
+							<i class="fa fa-download"></i> Télécharger</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- ===== PODCAST PLAYER ===== -->
+		<div class="podcast-hero-player-content">
+			<div class="container">
+				<!-- ===== CUSTOM PLAYER ===== -->
+				<audio src="{{ lastEpisode.audioUrl }}"></audio>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<!-- ===== MAIN ===== -->
+<main id="main" class="main">
+
+	<!-- ===== PODCAST LIST ===== -->
+	<section id="#episodes" class="section-positive">
+		<div class="container">
+
+			<!-- ===== SECTION TITLE ===== -->
+			<h2 class="title-default">Episodes précédents</h2>
+
+			<div class="row">
+
+				{% for otherEpisode in othersEpisodes %}
+				<!-- ===== PODCAST CARD FULL ===== -->
+				<div class="col-sm-12 mb-40">
+					<div class="podcast-card full">
+						<figure class="podcast-image">
+							<a href="/{{ otherEpisode.episodePath }}">
+								<img src="{{ otherEpisode.squareImg }}" alt="{{ otherEpisode.title }}" title="{{ otherEpisode.episodePath }}" />
+							</a>
+						</figure>
+						<div class="podcast-content">
+							<span class="podcast-date">{{ otherEpisode.friendlyDate }}</span>
+							<h2 class="podcast-title">
+								<a href="/{{ otherEpisode.episodePath }}">{{ otherEpisode.title }}</a>
+							</h2>
+							<p class="podcast-excerpt">
+								<a href="/{{ otherEpisode.episodePath }}">{{ otherEpisode.description }}</a>
+							</p>
+							<ul class="podcast-meta">
+								<li class="item">
+									{{ podcast.name }} S{{ otherEpisode.season }}E{{ otherEpisode.episode }}
+								</li>
+								<li class="item">
+									<i class="fa fa-clock-o"></i> {{ otherEpisode.durationMin }} min
+								</li>
+								<li class="item">
+									<a href="{{ otherEpisode.audioUrl }}" target="_blank" class="podcast-play">
+										<i class="fa fa-download"></i> Télécharger l'épisode</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+
+			</div>
+
+		</div>
+	</section>
+
+
+
+</main>
+
+
+{% include "footer.html" %}

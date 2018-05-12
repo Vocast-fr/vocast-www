@@ -1,0 +1,91 @@
+///////////////////////////////////////////////////////////////////
+//
+//                       Footer
+//
+///////////////////////////////////////////////////////////////////
+
+/* ========================= */
+/*      FOOTER LIST      	 */
+/* ========================= */
+
+.footer-list{
+	li{
+		padding-bottom: 6px;
+		list-style: none;
+		
+		+ li{
+			padding-top: 6px;
+			border-top: 1px solid #222;
+		}
+	}
+	
+	a{
+		display: block;
+		text-transform: uppercase;
+		font-weight: 700;
+		color: #bdc3c7;
+		
+		&:hover, &:focus{
+			color: @white;
+		}
+	}
+}
+
+/* ========================= */
+/*      FOOTER COMPLEMENT  	 */
+/* ========================= */
+
+.footer-complement{
+	li{
+		padding-bottom: 14px;
+		list-style: none;
+		
+		+ li{
+			padding-top: 14px;
+			border-top: 1px solid #222;
+		}
+	}
+	
+	a{
+		display: block;
+		margin-bottom: 5px;
+		text-transform: uppercase;
+		color: #bdc3c7;
+		font-weight: 700;
+		.font-size(1.5);
+		
+		&:hover, &:focus{
+			color: @secondary-site-color;
+		}
+	}
+	
+	span{
+		color: #666;
+	}
+}
+
+/* ========================= */
+/*      FOOTER SOCIAL     	 */
+/* ========================= */
+
+.footer-credits{
+	background: darken(@primary-site-color, 2.5%);
+	padding: 25px 0;
+	
+	h2{
+		margin: 0;
+		font-size: 0;
+	}
+	
+	@media screen and (max-width: @tablet){
+		text-align: center;
+		
+		.footer-logo{
+			margin-bottom: 20px;
+		}
+		
+		.text-right{
+			text-align: center;
+		}
+	}
+}

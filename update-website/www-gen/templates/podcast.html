@@ -1,0 +1,237 @@
+{% include "header.html" %}
+
+
+<!-- ===== MAIN ===== -->
+<main id="main" class="main">
+
+	<!-- ===== PAGE HEADER ===== -->
+	<header class="page-header-podcast" style="background-image: url({{ episode.bgImg }})">
+		<div class="page-header-inner">
+			<div class="container">
+
+				<!-- ===== BREADCRUMB ===== -->
+				<ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+					<li itemprop="itemListElement">
+						<a href="/index.html">Home</a>
+					</li>
+					<li itemprop="itemListElement">
+						<a href="/{{ podcast.podcastPath }}">{{ podcast.name }}</a>
+					</li>
+					<li itemprop="itemListElement">
+						<a href="#">S{{ episode.season }}E{{ episode.episode }}</a>
+					</li>
+				</ol>
+
+				<!-- ===== PAGE HEADER CONTENT ===== -->
+				<div class="page-header-content text-center">
+					<h2>{{ episode.title }}</h2>
+					<p> {{ episode.description }} </p>
+				</div>
+
+			</div>
+		</div>
+	</header>
+
+	<!-- ===== PODCAST PLAYER ===== -->
+	<div class="podcast-player">
+		<div class="podcast-player-inner">
+			<div class="container">
+				<audio id="audioPlayer" src="{{ episode.audioUrl }}"></audio>
+			</div>
+		</div>
+	</div>
+
+	<!-- ===== PODCAST META ===== -->
+	<div class="podcast-meta-element">
+		<span class="podcast-meta-item">
+			<i class="fa fa-calendar"></i>{{ episode.friendlyDate }}</span>
+		<span class="podcast-meta-item">
+			<i class="fa fa-clock-o"></i> {{ episode.durationMin }} min</span>
+		<a class="podcast-meta-item" href="#">
+			<i class="fa fa-podcast"></i> Ecouter sur iTunes</a>
+		<a class="podcast-meta-item" href="{{ episode.audioUrl }}">
+			<i class="fa fa-download"></i> Télécharger (MP3)</a>
+	</div>
+
+	<!-- ===== PODCAST LINKS ===== -->
+	<div class="podcast-links">
+		<div class="container">
+			<ul class="podcast-links-list">
+				{% for chapter in episode.chapters %}
+				<li>
+					<a onclick="document.getElementById('audioPlayer').currentTime={{ chapter.startSec }}" class="btn btn-success btn-sm"> {{ chapter.start }} </a>
+					<span class="podcast-link-cite">{{ chapter.title }}</span>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+
+	<!-- ===== SINGLE PAGE CONTENT ===== -->
+	<div class="section-negative">
+		<div class="container">
+
+			<div class="row mt-70 mb-50">
+
+				<!-- ===== PODCAST TEXT CONTENT ===== -->
+				<div class="col-md-8 mb-50">
+
+					<!-- ===== PAGE MAIN CONTENT ===== -->
+					<div class="page-content">
+						<p>"He's too sound asleep, Mr. Stubb; go thou down, and wake him, and tell him. I must see to the deck here. Thou know'st
+							what to say."</p>
+						<p>Next morning the not-yet-subsided sea rolled in long slow billows of mighty bulk, and striving in the Pequod's gurgling
+							track, pushed her on like giants' palms outspread. The strong, unstaggering breeze abounded so, that sky and air seemed
+							vast outbellying sails; the whole world boomed before the wind. Muffled in the full morning light, the invisible sun
+							was only known by the spread intensity of his place; where his bayonet rays moved on in stacks. Emblazonings, as of
+							crowned Babylonian kings and queens, reigned over everything. The sea was as a crucible of molten gold, that bubblingly
+							leaps with light and heat.</p>
+						<p>Long maintaining an enchanted silence, Ahab stood apart; and every time the tetering ship loweringly pitched down her
+							bowsprit, he turned to eye the bright sun's rays produced ahead; and when she profoundly settled by the stern, he
+							turned behind, and saw the sun's rearward place, and how the same yellow rays were blending with his undeviating wake.</p>
+						<p>"Ha, ha, my ship! thou mightest well be taken now for the sea-chariot of the sun. Ho, ho! all ye nations before my
+							prow, I bring the sun to ye! Yoke on the further billows; hallo! a tandem, I drive the sea!"</p>
+						<p>But suddenly reined back by some counter thought, he hurried towards the helm, huskily demanding how the ship was heading.</p>
+						<p>"East-sou-east, sir," said the frightened steersman.</p>
+						<p>"Thou liest!" smiting him with his clenched fist. "Heading East at this hour in the morning, and the sun astern?"</p>
+						<p>Upon this every soul was confounded; for the phenomenon just then observed by Ahab had unaccountably escaped every
+							one else; but its very blinding palpableness must have been the cause.</p>
+						<!-- ===== GALLERY WITH ZOOM ===== -->
+						<div class="page-gallery">
+							<div class="col-md-4 col-xs-6 nopadding">
+								<figure class="gallery-item">
+									<a href="assets/img/gallery/large/image-2.jpg" class="gallery-zoom">
+										<img src="assets/img/gallery/thumb/image-2.jpg" alt="Gallery" title="Gallery" />
+									</a>
+								</figure>
+							</div>
+							<div class="col-md-4 col-xs-6 nopadding">
+								<figure class="gallery-item">
+									<a href="assets/img/gallery/large/image-1.jpg" class="gallery-zoom" title="This is a caption">
+										<img src="assets/img/gallery/thumb/image-1.jpg" alt="Gallery" title="Gallery" />
+									</a>
+									<figcaption>This is a caption</figcaption>
+								</figure>
+							</div>
+							<div class="col-md-4 col-xs-6 nopadding">
+								<figure class="gallery-item">
+									<a href="assets/img/gallery/large/image-3.jpg" class="gallery-zoom">
+										<img src="assets/img/gallery/thumb/image-3.jpg" alt="Gallery" title="Gallery" />
+									</a>
+								</figure>
+							</div>
+							<div class="col-md-4 col-xs-6 nopadding">
+								<figure class="gallery-item">
+									<a href="assets/img/gallery/large/image-3.jpg" class="gallery-zoom" title="This is a caption">
+										<img src="assets/img/gallery/thumb/image-3.jpg" alt="Gallery" title="Gallery" />
+									</a>
+									<figcaption>This is a caption</figcaption>
+								</figure>
+							</div>
+							<div class="col-md-4 col-xs-6 nopadding">
+								<figure class="gallery-item">
+									<a href="assets/img/gallery/large/image-2.jpg" class="gallery-zoom">
+										<img src="assets/img/gallery/thumb/image-2.jpg" alt="Gallery" title="Gallery" />
+									</a>
+								</figure>
+							</div>
+							<div class="col-md-4 col-xs-6 nopadding">
+								<figure class="gallery-item">
+									<a href="assets/img/gallery/large/image-1.jpg" class="gallery-zoom">
+										<img src="assets/img/gallery/thumb/image-1.jpg" alt="Gallery" title="Gallery" />
+									</a>
+								</figure>
+							</div>
+						</div>
+					</div>
+
+					<!-- ===== HR ===== -->
+					<hr />
+
+					<!-- ===== PREV AND NEXT ===== -->
+					<div class="page-pagination">
+						<!-- ===== PREV ===== -->
+						<a href="podcast-soundcloud.html" class="page-pagination-prev">
+							<i class="fa fa-long-arrow-left"></i>
+							<span>December 21, 2015</span>
+							<p>Episode #07 - Podcast embed from SoundCloud</p>
+						</a>
+						<!-- ===== NEXT ===== -->
+						<a href="#" class="page-pagination-next">
+							<i class="fa fa-long-arrow-right"></i>
+							<span>December 25, 2015</span>
+							<p>Episode #09 - Santa is coming...</p>
+						</a>
+					</div>
+
+
+				</div>
+
+				<!-- ===== SIDEBAR ===== -->
+				<div class="col-md-4">
+
+					<!-- ===== PODCAST SIDEBAR ===== -->
+					<div class="page-sidebar">
+
+						<!-- ===== SIDEBAR WIDGET ===== -->
+						<div class="sidebar-widget">
+							<h2 class="title-separator">Share this podcast</h2>
+							<ul class="social-list colored">
+								<li class="social-item facebook">
+									<a href="https://www.facebook.com/sharer/sharer.php?u=http://www.reidark.com.br/themes/soundcast" target="_blank">
+										<i class="fa fa-facebook"></i>
+									</a>
+								</li>
+								<li class="social-item twitter">
+									<a href="https://twitter.com/home?status=http://www.reidark.com.br/themes/soundcast" target="_blank">
+										<i class="fa fa-twitter"></i>
+									</a>
+								</li>
+								<li class="social-item google">
+									<a href="https://plus.google.com/share?url=http://www.reidark.com.br/themes/soundcast" target="_blank">
+										<i class="fa fa-google-plus"></i>
+									</a>
+								</li>
+								<li class="social-item email">
+									<a href="mailto:?&subject=Soundcast - Theme" target="_blank">
+										<i class="fa fa-envelope"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- ===== TAGS ===== -->
+						<div class="sidebar-widget">
+							<h2 class="title-separator">Tags</h2>
+							<ul class="tag-list">
+								<li class="tag-item">
+									<a href="#" rel="tag">Podcast</a>
+								</li>
+								<li class="tag-item">
+									<a href="#" rel="tag">Vacation</a>
+								</li>
+								<li class="tag-item">
+									<a href="#" rel="tag">Photography</a>
+								</li>
+								<li class="tag-item">
+									<a href="#" rel="tag">Gallery</a>
+								</li>
+								<li class="tag-item">
+									<a href="#" rel="tag">Lifestyle</a>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+</main>
+
+
+{% include "footer.html" %}

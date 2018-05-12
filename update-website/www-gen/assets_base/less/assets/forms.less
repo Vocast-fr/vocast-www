@@ -1,0 +1,140 @@
+///////////////////////////////////////////////////////////////////
+//
+//                       Forms
+//
+///////////////////////////////////////////////////////////////////
+
+/* ========================= */
+/*      FORM CONTROL     	 */
+/* ========================= */
+
+.form-control{
+	width: 100%;
+	height: 42px;
+	line-height: 42px;
+	display: block;
+	padding: 0 15px;
+	border: 1px solid #e1e1e1;
+	.rounded(0);
+	.placeholder(1, #666);
+	.transition(0.2s);
+	.box-shadow(none);
+	
+	&.error{
+		border-color: @error;
+		.box-shadow(none);
+	}
+	
+	&.noborder{
+		border: none;
+		
+		&:focus{
+			background: darken(@white, 2%);
+		}
+	}
+	
+	&[disabled]{
+		background: darken(@white, 0.5%);
+	}
+	
+	&:focus{
+		outline: none;
+		box-shadow: none;
+		border-color: #999;
+		background: darken(@white, 1%);
+	}
+}
+
+textarea.form-control{
+	height: auto;
+	line-height: 20px;
+	padding: 10px 15px;
+}
+
+/* ========================= */
+/*      FORM NEGATIVE     	 */
+/* ========================= */
+
+.form-negative{
+	background: lighten(@primary-site-color, 8%);
+	border-color: lighten(@primary-site-color, 8%);
+	color: @white-light;
+	.placeholder(1, #a1a1a1);
+	
+	&:focus{
+		outline: none;
+		box-shadow: none;
+		border-color: lighten(@primary-site-color, 5%);
+		background: lighten(@primary-site-color, 5%);
+	}
+}
+
+/* ========================= */
+/*      LABEL CONTROL     	 */
+/* ========================= */
+
+.label-control{
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 400;
+}
+
+label.error{
+	color: @error;
+	padding: 5px 0;
+}
+
+/* ========================= */
+/*      FORM NEGATIVE     	 */
+/* ========================= */
+
+form .form-callback{
+	width: 100%;
+	margin-bottom: 15px;
+	padding: 15px;
+	background: @primary-site-color;
+	border: 2px solid darken(@primary-site-color, 4%);
+	color: @white;
+	clear: both;
+	display: none;
+	
+	p{
+		margin: 0;
+		color: inherit;
+	}
+	
+	&.success{
+		background: @success;
+		border-color: darken(@success, 4%);
+	}
+	
+	&.error{
+		background: @error;
+		border-color: darken(@error, 4%);
+	}
+}
+
+/* ========================= */
+/*     FORM NEWSLETTER     	 */
+/* ========================= */
+
+.form-newsletter{
+	margin-bottom: 70px;
+	padding: 0 10%;
+	
+	.form-control{
+		height: 60px;
+		line-height: 60px;
+		padding: 0 30px;
+		.font-size(1.8);
+		
+		&.error{
+			border: 1px solid lighten(@error, 5%);
+		}
+	}
+	
+	.btn{
+		height: 60px;
+		.font-size(2.5);
+	}
+}

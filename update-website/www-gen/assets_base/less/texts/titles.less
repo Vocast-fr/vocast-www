@@ -1,0 +1,44 @@
+///////////////////////////////////////////////////////////////////
+//
+//                       TITLES
+//
+///////////////////////////////////////////////////////////////////
+
+/* ========================= */
+/*      TITLE DEFAULT    	 */
+/* ========================= */
+
+.title-default{
+	margin: 50px 0;
+	text-transform: uppercase;
+	font-weight: 700;
+	.font-size(2.2);
+}
+
+/* ========================= */
+/*      TITLE FOOTER     	 */
+/* ========================= */
+
+.title-separator{
+	position: relative;
+	margin-bottom: 40px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 700;
+	.font-size(2.0);
+	
+	&.white{
+		&:after{
+			background: @white-light;
+		}
+	}
+	
+	&:after{
+		content: "";
+		width: 20%;
+		height: 4px;
+		display: block;
+		margin-top: 10px;
+		background: @primary-site-color;
+	}
+}

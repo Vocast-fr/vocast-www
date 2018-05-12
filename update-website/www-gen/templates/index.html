@@ -1,0 +1,126 @@
+ {% include "header.html" %}
+
+
+<!-- ===== WELCOME ===== -->
+<section class="podcast-hero" style="background-image: url(/assets/img/welcome.jpg)">
+	<div class="podcast-hero-inner" />
+</section>
+
+<!-- ===== MAIN ===== -->
+<main id="main" class="main">
+
+	<!-- ===== PODCASTS INDEX ===== -->
+
+	{% for podcast in header.podcasts %}
+	<section id="#episodes" class="section-positive">
+		<div class="container">
+
+			<!-- ===== SECTION TITLE ===== -->
+			<h2 class="title-default">Podcasts "{{ podcast.name }}"</h2>
+
+			<div class="row">
+
+				<div class="col-sm-12 mb-40">
+					<p>{{ podcast.description }}</p>
+				</div>
+
+				<!-- ===== PODCAST CARD FULL ===== -->
+				<div class="col-sm-12 mb-40">
+					<div class="podcast-card full">
+						<figure class="podcast-image">
+							<a href="/{{podcast.episodes[1].episodePath }}">
+								<img src="{{ podcast.episodes[1].squareImg }}" alt="{{ podcast.episodes[1].title }}" title="{{podcast.episodes[1].title }}"
+								/>
+							</a>
+						</figure>
+						<div class="podcast-content">
+							<span class="podcast-date">{{ podcast.episodes[1].friendlyDate }}</span>
+							<h2 class="podcast-title">
+								<a href="/{{ podcast.episodes[1].episodePath }}">{{ podcast.episodes[1].title }}</a>
+							</h2>
+							<p class="podcast-excerpt">
+								<a href="/{{ podcast.episodes[1].episodePath }}">{{ podcast.episodes[1].description }}</a>
+							</p>
+							<ul class="podcast-meta">
+								<li class="item">
+									<i class="fa fa-clock-o"></i> {{ podcast.episodes[1].durationMin }} min</li>
+								<li class="item">
+									<a href="{{ podcast.episodes[1].audioUrl }}" class="podcast-play">
+										<i class="fa fa-play"></i> Télécharger (MP3)</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<!-- ===== CHECK MORE ===== -->
+				<div class="col-sm-12 mb-50">
+					<a href="/{{ podcast.podcastPath }}" class="btn btn-primary btn-block btn-lg">Tous les épisodes</a>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+	{% endfor %}
+
+	<!-- ===== COMING SOON ===== -->
+	<section id="coming-soon" class="section-negative">
+		<div class="container">
+
+			<!-- ===== SECTION TITLE ===== -->
+			<h2 class="title-default">Projets à venir</h2>
+
+			<div class="row mb-30">
+
+				<!-- ===== TEAM CARD ===== -->
+				<div class="col-md-6 mb-20">
+					<div class="team-card">
+						<figure class="team-card-image">
+							<img src="assets/img/team/team-2.jpg" alt="Jana Doe" title="Jana Doe" />
+						</figure>
+						<div class="team-card-content">
+							<h2 class="team-card-title">Application conversationnelle!</h2>
+							<p class="team-card-job">Août 2017</p>
+							<p class="team-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat itaque optio minus perferendis tempora.</p>
+							<ul class="team-card-social">
+								<li class="social-item">
+									<a href="#" target="_blank">
+										<i class="fa fa-link"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 mb-20">
+					<div class="team-card">
+						<figure class="team-card-image">
+							<img src="assets/img/team/team-2.jpg" alt="Jana Doe" title="Jana Doe" />
+						</figure>
+						<div class="team-card-content">
+							<h2 class="team-card-title">Application conversationnelle</h2>
+							<p class="team-card-job">Août 2017</p>
+							<p class="team-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat itaque optio minus perferendis tempora.</p>
+							<ul class="team-card-social">
+								<li class="social-item">
+									<a href="#" target="_blank">
+										<i class="fa fa-link"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+
+
+
+</main>
+
+
+{% include "footer.html" %}

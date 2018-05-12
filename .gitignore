@@ -1,8 +1,5 @@
 # WWW 
-www-final/assets
-www-final/.DS_Store
-www-templating/assets
-www-templating/.DS_Store
+update-website/www-gen/www-final
 
 # Windows 
 desktop.ini

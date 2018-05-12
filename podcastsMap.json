@@ -1,0 +1,170 @@
+{
+  "header": {
+    "title": "Vocast - Accueil",
+    "description": "Radio, podcasts, innovation média : vocast.fr",
+    "image":
+      "http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg"
+  },
+  "podcasts": {
+    "desondes": {
+      "name": "Des Ondes Vocast",
+      "description":
+        "La radio d'hier, d'aujourd'hui et de demain en un podcast",
+      "image":
+        "http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg",
+
+      "episodes": [
+        {
+          "season": 0,
+          "episode": 0,
+          "audioUrl":
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/s00e00.mp3",
+          "durationMin": 2,
+          "date": "2018-04-03",
+          "title": "DOV 000 Pilote",
+          "description": "Ceci est le pilote\n Retour à la ligne effectué!",
+          "chapters": [
+            {
+              "startSec": 0,
+              "start": "00:00:00",
+              "title": "Partie 1"
+            },
+            {
+              "startSec": 7,
+              "start": "00:00:07",
+              "title": "Partie 2"
+            },
+            {
+              "startSec": 11,
+              "start": "00:00:11",
+              "title": "Partie 3"
+            }
+          ],
+          "squareImg": "/assets/img/favicon.png",
+          "bgImg":
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/podcast-hero.jpg",
+          "galleryImgs": [
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg",
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-2.jpg",
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-3.jpg"
+          ]
+        },
+        {
+          "season": 1,
+          "episode": 1,
+          "audioUrl":
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/s01e01.mp3",
+          "durationMin": 5,
+          "date": "2018-04-26",
+          "title": "DOV 001 Premier podcast",
+          "description":
+            "Ceci est un premier podcast !\n Retour à la ligne effectué!",
+          "chapters": [
+            {
+              "startSec": 0,
+              "start": "00:00:00",
+              "title": "Partie 1"
+            },
+            {
+              "startSec": 7,
+              "start": "00:00:07",
+              "title": "Partie 2"
+            }
+          ],
+          "squareImg": "/assets/img/favicon.png",
+          "bgImg":
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/podcast-hero.jpg",
+          "galleryImgs": [
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg",
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-2.jpg",
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-3.jpg"
+          ]
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "audioUrl":
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/s01e02.mp3",
+          "durationMin": 25,
+          "date": "2018-05-01",
+          "title": "DOV 002 C'est le deuxième !",
+          "description": "C'est reparti pour un deuxième épisode...",
+          "chapters": [
+            {
+              "startSec": 0,
+              "start": "00:00:00",
+              "title": "Partie 1"
+            },
+            {
+              "startSec": 13,
+              "start": "00:00:13",
+              "title": "Partie 2"
+            },
+            {
+              "startSec": 30,
+              "start": "00:00:30",
+              "title": "Partie 3"
+            },
+            {
+              "startSec": 43,
+              "start": "00:00:43",
+              "title": "Partie 4"
+            }
+          ],
+          "squareImg": "/assets/img/favicon.png",
+          "bgImg":
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/podcast-hero.jpg",
+          "galleryImgs": [
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg",
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-2.jpg",
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-3.jpg"
+          ]
+        }
+      ]
+    },
+    "desondes2": {
+      "name": "Des Autres Ondes Vocast",
+      "description":
+        "La radio d'hier, d'aujourd'hui et de demain en un podcast",
+      "image":
+        "http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg",
+
+      "episodes": [
+        {
+          "season": 0,
+          "episode": 0,
+          "audioUrl":
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/s00e00.mp3",
+          "durationMin": 2,
+          "date": "2018-04-03",
+          "title": "DOV 000 Pilote",
+          "description": "Ceci est le pilote\n Retour à la ligne effectué!",
+          "chapters": [
+            {
+              "startSec": 0,
+              "start": "00:00:00",
+              "title": "Partie 1"
+            },
+            {
+              "startSec": 7,
+              "start": "00:00:07",
+              "title": "Partie 2"
+            },
+            {
+              "startSec": 11,
+              "start": "00:00:11",
+              "title": "Partie 3"
+            }
+          ],
+          "squareImg": "/assets/img/favicon.png",
+          "bgImg": "/assets/img/favicon.png",
+          "galleryImgs": [
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg",
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-2.jpg",
+            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-3.jpg"
+          ]
+        }
+      ]
+    }
+  }
+}

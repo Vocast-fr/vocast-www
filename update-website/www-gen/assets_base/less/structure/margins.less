@@ -1,0 +1,15 @@
+///////////////////////////////////////////////////////////////////
+//
+//                       Margins
+//
+///////////////////////////////////////////////////////////////////
+
+.generate-margin(@n, @name, @var, @i: 10) when (@i =< @n) {
+	.@{name}-@{i} {
+		@{var}: @i + 0px !important;
+	}
+	.generate-margin(@n, @name, @var, (@i + 10));
+}
+
+.generate-margin(120, mt, margin-top);
+.generate-margin(120, mb, margin-bottom);
