@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ header.lang }}">
+<html lang="{{ lang._ }}">
 
 <head>
 
@@ -8,6 +8,7 @@
     <!-- =================================== -->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
+    {% if header.gaId %}
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ header.gaId }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -15,7 +16,7 @@
         gtag('js', new Date());
 
         gtag('config', '{{ header.gaId }}');
-    </script>
+    </script> {% endif %}
 
     <!-- =================================== -->
     <!-- 		  COMPATIBILITY 			 -->
@@ -51,12 +52,12 @@
 
     <!-- THEME CSS -->
     <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
 
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- =================================== -->
     <!-- 		 	THEME COLOR 			 -->
@@ -83,7 +84,7 @@
     <!-- 			  AUTHOR 				 -->
     <!-- =================================== -->
 
-    <meta name="author" content="Vocast Team" />
+    <meta name="author" content="{{ header.author }}" />
     <meta name="reply-to" content="{{ header.contact }}" />
     <meta name=" DC.publisher " content="vocast" />
     <meta name="generator " content="podcasts" />
@@ -92,9 +93,8 @@
     <!-- 			 CONTENT 				 -->
     <!-- =================================== -->
 
-    <meta name="keywords " content="vocast, podcast, radio, webradio, smartradio, innovation, archive, zapping, vocal,
-        application, anthony, gourraud " />
-    <meta name="description " content="Vocast - La radio d 'hier, d'aujourd 'hui et de demain en podcast" />
+    <meta name="keywords " content="{{ header.keywords }}" />
+    <meta name="description " content="{{ header.description }}" />
 
     <!-- =================================== -->
     <!-- 			 ROBOTS 				 -->
@@ -108,32 +108,32 @@
     <!-- 			 FACEBOOK 				 -->
     <!-- =================================== -->
 
-    <meta property="og:locale" content="{{ header.lang }}" />
+    <meta property="og:locale" content="{{ lang._ }}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ header.title }}" />
     <meta property="og:description" content="{{ header.description }}" />
     <meta property="og:url" content="{{ header.url }}" />
-    <meta property="og:site_name" content="Vocast - le site web" />
+    <meta property="og:site_name" content="{{ header.title }}" />
     <meta property="og:image" content="{{ header.image }}" />
 
     <!-- =================================== -->
     <!-- 			  TWITTER 				 -->
     <!-- =================================== -->
 
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@AnthonyGourraud" />
-    <meta name="twitter:creator" content="@AnthonyGourraud" />
+    <meta name="twitter:card" content="{{ header.description }} " />
+    <meta name="twitter:site" content="@{{ footer.social.twitter.site }}" />
+    <meta name="twitter:creator" content="@{{ footer.social.twitter.creator }}" />
     <meta name="twitter:title" content="{{ header.title }}" />
     <meta name="twitter:description" content="{{ header.description }}" />
-    <meta name="twitter:domain" content="vocast" />
+    <meta name="twitter:domain" content="{{ _.title }}" />
     <meta name="twitter:image" content="{{ header.image }}" />
 
     <!-- =================================== -->
     <!-- 			  FAVICON 				 -->
     <!-- =================================== -->
 
-    <link rel="icon" href="/assets/img/favicon.png?v=2" />
-    <link rel="shortcut icon" href="/assets/img/favicon.png?v=2" />
+    <link rel="icon" href="/assets/img/favicon.png" />
+    <link rel="shortcut icon" href="/assets/img/favicon.png" />
 
 </head>
 
@@ -146,7 +146,7 @@
             <!-- ===== LOGO ===== -->
             <h1 class="logo">
                 <a href="/index.html">
-                    <img itemprop="logo" src="/assets/img/logo.png" alt="Vocast Website" title="Vocast" />
+                    <img itemprop="logo" src="/assets/img/logo.png" alt="{{ header.altLogo }}" title="{{ _.title }}" />
                 </a>
             </h1>
 
@@ -155,12 +155,12 @@
                 <!-- ===== MENU ===== -->
                 <ul class="menu">
                     <li class="menuitem active">
-                        <a href="/index.html">Accueil</a>
+                        <a href="/index.html">{{ lang.home }}</a>
                     </li>
 
                     {% for podcast in header.podcasts %}
                     <li class="menuitem dropdown">
-                        <a href="#">{{ podcast.title }}</a>
+                        <a href="/{{ podcast.podcastPath }}">{{ podcast.title }}</a>
                         <ul class="droplist">
 
                             {% for episode in podcast.episodes %}
@@ -174,10 +174,10 @@
                     {% endfor %}
 
                     <li class="menuitem">
-                        <a href="/about-us.html">Equipe</a>
+                        <a href="/about-us.html">{{ lang.team }}</a>
                     </li>
                     <li class="menuitem">
-                        <a href="/contact.html">Contact</a>
+                        <a href="/contact.html">{{ lang.contact }}</a>
                     </li>
                 </ul>
                 <!-- ===== HAMBURGUER ICON ===== -->

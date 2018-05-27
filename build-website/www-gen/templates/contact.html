@@ -5,23 +5,13 @@
 <main id="main" class="main">
 
 	<!-- ===== PAGE HEADER ===== -->
-	<header class="page-header" style="background-image: url(assets/img/single-background.jpg)">
+	<header class="page-header">
 		<div class="page-header-inner">
 			<div class="container">
 
-				<!-- ===== BREADCRUMB ===== -->
-				<ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
-					<li itemprop="itemListElement">
-						<a href="/index.html">Home</a>
-					</li>
-					<li itemprop="itemListElement">
-						<a href="#">Contact</a>
-					</li>
-				</ol>
-
 				<!-- ===== PAGE HEADER CONTENT ===== -->
 				<div class="page-header-content text-center">
-					<h2>Contact</h2>
+					<h2>{{ lang.contact }}</h2>
 				</div>
 
 			</div>
@@ -38,8 +28,8 @@
 				<!-- ===== PAGE TITLE & DESCRIPTION ===== -->
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">
-						<h2 class="title-default mb-10">Envie de nous rejoindre ? Des précisions à nous apporter ?</h2>
-						<p class="page-description mb-70">Il suffit de remplir le questionnaire et de valider l'envoi via le mécanisme anti-spam</p>
+						<h2 class="title-default mb-10">{{ contact.title }}</h2>
+						<p class="page-description mb-70">{{ contact.description }}</p>
 					</div>
 				</div>
 
@@ -47,22 +37,22 @@
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
 
-						<form action="https://formspree.io/anthonygourraud@gmail.com" method="POST">
+						<form action="https://formspree.io/{{ header.contact }}" method="POST">
 
-							<input type="hidden" name="_language" value="{{ header.lang }}" />
+							<input type="hidden" name="_language" value="{{ lang._ }}" />
 
 							<div class="mb-20">
-								<label for="email" class="label-control">Email* :</label>
+								<label for="email" class="label-control">{{ lang.email }}* :</label>
 								<input type="email" name="email" class="form-control" id="email" required/>
 							</div>
 
 							<div class="mb-20">
-								<label for="message" class="label-control">Message* :</label>
+								<label for="message" class="label-control">{{ lang.message }}* :</label>
 								<textarea rows="6" name="message" id="message" class="form-control" required></textarea>
 							</div>
 
 							<div class="mb-20">
-								<input type="submit" class="btn btn-success btn-lg" value="Envoyer">
+								<input type="submit" class="btn btn-success btn-lg" value="{{ lang.send }}">
 							</div>
 						</form>
 

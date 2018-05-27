@@ -9,7 +9,7 @@
 
                 <!-- ===== SITEMAP ===== -->
                 <div class="col-sm-3 mb-40">
-                    <h2 class="title-separator white">Sitemap</h2>
+                    <h2 class="title-separator white">{{ lang.sitemap }}</h2>
                     <ul class="footer-list">
                         {% for podcast in header.podcasts %}
                         <li>
@@ -18,18 +18,18 @@
                         {% endfor %}
 
                         <li>
-                            <a href="/about-us.html">Equipe</a>
+                            <a href="/about-us.html">{{ lang.team }}</a>
                         </li>
 
                         <li>
-                            <a href="/contact.html">Contact</a>
+                            <a href="/contact.html">{{ lang.contact }}</a>
                         </li>
                     </ul>
                 </div>
 
                 <!-- ===== PODCASTS EPISODES ===== -->
                 <div class="col-sm-3 mb-40">
-                    <h2 class="title-separator white">Dernier épisode</h2>
+                    <h2 class="title-separator white">{{ lang.lastEpisode }}</h2>
                     <ul class="footer-complement">
                         {% for podcast in header.podcasts %}
                         <li>
@@ -43,43 +43,23 @@
 
                 <!-- ===== PODCASTING CONNECTION ===== -->
                 <div class="col-sm-3 mb-40">
-                    <h2 class="title-separator white">Podcasting</h2>
+                    <h2 class="title-separator white">{{ lang.podcastLinks }}</h2>
                     <ul class="social-list">
 
+                        {% for podcastLink in footer.podcastLinks %}
                         <li class="social-item">
-                            <a href="#" target="_blank">
-                                <i class="fa fa-rss"></i>
+                            <a href="{{ podcastLink.link }}" target="_blank">
+                                <i class="fa fa-{{ podcastLink.faIcon }}"></i>
                             </a>
                         </li>
-                        <li class="social-item">
-                            <a href="#" target="_blank">
-                                <i class="fa fa-podcast"></i>
-                            </a>
-                        </li>
+                        {% endfor %}
 
-                        <!--   
-                            <li class="social-item">
-                                <a href="#" target="_blank">
-                                    <i class="fa fa-soundcloud"></i>
-                                </a>
-                            </li>
-                            <li class="social-item">
-                                <a href="#" target="_blank">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                            </li>
-                            <li class="social-item">
-                                <a href="#" target="_blank">
-                                    <i class="fa fa-spotify"></i>
-                                </a>
-                            </li>
-                        -->
                     </ul>
                 </div>
 
                 <!-- ===== SOCIAL CONNECTION ===== -->
                 <div class="col-sm-3 mb-40">
-                    <h2 class="title-separator white">Social</h2>
+                    <h2 class="title-separator white">{{ lang.social }}</h2>
                     <ul class="social-list">
                         <li class="social-item">
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ header.url }}" rel="noopener" target="_blank">
@@ -87,7 +67,7 @@
                             </a>
                         </li>
                         <li class="social-item">
-                            <a rel="noopener" target="_blank" href="https://twitter.com/share?url={{ header.url }}&via=AnthonyGourraud&related=AnthonyGourraud&hashtags=vocast%2Cradio%2Cpodcast%2Cinnovation&text=L'unvers radio en podcasts ! Archives, actualités, débats et innovation avec Vocast"
+                            <a rel="noopener" target="_blank" href="https://twitter.com/share?url={{ header.url }}&via={{ footer.social.twitter.via }}&related={{ footer.social.twitter.related }}&hashtags={{ footer.social.twitter.hashtags }}&text={{ footer.social.twitter.text }}"
                                 <i class="fa fa-twitter">
                                 </i>
                             </a>
@@ -117,15 +97,16 @@
                 <div class="col-sm-6 footer-logo">
                     <h2>
                         <a href="/index.html">
-                            <img src="/assets/img/logo.png" alt="Vocast, la radio en podcast" title="Vocast" />
+                            <img src="/assets/img/logo.png" alt="{{ header.altLogo }}" title="{{ _.title }}" />
                         </a>
                     </h2>
                 </div>
 
                 <!-- ===== CREDIT LOGO ===== -->
                 <div class="col-sm-6 text-right">
-                    Vocast - {{ header.year }}.
-                    <a href="/cgu.html"> CGU </a>
+                    Generated with
+                    <a href="https://github.com/antho31/vocast-www" target="_blank"> Vocast tools</a>. {{ _.title }} - {{ footer.year }}.
+                    <a href="/terms.html"> {{ lang.terms }} </a>
                 </div>
 
             </div>

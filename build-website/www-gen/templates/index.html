@@ -2,7 +2,7 @@
 
 
 <!-- ===== WELCOME ===== -->
-<section class="podcast-hero" style="background-image: url(/assets/img/welcome.jpg)">
+<section class="podcast-hero" style="background-image: url(/assets/img/simple-background.jpg)">
 	<div class="podcast-hero-inner" />
 </section>
 
@@ -16,7 +16,7 @@
 		<div class="container">
 
 			<!-- ===== SECTION TITLE ===== -->
-			<h2 class="title-default">Podcasts "{{ podcast.name }}"</h2>
+			<h2 class="title-default">Podcasts "{{ podcast.title }}"</h2>
 
 			<div class="row">
 
@@ -46,7 +46,7 @@
 									<i class="fa fa-clock-o"></i> {{ podcast.episodes[1].durationMin }} min</li>
 								<li class="item">
 									<a href="{{ podcast.episodes[1].audioUrl }}" class="podcast-play">
-										<i class="fa fa-play"></i> Télécharger (MP3)</a>
+										<i class="fa fa-play"></i> {{ lang.download }} </a>
 								</li>
 							</ul>
 						</div>
@@ -69,56 +69,31 @@
 		<div class="container">
 
 			<!-- ===== SECTION TITLE ===== -->
-			<h2 class="title-default">Projets à venir</h2>
+			<h2 class="title-default">{{ lang.comingsoon }}</h2>
 
 			<div class="row mb-30">
 
 				<!-- ===== TEAM CARD ===== -->
+				{% for csoon in comingsoon %}
 				<div class="col-md-6 mb-20">
 					<div class="team-card">
 						<figure class="team-card-image">
-							<img src="assets/img/team/team-2.jpg" alt="Jana Doe" title="Jana Doe" />
+							<img src="{{ csoon.image }}" alt="{{ csoon.altImage }}" title="{{ csoon.title }}" />
 						</figure>
 						<div class="team-card-content">
-							<h2 class="team-card-title">Application conversationnelle!</h2>
-							<p class="team-card-job">Août 2017</p>
-							<p class="team-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat itaque optio minus perferendis tempora.</p>
-							<ul class="team-card-social">
-								<li class="social-item">
-									<a href="#" target="_blank">
-										<i class="fa fa-link"></i>
-									</a>
-								</li>
-							</ul>
+
+							<h2 class="team-card-title">{{ csoon.title }}</h2>
+							<p class="team-card-job">{{ csoon.when }}</p>
+							<p class="team-card-description">{{ csoon.description }}</p>
+							<br/>
+
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 mb-20">
-					<div class="team-card">
-						<figure class="team-card-image">
-							<img src="assets/img/team/team-2.jpg" alt="Jana Doe" title="Jana Doe" />
-						</figure>
-						<div class="team-card-content">
-							<h2 class="team-card-title">Application conversationnelle</h2>
-							<p class="team-card-job">Août 2017</p>
-							<p class="team-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat itaque optio minus perferendis tempora.</p>
-							<ul class="team-card-social">
-								<li class="social-item">
-									<a href="#" target="_blank">
-										<i class="fa fa-link"></i>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
+
 			</div>
-
-		</div>
 	</section>
-
-
-
 
 </main>
 

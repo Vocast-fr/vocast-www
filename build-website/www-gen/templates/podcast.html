@@ -1,0 +1,189 @@
+{% include "header.html" %}
+
+
+<!-- ===== MAIN ===== -->
+<main id="main" class="main">
+
+	<!-- ===== PAGE HEADER ===== -->
+	<header class="page-header-podcast">
+		<div class="page-header-inner">
+			<div class="container">
+
+				<!-- ===== BREADCRUMB ===== -->
+				<ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+					<li itemprop="itemListElement">
+						<a href="/index.html">{{ lang.home }}</a>
+					</li>
+					<li itemprop="itemListElement">
+						<a href="/{{ podcast.podcastPath }}">{{ podcast.title }}</a>
+					</li>
+					<li itemprop="itemListElement">
+						<a href="#">S{{ episode.season }}E{{ episode.episode }}</a>
+					</li>
+				</ol>
+
+				<!-- ===== PAGE HEADER CONTENT ===== -->
+				<div class="page-header-content text-center">
+					<h2>{{ episode.title }}</h2>
+					<p> {{ episode.description }} </p>
+				</div>
+
+			</div>
+		</div>
+	</header>
+
+	<!-- ===== PODCAST PLAYER ===== -->
+	<div class="podcast-player">
+		<div class="podcast-player-inner">
+			<div class="container">
+				<audio id="audioPlayer" src="{{ episode.audioUrl }}"></audio>
+			</div>
+		</div>
+	</div>
+
+	<!-- ===== PODCAST META ===== -->
+	<div class="podcast-meta-element">
+		<span class="podcast-meta-item">
+			<i class="fa fa-calendar"></i> {{ episode.friendlyDate }}</span>
+		<span class="podcast-meta-item">
+			<i class="fa fa-clock-o"></i> {{ episode.durationMin }} min</span>
+		<a class="podcast-meta-item" href="{{ episode.applePodcastsLink }}">
+			<i class="fa fa-podcast"></i> {{ lang.listenTo }} Apple Podcasts</a>
+		<a class="podcast-meta-item" href="{{ episode.audioUrl }}">
+			<i class="fa fa-download"></i> {{ lang.download }}</a>
+	</div>
+
+	<!-- ===== PODCAST LINKS ===== -->
+	<div class="podcast-links">
+		<div class="container">
+			<ul class="podcast-links-list">
+				{% for chapter in episode.chapters %}
+				<li>
+					<a onclick="document.getElementById('audioPlayer').currentTime={{ chapter.startSec }}" class="btn btn-success btn-sm"> {{ chapter.start }} </a>
+					<span class="podcast-link-cite">{{ chapter.title }}</span>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+
+	<!-- ===== SINGLE PAGE CONTENT ===== -->
+	<div class="section-negative">
+		<div class="container">
+
+			<div class="row mt-70 mb-50">
+
+				<!-- ===== PODCAST TEXT CONTENT ===== -->
+				<div class="col-md-8 mb-50">
+
+					<!-- ===== PAGE MAIN CONTENT ===== -->
+					<div class="page-content">
+
+						{% for paragraph in episode.paragraphs %}
+						<p>{{ paragraph }}</p>
+						{% endfor %}
+
+						<!-- ===== GALLERY WITH ZOOM ===== -->
+						<div class="page-gallery">
+
+							{% for unitGallery in episode.gallery %}
+							<div class="col-md-4 col-xs-6 nopadding">
+								<figure class="gallery-item">
+									<a href="{{ unitGallery.link }}" class="gallery-zoom" title="{{ unitGallery.title }}">
+										<img src="{{ unitGallery.link }}" alt="{{ unitGallery.title }}" title="{{ unitGallery.title }}" />
+									</a>
+									<figcaption>{{ unitGallery.title }}</figcaption>
+								</figure>
+							</div>
+							{% endfor %}
+
+						</div>
+					</div>
+
+					<!-- ===== HR ===== -->
+					<hr />
+
+					<!-- ===== PREV AND NEXT ===== -->
+					<div class="page-pagination">
+
+						{% if previousEpisode %}
+						<!-- ===== PREV ===== -->
+						<a href="/{{ previousEpisode.episodePath }}" class="page-pagination-prev">
+							<i class="fa fa-long-arrow-left"></i>
+							<span>{{ previousEpisode.friendlyDate }}</span>
+							<p>{{ previousEpisode.title }}</p>
+						</a>
+						{% endif %} {% if nextEpisode %}
+						<!-- ===== NEXT ===== -->
+						<a href="/{{ nextEpisode.episodePath }}" class="page-pagination-next">
+							<i class="fa fa-long-arrow-right"></i>
+							<span>{{ nextEpisode.friendlyDate }}</span>
+							<p>{{ nextEpisode.title }}</p>
+						</a>
+						{% endif %}
+
+					</div>
+
+				</div>
+
+				<!-- ===== SIDEBAR ===== -->
+				<div class="col-md-4">
+
+					<!-- ===== PODCAST SIDEBAR ===== -->
+					<div class="page-sidebar">
+
+						<!-- ===== SIDEBAR WIDGET ===== -->
+						<div class="sidebar-widget">
+							<h2 class="title-separator">{{ lang.share }}</h2>
+							<ul class="social-list colored">
+								<li class="social-item facebook">
+									<a rel="noopener" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ header.url }}">
+										<i class="fa fa-facebook"></i>
+									</a>
+								</li>
+								<li class="social-item twitter">
+									<a rel="noopener" target="_blank" href="https://twitter.com/share?url={{ header.url }}&via={{ footer.social.twitter.via }}&related={{ footer.social.twitter.related }}&hashtags={{ episode.tags }}&text={{ episode.title }} - {{ episode.description }}"
+									 <i class="fa fa-twitter">
+										</i>
+									</a>
+								</li>
+								<li class="social-item">
+									<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ header.url }}" target="_blank">
+										<i class="fa fa-linkedin"></i>
+									</a>
+								</li>
+								<li class="social-item email">
+									<a href="mailto:?&subject={{ episode.title }}&body={{ episode.description }} - {{ header.url }}" target="_blank">
+										<i class="fa fa-envelope"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- ===== TAGS ===== -->
+						<div class="sidebar-widget">
+							<h2 class="title-separator">Tags</h2>
+							<ul class="tag-list">
+
+								{% for tag in episode.tags %}
+								<li class="tag-item">
+									<a rel="tag">{{ tag }}</a>
+								</li>
+								{% endfor %}
+
+							</ul>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+</main>
+
+
+{% include "footer.html" %}

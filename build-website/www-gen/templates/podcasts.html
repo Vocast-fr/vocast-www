@@ -2,7 +2,7 @@
 
 
 <!-- ===== LASTEST PODCAST (HERO) ===== -->
-<section class="podcast-hero" style="background-image: url({{ lastEpisode.bgImg }})">
+<section class="podcast-hero" style="background-image: url({{ podcast.image }})">
 	<div class="podcast-hero-inner">
 
 		<!-- ===== PODCAST INFO ===== -->
@@ -14,14 +14,14 @@
 				</h2>
 				<ul class="podcast-hero-meta">
 					<li class="item">
-						{{ podcast.name }} S{{ lastEpisode.season }}E{{ lastEpisode.episode }}
+						{{ podcast.title }} S{{ lastEpisode.season }}E{{ lastEpisode.episode }}
 					</li>
 					<li class="item">
 						<i class="fa fa-clock-o"></i> {{ lastEpisode.durationMin }} min
 					</li>
 					<li class="item">
 						<a href="{{ lastEpisode.audioUrl }}" target="_blank" class="podcast-hero-download">
-							<i class="fa fa-download"></i> Télécharger</a>
+							<i class="fa fa-download"></i> {{ lang.download }}</a>
 					</li>
 				</ul>
 			</div>
@@ -46,7 +46,7 @@
 		<div class="container">
 
 			<!-- ===== SECTION TITLE ===== -->
-			<h2 class="title-default">Episodes précédents</h2>
+			<h2 class="title-default">{{ lang.previousEpisode }}</h2>
 
 			<div class="row">
 
@@ -69,14 +69,14 @@
 							</p>
 							<ul class="podcast-meta">
 								<li class="item">
-									{{ podcast.name }} S{{ otherEpisode.season }}E{{ otherEpisode.episode }}
+									{{ podcast.title }} S{{ otherEpisode.season }}E{{ otherEpisode.episode }}
 								</li>
 								<li class="item">
 									<i class="fa fa-clock-o"></i> {{ otherEpisode.durationMin }} min
 								</li>
 								<li class="item">
 									<a href="{{ otherEpisode.audioUrl }}" target="_blank" class="podcast-play">
-										<i class="fa fa-download"></i> Télécharger l'épisode</a>
+										<i class="fa fa-download"></i> {{ lang.download }}</a>
 								</li>
 							</ul>
 						</div>

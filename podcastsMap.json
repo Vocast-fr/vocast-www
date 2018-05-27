@@ -1,17 +1,101 @@
 {
+  "_": {
+    "title": "Vocast"
+  },
+  "comingsoon": [
+    {
+      "image":
+        "https://s3.eu-west-3.amazonaws.com/vocast/comingsoon/appconv.png",
+      "altImage": "Application conversationnelle",
+      "title": "Application conversationnelle",
+      "description":
+        "Et si on retrouvait Vocast sur Google Assistant et Alexa ? La radio a plein d'opportunités à exploiter via les assistants vocaux (sur enceintes connectées, voitures autonomes, ....), expérimentons sur ces plateformes !",
+      "when": "Fin 2018"
+    },
+    {
+      "image":
+        "https://s3.eu-west-3.amazonaws.com/vocast/comingsoon/destechnos.jpg",
+      "altImage": "Des Technos Vocast",
+      "title": "Des Technos Vocast",
+      "description":
+        "Deuxième série de podcast pour approfondir les aspects technologiques autour de la radio. Les outils, les services, les développements et stratégies autour du podcasting, l'élaboration de smartradios, ... Contactez-nous si vous êtes interessés !",
+      "when": "Fin 2019"
+    }
+  ],
+  "contact": {
+    "title":
+      "Envie de nous rejoindre, un projet à projet ? Une interrogation en tête ? Ou bien des précisions à nous apporter ?",
+    "description":
+      "Il suffit de remplir le questionnaire et de valider l'envoi via le mécanisme anti-spam"
+  },
+  "footer": {
+    "podcastLinks": [
+      {
+        "faIcon": "rss",
+        "link": "#"
+      },
+      {
+        "faIcon": "podcast",
+        "link": "#"
+      },
+      {
+        "faIcon": "spotify",
+        "link": "#"
+      }
+    ],
+    "social": {
+      "twitter": {
+        "site": "AnthonyGourraud",
+        "creator": "AnthonyGourraud",
+        "via": "AnthonyGourraud",
+        "related": "AnthonyGourraud",
+        "hashtags": "vocast%2Cradio%2Cpodcast%2Cinnovation",
+        "text":
+          "L'univers radio en podcasts ! Archives, actualités, débats et innovation avec Vocast"
+      }
+    }
+  },
   "header": {
-    "title": "Vocast - Accueil",
-    "description": "Radio, podcasts, innovation média : vocast.fr",
-    "image":
-      "http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg"
+    "author": "Vocast Team",
+    "title": "Vocast",
+    "description": "Vocast : Radio, Podcasts, Innovation média - vocast.fr",
+    "keywords":
+      "vocast, podcast, radio, webradio, smartradio, innovation, archive, zapping, vocal, application, anthony, gourraud",
+    "image": "/assets/img/simple-background.jpg",
+    "altLogo": "Logo Vocast"
+  },
+  "lang": {
+    "_": "fr",
+    "comingsoon": "Projets à venir",
+    "contact": "Contact",
+    "download": "Télécharger",
+    "email": "Email",
+    "home": "Accueil",
+    "lastEpisode": "Dernier épisode",
+    "listenTo": "Ecouter sur",
+    "message": "Message",
+    "podcastLinks": "Podcasting",
+    "previousEpisode": "Précédents épisodes",
+    "send": "Envoyer",
+    "share": "Partager",
+    "sitemap": "Plan du site",
+    "social": "Social",
+    "team": "L'équipe",
+    "terms": "CGU",
+    "welcome": "Accueil"
+  },
+  "notfound": {
+    "title": "Oups... Page introuvable",
+    "text":
+      "La page demandée n'existe pas. <br/> Nous allons chercher dans la cave si elle s'y trouve par hasard...",
+    "link": "En attendant, vous pouvez retourner à la page d'accueil"
   },
   "podcasts": {
     "desondes": {
-      "name": "Des Ondes Vocast",
+      "title": "Des Ondes Vocast",
       "description":
         "La radio d'hier, d'aujourd'hui et de demain en un podcast",
-      "image":
-        "http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg",
+      "image": "https://s3.eu-west-3.amazonaws.com/vocast/desondes/bg.png",
 
       "episodes": [
         {
@@ -23,6 +107,10 @@
           "date": "2018-04-03",
           "title": "DOV 000 Pilote",
           "description": "Ceci est le pilote\n Retour à la ligne effectué!",
+          "paragraphs": [
+            "Ceci est un paragraphe 1, très court",
+            "Long maintaining an enchanted silence, Ahab stood apart; and every time the tetering ship loweringly pitched down her bowsprit, he turned to eye the bright sun's rays produced ahead; and when she profoundly settled by the stern, he turned behind, and saw the sun's rearward place, and how the same yellow rays were blending with his undeviating wake."
+          ],
           "chapters": [
             {
               "startSec": 0,
@@ -41,12 +129,19 @@
             }
           ],
           "squareImg": "/assets/img/favicon.png",
-          "bgImg":
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/podcast-hero.jpg",
-          "galleryImgs": [
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg",
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-2.jpg",
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-3.jpg"
+          "applePodcastsLink": "https://google.fr",
+          "tags": ["Radio", "Podcast", "Innovation", "Archive"],
+          "gallery": [
+            {
+              "title": "Ceci est un titre 1",
+              "link":
+                "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
+            },
+            {
+              "title": "Ceci est un titre 2 ",
+              "link":
+                "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
+            }
           ]
         },
         {
@@ -72,8 +167,6 @@
             }
           ],
           "squareImg": "/assets/img/favicon.png",
-          "bgImg":
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/podcast-hero.jpg",
           "galleryImgs": [
             "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg",
             "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-2.jpg",
@@ -112,8 +205,6 @@
             }
           ],
           "squareImg": "/assets/img/favicon.png",
-          "bgImg":
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/podcast-hero.jpg",
           "galleryImgs": [
             "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg",
             "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-2.jpg",
@@ -123,11 +214,11 @@
       ]
     },
     "desondes2": {
-      "name": "Des Autres Ondes Vocast",
+      "title": "Des Autres Ondes Vocast",
       "description":
         "La radio d'hier, d'aujourd'hui et de demain en un podcast",
       "image":
-        "http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg",
+        "https://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg",
 
       "episodes": [
         {
@@ -139,6 +230,7 @@
           "date": "2018-04-03",
           "title": "DOV 000 Pilote",
           "description": "Ceci est le pilote\n Retour à la ligne effectué!",
+          "applePodcastsLink": "https://google.fr",
           "chapters": [
             {
               "startSec": 0,
@@ -157,7 +249,6 @@
             }
           ],
           "squareImg": "/assets/img/favicon.png",
-          "bgImg": "/assets/img/favicon.png",
           "galleryImgs": [
             "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg",
             "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-2.jpg",
@@ -166,5 +257,61 @@
         }
       ]
     }
+  },
+  "team": {
+    "title": "Derrière ce projet...",
+    "members": [
+      {
+        "name": "Anthony Gourraud",
+        "job": "Creative technologist",
+        "description":
+          "A l'initiative du projet, passionné par la radio et l'Innovation appliquée aux médias. Aime développer des prototypes.",
+        "pic": "https://s3.eu-west-3.amazonaws.com/vocast/team/anthony.jpg",
+
+        "twitter": "https://twitter.com/AnthonyGourraud",
+        "linkedin": "https://www.linkedin.com/in/anthony-gourraud-271918b2/",
+        "github": "https://github.com/antho31/",
+        "website": "https://anthonygourraud.radio"
+      },
+      {
+        "name": "Fabien Jora",
+        "job": "Animateur, producteur & DJ",
+        "description":
+          "Producteur de bootlegs et remixs playlisté en FM sur Fun radio (Belgique), Radio FG, Siriux XM (USA). Actuellement sur Toulouse FM.",
+        "pic": "https://s3.eu-west-3.amazonaws.com/vocast/team/fabien.jpeg",
+
+        "facebook": "https://www.facebook.com/fabienjoradj",
+        "twitter": "https://twitter.com/Fabienjora",
+        "linkedin": "https://www.linkedin.com/in/fabien-jora-a8aa5229/",
+        "website": "https://www.fabienjora.com/"
+      },
+      {
+        "name": "Marc Mollier",
+        "job": "Animateur",
+        "description":
+          "Passionné de radio depuis toujours, animateur de la matinale de Pyrénées FM.",
+        "pic":
+          "https://s3.eu-west-3.amazonaws.com/vocast/team/marc-mollier.jpg",
+        "website": "http://pyreneesfm.com"
+      },
+      {
+        "name": "Marc Rigo",
+        "job": "Ingénieur du son, producteur, réalisateur",
+        "description":
+          "Maintenacede la diffusion & réalisation d'émission radio en direct en extérieur pour le Groupe Mediameeting.",
+        "pic": "https://s3.eu-west-3.amazonaws.com/vocast/team/marc-rigo.jpeg",
+        "linkedin": "https://fr.linkedin.com/in/marc-rigo-39ba8b92"
+      },
+      {
+        "name": "Tarik",
+        "job": "Développeur intégrateur & designer",
+        "description": "Autodidacte, passionné par le web.",
+        "pic": "https://s3.eu-west-3.amazonaws.com/vocast/team/tarik.png",
+        "twitter": "https://twitter.com/TakCastel",
+        "linkedin": "https://www.linkedin.com/in/tarik-talhaoui-832769110/",
+        "github": "https://github.com/TakCastel/",
+        "website": "https://takcastel.com"
+      }
+    ]
   }
 }

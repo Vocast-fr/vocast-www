@@ -4,7 +4,7 @@
   "description": "Procedures for Vocast podcasts publications",
   "main": "index.js",
   "scripts": {
-    "update-website": "node update-website/index.js",
+    "build-website": "node build-website/index.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

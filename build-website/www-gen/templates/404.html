@@ -10,11 +10,12 @@
 
 				<!-- ===== PAGE HEADER CONTENT ===== -->
 				<div class="page-error-content text-center">
-					<h2>Oups... Page introuvable</h2>
-					<p class="mb-40">La page demandée n'existe pas.
-						<br />Nous allons chercher dans la cave si elle s'y trouve par hasard...</p>
-					<a href="/index.html" class="btn btn-info">En attendant, vous pouvez retourner à la page d'accueil</a>
+					<h2>{{ notfound.title }}</h2>
+					<p class="mb-40">{{ notfound.text }}</p>
+					<a href="/index.html" class="btn btn-info">{{ notfound.link }}</a>
+
 				</div>
+
 
 			</div>
 		</div>

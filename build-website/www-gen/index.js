@@ -29,10 +29,16 @@ const assetsHandler = () => {
     })
 }
 
-const generateHtml = (templatePath, dataObj, outputPath) => {
+const generateHtml = (templatePath, dataObj, outputPath, appendTitle) => {
+  const finalObj = appendTitle
+    ? podcastsMapUpdate(dataObj, {
+      header: { title: `${dataObj.header.title} - ${appendTitle}` }
+    })
+    : dataObj
+
   try {
     nunjucks.configure(templatesFolder)
-    const htmlData = nunjucks.render(templatePath, dataObj)
+    const htmlData = nunjucks.render(templatePath, finalObj)
     return fs.writeFile(`${wwwFinalFolder}/${outputPath}`, htmlData)
   } catch (e) {
     console.error(
@@ -43,18 +49,33 @@ const generateHtml = (templatePath, dataObj, outputPath) => {
 }
 
 const generate404HTML = async podcastsMap => {
-  return generateHtml(`404.html`, podcastsMap, '404.html')
+  return generateHtml(`404.html`, podcastsMap, '404.html', '404')
 }
 const generateAboutHTML = async podcastsMap => {
-  return generateHtml(`about-us.html`, podcastsMap, 'about-us.html')
+  return generateHtml(
+    `about-us.html`,
+    podcastsMap,
+    'about-us.html',
+    podcastsMap.lang.team
+  )
 }
 
 const generateContactHTML = async podcastsMap => {
-  return generateHtml(`contact.html`, podcastsMap, 'contact.html')
+  return generateHtml(
+    `contact.html`,
+    podcastsMap,
+    'contact.html',
+    podcastsMap.lang.contact
+  )
 }
 
 const generateIndexHTML = async podcastsMap => {
-  return generateHtml(`index.html`, podcastsMap, 'index.html')
+  return generateHtml(
+    `index.html`,
+    podcastsMap,
+    'index.html',
+    podcastsMap.lang.welcome
+  )
 }
 
 const generatePodcastsPages = async podcastsMap => {
@@ -81,7 +102,7 @@ const generatePodcastsPages = async podcastsMap => {
 
     const podcastsMapPodcast = podcastsMapUpdate(podcastsMap, {
       header: {
-        title: title,
+        title: `${podcastsMap.header.title} - ${title}`,
         description: description,
         url: `${WWW_BASE}/${podcastPath}`,
         image: image
@@ -97,15 +118,21 @@ const generatePodcastsPages = async podcastsMap => {
     promises.push(
       limit(() => generatePodcastsIndexHTML(podcastsMapPodcast, podcastPath))
     )
-    episodes.forEach(episodeInfos => {
+    episodes.forEach((episodeInfos, episodeIndex) => {
       const { episodePath, title, description } = episodeInfos
       const podcastMapEpisode = podcastsMapUpdate(podcastsMapPodcast, {
         header: {
-          title: title,
+          title: `${podcastsMap.header.title} - ${title}`,
           description: description,
           url: `${WWW_BASE}/${episodePath}`
         },
-        episode: episodeInfos
+        episode: episodeInfos,
+        previousEpisode:
+          episodeIndex === 0 ? undefined : episodes[episodeIndex - 1],
+        nextEpisode:
+          episodeIndex < episodes.length - 1
+            ? episodes[episodeIndex + 1]
+            : undefined
       })
       promises.push(
         limit(() => generatePodcastPageHTML(podcastMapEpisode, episodePath))
