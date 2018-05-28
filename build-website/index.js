@@ -9,10 +9,10 @@ async function main () {
       .then(wwwGenerator)
       .then(() => {
         console.log('MAIN: OK!')
-        if (process.env.DEV) { 
-           while (true) {}
+        if (process.env.DEV) {
+          while (true) {}
         }
-           console.log('MAIN: Process ended.')
+        console.log('MAIN: Process ended.')
       })
       .catch(e => {
         console.error('EXECUTION error', e)

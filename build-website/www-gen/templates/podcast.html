@@ -106,19 +106,17 @@
 					<!-- ===== PREV AND NEXT ===== -->
 					<div class="page-pagination">
 
-						{% if previousEpisode %}
-						<!-- ===== PREV ===== -->
-						<a href="/{{ previousEpisode.episodePath }}" class="page-pagination-prev">
+						{% if nextEpisode %}
+						<a href="/{{ nextEpisode.episodePath }}" class="page-pagination-prev">
 							<i class="fa fa-long-arrow-left"></i>
-							<span>{{ previousEpisode.friendlyDate }}</span>
-							<p>{{ previousEpisode.title }}</p>
-						</a>
-						{% endif %} {% if nextEpisode %}
-						<!-- ===== NEXT ===== -->
-						<a href="/{{ nextEpisode.episodePath }}" class="page-pagination-next">
-							<i class="fa fa-long-arrow-right"></i>
 							<span>{{ nextEpisode.friendlyDate }}</span>
 							<p>{{ nextEpisode.title }}</p>
+						</a>
+						{% endif %} {% if previousEpisode %}
+						<a href="/{{ previousEpisode.episodePath }}" class="page-pagination-next">
+							<i class="fa fa-long-arrow-right"></i>
+							<span>{{ previousEpisode.friendlyDate }}</span>
+							<p>{{ previousEpisode.title }}</p>
 						</a>
 						{% endif %}
 
