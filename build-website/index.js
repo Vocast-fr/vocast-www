@@ -7,7 +7,13 @@ async function main () {
 
     podcastsMapFulfiller(podcastsMap)
       .then(wwwGenerator)
-      .then(() => console.log('MAIN: Process ended.'))
+      .then(() => {
+        console.log('MAIN: OK!')
+        if (process.env.DEV) { 
+           while (true) {}
+        }
+           console.log('MAIN: Process ended.')
+      })
       .catch(e => {
         console.error('EXECUTION error', e)
       })
