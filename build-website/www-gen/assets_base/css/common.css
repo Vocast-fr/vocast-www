@@ -5,3 +5,19 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.team-card {
+  background: #e4e4e4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+}
+
+.team-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
