@@ -25,6 +25,9 @@
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+    <!-- Apple Podcast / iTunes -->
+    <meta name="apple-itunes-app" content="app-id={{ header.iTunesAppId }}">
+
     <!-- =================================== -->
     <!-- 			  TITLE 			 	 -->
     <!-- =================================== -->
@@ -59,8 +62,11 @@
 
     <!-- GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
-
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'> {% if header.shouldBeAmp %}
+    <!-- AMP -->
+    <link rel="amphtml" href="https://mercury.postlight.com/amp?url={{ header.url }}"> {% endif %} {% if header.isPodcastHomepage %}
+    <!-- Audio SEO via RSS -->
+    <link type="application/rss+xml" rel="alternate" title="{{ header.title }}" href="{{ header.rss }}" /> {% endif %}
 
     <!-- =================================== -->
     <!-- 		 	THEME COLOR 			 -->
@@ -124,8 +130,8 @@
     <!-- =================================== -->
 
     <meta name="twitter:card" content="{{ header.description }} " />
-    <meta name="twitter:site" content="@{{ footer.social.twitter.site }}" />
-    <meta name="twitter:creator" content="@{{ footer.social.twitter.creator }}" />
+    <meta name="twitter:site" content="@{{ header.social.twitter.site }}" />
+    <meta name="twitter:creator" content="@{{ header.social.twitter.creator }}" />
     <meta name="twitter:title" content="{{ header.title }}" />
     <meta name="twitter:description" content="{{ header.description }}" />
     <meta name="twitter:domain" content="{{ _.title }}" />

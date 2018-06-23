@@ -46,14 +46,25 @@
                     <h2 class="title-separator white">{{ lang.podcastLinks }}</h2>
                     <ul class="social-list">
 
-                        {% for podcastLink in footer.podcastLinks %}
+                        {% if header.rss %}
                         <li class="social-item">
-                            <a href="{{ podcastLink.link }}" target="_blank">
-                                <i class="fa fa-{{ podcastLink.faIcon }}"></i>
+                            <a href="{{ header.rss }}" target="_blank">
+                                <i class="fa fa-rss"></i>
                             </a>
                         </li>
-                        {% endfor %}
-
+                        {% endif %} {% if header.applePodcastsLink %}
+                        <li class="social-item">
+                            <a href="{{ header.applePodcastsLink }}" target="_blank">
+                                <i class="fa fa-podcast"></i>
+                            </a>
+                        </li>
+                        {% endif %} {% if header.googlePodcastsLink %}
+                        <li class="social-item">
+                            <a href="{{ header.googlePodcastsLink }}" target="_blank">
+                                <i class="fa fa-google"></i>
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
 
@@ -67,7 +78,7 @@
                             </a>
                         </li>
                         <li class="social-item">
-                            <a rel="noopener" target="_blank" href="https://twitter.com/share?url={{ header.url }}&via={{ footer.social.twitter.via }}&related={{ footer.social.twitter.related }}&hashtags={{ footer.social.twitter.hashtags }}&text={{ footer.social.twitter.text }}"
+                            <a rel="noopener" target="_blank" href="https://twitter.com/share?url={{ header.url }}&via={{ header.social.twitter.via }}&related={{ header.social.twitter.related }}&hashtags={{ header.social.twitter.hashtags }}&text={{ header.social.twitter.text }}"
                                 <i class="fa fa-twitter">
                                 </i>
                             </a>

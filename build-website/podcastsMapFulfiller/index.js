@@ -33,7 +33,9 @@ module.exports = async podcastsMap => {
    ******* FOOTER & HEADER ***********
    ***********************************/
 
+  if (!podcastsMap.footer) podcastsMap.footer = {}
   podcastsMap.footer.year = moment().year()
+
   podcastsMap.header.url = WWW_BASE
   podcastsMap.header.contact = CONTACT
   podcastsMap.header.gaId = GA_ID

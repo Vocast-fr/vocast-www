@@ -18,7 +18,7 @@
       "altImage": "Des Technos Vocast",
       "title": "Des Technos Vocast",
       "description":
-        "Deuxième série de podcast pour approfondir les aspects technologiques autour de la radio. Les outils, les services, les développements et stratégies autour du podcasting, l'élaboration de smartradios, ... Contactez-nous si vous êtes interessés !",
+        "Deuxième série de podcasts pour approfondir les aspects technologiques autour de la radio. Les outils, les services, les développements et stratégies autour du podcasting, l'élaboration de smartradios, ... Contactez-nous si vous êtes interessés !",
       "when": "Fin 2019"
     }
   ],
@@ -28,21 +28,19 @@
     "description":
       "Il suffit de remplir le questionnaire et de valider l'envoi via le mécanisme anti-spam"
   },
-  "footer": {
-    "podcastLinks": [
-      {
-        "faIcon": "rss",
-        "link": "#"
-      },
-      {
-        "faIcon": "podcast",
-        "link": "#"
-      },
-      {
-        "faIcon": "spotify",
-        "link": "#"
-      }
-    ],
+  "header": {
+    "author": "Vocast Team",
+    "title": "Vocast",
+    "description": "Vocast : Radio, Podcasts, Innovation média - vocast.fr",
+    "keywords":
+      "vocast, podcast, radio, webradio, smartradio, innovation, archive, zapping, vocal, application, anthony, gourraud",
+    "image": "/assets/img/simple-background.jpg",
+    "altLogo": "Logo Vocast",
+    "rss": "https://spreaker.com/default.rss",
+    "iTunesAppId": "XXXXXX",
+    "googlePodcastsLink": "https://www.google.com/podcasts?feed=XXXXXXX",
+    "applePodcastsLink":
+      "https://itunes.apple.com/fr/podcast/tvnr/idXXXXXX?mt=2",
     "social": {
       "twitter": {
         "site": "AnthonyGourraud",
@@ -54,15 +52,6 @@
           "L'univers radio en podcasts ! Archives, actualités, débats et innovation avec Vocast"
       }
     }
-  },
-  "header": {
-    "author": "Vocast Team",
-    "title": "Vocast",
-    "description": "Vocast : Radio, Podcasts, Innovation média - vocast.fr",
-    "keywords":
-      "vocast, podcast, radio, webradio, smartradio, innovation, archive, zapping, vocal, application, anthony, gourraud",
-    "image": "/assets/img/simple-background.jpg",
-    "altLogo": "Logo Vocast"
   },
   "lang": {
     "_": "fr",
@@ -81,7 +70,7 @@
     "sitemap": "Plan du site",
     "social": "Social",
     "team": "L'équipe",
-    "terms": "CGU",
+    "terms": "Mentions légales",
     "welcome": "Accueil"
   },
   "notfound": {
@@ -94,9 +83,25 @@
     "desondes": {
       "title": "Des Ondes Vocast",
       "description":
-        "La radio d'hier, d'aujourd'hui et de demain en un podcast",
+        "Des Ondes Vocast : la radio d'hier, d'aujourd'hui et de demain en un podcast",
       "image": "https://s3.eu-west-3.amazonaws.com/vocast/desondes/bg.png",
-
+      "rss": "https://spreaker.com/desondes.rss",
+      "googlePodcastsLink":
+        "https://www.google.com/podcasts?feed=aHR0cHM6Ly9wb2RuZXdzLm5ldC9yc3M%3D",
+      "applePodcastsLink":
+        "https://itunes.apple.com/fr/podcast/tvnr/id702587884?mt=2",
+      "iTunesAppId": "702587884",
+      "social": {
+        "twitter": {
+          "site": "AnthonyGourraud",
+          "creator": "AnthonyGourraud",
+          "via": "AnthonyGourraud",
+          "related": "AnthonyGourraud",
+          "hashtags": "desondes%2Cvocast%2Cradio%2Cpodcast%2Cinnovation",
+          "text":
+            "Des Ondes Vocast : le podcast sur l'univers de la radio ! Archives, actualités, débats et innovation"
+        }
+      },
       "episodes": [
         {
           "season": 0,
@@ -108,7 +113,7 @@
           "title": "DOV 000 Pilote!",
           "description": "Ceci est le pilote\n Retour à la ligne effectué!",
           "paragraphs": [
-            "Ceci est un paragraphe 1, très court",
+            "Ceci est un paragraphe 1, <a href='http://google.fr'> très court </a>",
             "Long maintaining an enchanted silence, Ahab stood apart; and every time the tetering ship loweringly pitched down her bowsprit, he turned to eye the bright sun's rays produced ahead; and when she profoundly settled by the stern, he turned behind, and saw the sun's rearward place, and how the same yellow rays were blending with his undeviating wake."
           ],
           "chapters": [
@@ -129,7 +134,6 @@
             }
           ],
           "squareImg": "/assets/img/favicon.png",
-          "applePodcastsLink": "https://google.fr",
           "tags": ["Radio", "Podcast", "Innovation", "Archive"],
           "gallery": [
             {
@@ -142,73 +146,6 @@
               "link":
                 "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
             }
-          ]
-        },
-        {
-          "season": 1,
-          "episode": 1,
-          "audioUrl":
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/s01e01.mp3",
-          "durationMin": 5,
-          "date": "2018-04-26",
-          "title": "DOV 001 Premier podcast",
-          "description":
-            "Ceci est un premier podcast !\n Retour à la ligne effectué!",
-          "chapters": [
-            {
-              "startSec": 0,
-              "start": "00:00:00",
-              "title": "Partie 1"
-            },
-            {
-              "startSec": 7,
-              "start": "00:00:07",
-              "title": "Partie 2"
-            }
-          ],
-          "squareImg": "/assets/img/favicon.png",
-          "galleryImgs": [
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg",
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-2.jpg",
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-3.jpg"
-          ]
-        },
-        {
-          "season": 1,
-          "episode": 2,
-          "audioUrl":
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/s01e02.mp3",
-          "durationMin": 25,
-          "date": "2018-05-01",
-          "title": "DOV 002 C'est le deuxième !",
-          "description": "C'est reparti pour un deuxième épisode...",
-          "chapters": [
-            {
-              "startSec": 0,
-              "start": "00:00:00",
-              "title": "Partie 1"
-            },
-            {
-              "startSec": 13,
-              "start": "00:00:13",
-              "title": "Partie 2"
-            },
-            {
-              "startSec": 30,
-              "start": "00:00:30",
-              "title": "Partie 3"
-            },
-            {
-              "startSec": 43,
-              "start": "00:00:43",
-              "title": "Partie 4"
-            }
-          ],
-          "squareImg": "/assets/img/favicon.png",
-          "galleryImgs": [
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg",
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-2.jpg",
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-3.jpg"
           ]
         }
       ]

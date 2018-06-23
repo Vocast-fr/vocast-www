@@ -19,16 +19,6 @@ const podcastsMapUpdate = (inputPodcastsMap, updates) => {
   return merge(inputPodcastsMap, updates)
 }
 
-const assetsHandler = () => {
-  fs.ensureDirSync(`${wwwFinalFolder}`)
-  return fs
-    .remove(wwwFinalAssetsFolder)
-    .then(() => fs.copy(baseAssetsFolder, wwwFinalAssetsFolder))
-    .catch(e => {
-      console.error('Error with assets Fs operations', e)
-    })
-}
-
 const generateHtml = (templatePath, dataObj, outputPath, appendTitle) => {
   const finalObj = appendTitle
     ? podcastsMapUpdate(dataObj, {
@@ -37,7 +27,7 @@ const generateHtml = (templatePath, dataObj, outputPath, appendTitle) => {
     : dataObj
 
   try {
-    nunjucks.configure(templatesFolder)
+    nunjucks.configure(templatesFolder, { autoescape: false })
     const htmlData = nunjucks.render(templatePath, finalObj)
     return fs.writeFile(`${wwwFinalFolder}/${outputPath}`, htmlData)
   } catch (e) {
@@ -59,7 +49,6 @@ const generateAboutHTML = async podcastsMap => {
     podcastsMap.lang.team
   )
 }
-
 const generateContactHTML = async podcastsMap => {
   return generateHtml(
     `contact.html`,
@@ -68,13 +57,21 @@ const generateContactHTML = async podcastsMap => {
     podcastsMap.lang.contact
   )
 }
-
 const generateIndexHTML = async podcastsMap => {
   return generateHtml(
     `index.html`,
     podcastsMap,
     'index.html',
     podcastsMap.lang.welcome
+  )
+}
+
+const generateTermsHTML = async podcastsMap => {
+  return generateHtml(
+    `terms.html`,
+    podcastsMap,
+    'terms.html',
+    podcastsMap.lang.terms
   )
 }
 
@@ -97,7 +94,18 @@ const generatePodcastsPages = async podcastsMap => {
 
   Object.keys(podcasts).forEach(podcastKey => {
     const podcastInfos = podcasts[podcastKey]
-    const { podcastPath, title, description, episodes, image } = podcastInfos
+    const {
+      podcastPath,
+      title,
+      description,
+      episodes,
+      image,
+      rss,
+      iTunesAppId,
+      applePodcastsLink,
+      googlePodcastsLink,
+      social
+    } = podcastInfos
     const [lastEpisode, ...othersEpisodes] = episodes
 
     const podcastsMapPodcast = podcastsMapUpdate(podcastsMap, {
@@ -105,7 +113,13 @@ const generatePodcastsPages = async podcastsMap => {
         title: `${podcastsMap.header.title} - ${title}`,
         description: description,
         url: `${WWW_BASE}/${podcastPath}`,
-        image: image
+        image: image,
+        rss,
+        iTunesAppId,
+        applePodcastsLink,
+        googlePodcastsLink,
+        social,
+        isPodcastHomepage: true
       },
       lastEpisode,
       othersEpisodes,
@@ -124,7 +138,9 @@ const generatePodcastsPages = async podcastsMap => {
         header: {
           title: `${podcastsMap.header.title} - ${title}`,
           description: description,
-          url: `${WWW_BASE}/${episodePath}`
+          url: `${WWW_BASE}/${episodePath}`,
+          isPodcastHomepage: false,
+          shouldBeAmp: true
         },
         episode: episodeInfos,
         previousEpisode:
@@ -147,12 +163,27 @@ const generatePodcastsPages = async podcastsMap => {
 
 module.exports = podcastsMap => {
   // console.log(podcastsMap.header)
-  return Promise.all([
-    assetsHandler(),
-    generate404HTML(cloneDeep(podcastsMap)),
-    generateAboutHTML(cloneDeep(podcastsMap)),
-    generateContactHTML(cloneDeep(podcastsMap)),
-    generateIndexHTML(cloneDeep(podcastsMap)),
-    generatePodcastsPages(cloneDeep(podcastsMap))
-  ]).then(() => console.log('Website generated'))
+
+  const copyTerms = fs.copy(
+    filePath('../../terms.html'),
+    `${templatesFolder}/terms_base.html`
+  )
+
+  const prepareWwwFinal = fs
+    .remove(wwwFinalFolder)
+    .then(() => fs.ensureDir(wwwFinalFolder))
+    .then(() => fs.copy(baseAssetsFolder, wwwFinalAssetsFolder))
+
+  return Promise.all([copyTerms, prepareWwwFinal])
+    .then(() =>
+      Promise.all([
+        generate404HTML(cloneDeep(podcastsMap)),
+        generateAboutHTML(cloneDeep(podcastsMap)),
+        generateContactHTML(cloneDeep(podcastsMap)),
+        generateIndexHTML(cloneDeep(podcastsMap)),
+        generateTermsHTML(cloneDeep(podcastsMap)),
+        generatePodcastsPages(cloneDeep(podcastsMap))
+      ])
+    )
+    .then(() => console.log('Website generated'))
 }

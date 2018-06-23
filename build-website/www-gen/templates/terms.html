@@ -1,0 +1,34 @@
+{% include "header.html" %}
+
+
+<!-- ===== MAIN ===== -->
+<main id="main" class="main">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <header class="page-header">
+        <div class="page-header-inner">
+            <div class="container">
+
+                <!-- ===== PAGE HEADER CONTENT ===== -->
+                <div class="page-header-content text-center">
+                    <h2>{{ lang.terms }}</h2>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== TERMS ===== -->
+    <section id="about-us" class="section-negative">
+        <div class="container">
+            <br>
+            <br> {% include "terms_base.html" %}
+            <br>
+            <br>
+
+        </div>
+    </section>
+
+</main>
+
+{% include "footer.html" %}
