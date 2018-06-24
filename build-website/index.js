@@ -2,23 +2,24 @@ async function main () {
   try {
     require('dotenv').config()
     const podcastsMap = require('../podcastsMap.json')
-    const podcastsMapFulfiller = require('./podcastsMapFulfiller')
+    const podcastsMapFulfiller = require('./podcastsMap-fulfiller')
     const wwwGenerator = require('./www-gen')
+
+    console.log('MAIN build-site: Start!')
 
     podcastsMapFulfiller(podcastsMap)
       .then(wwwGenerator)
       .then(() => {
-        console.log('MAIN: OK!')
         if (process.env.DEV) {
           while (true) {}
         }
-        console.log('MAIN: Process ended.')
+        console.log('MAIN build-site: Process ended.')
       })
       .catch(e => {
-        console.error('EXECUTION error', e)
+        console.error('EXECUTION build-site error', e)
       })
   } catch (e) {
-    console.error('MAIN: Error ', e)
+    console.error('MAIN build-site: Error ', e)
   }
 }
 

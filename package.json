@@ -4,11 +4,11 @@
   "description": "Procedures for Vocast podcasts publications",
   "main": "index.js",
   "scripts": {
+    "add-episode": "node add-episode/index.js",
+    "add-and-build": "node add-episode/index.js && node build-website/index.js",
     "build-website": "node build-website/index.js",
     "build-website-dev":
-      "DEV=1 nodemon -e js,json,css,scss,html --ignore build-website/www-gen/www-final build-website/index.js",
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "DEV=1 nodemon -e js,json,css,scss,html --ignore build-website/www-gen/www-final build-website/index.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,8 @@
     "moment": "^2.22.1",
     "nunjucks": "^3.1.2",
     "promise-limit": "^2.6.0",
-    "reload": "^2.2.2"
+    "reload": "^2.2.2",
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
     "eslint": "^5.0.0-alpha.2",

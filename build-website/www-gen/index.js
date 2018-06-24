@@ -1,99 +1,99 @@
-const { cloneDeep } = require('lodash')
-const fs = require('fs-extra')
-const merge = require('deepmerge')
-const nunjucks = require('nunjucks')
-const path = require('path')
-var promiseLimit = require('promise-limit')
+const { cloneDeep } = require("lodash");
+const fs = require("fs-extra");
+const merge = require("deepmerge");
+const nunjucks = require("nunjucks");
+const path = require("path");
+var promiseLimit = require("promise-limit");
 
-const { WWW_BASE, PODCAST_GEN_LIMIT } = process.env
+const { WWW_BASE, PODCAST_GEN_LIMIT } = process.env;
 
-const filePath = suffix => path.resolve(__dirname, suffix)
+const filePath = suffix => path.resolve(__dirname, suffix);
 
-const baseAssetsFolder = filePath('assets_base')
-const templatesFolder = filePath('templates')
-const wwwFinalFolder = filePath('www-final')
-const assetsFolder = `assets`
-const wwwFinalAssetsFolder = `${wwwFinalFolder}/${assetsFolder}`
+const baseAssetsFolder = filePath("assets_base");
+const templatesFolder = filePath("templates");
+const wwwFinalFolder = filePath("www-final");
+const assetsFolder = `assets`;
+const wwwFinalAssetsFolder = `${wwwFinalFolder}/${assetsFolder}`;
 
 const podcastsMapUpdate = (inputPodcastsMap, updates) => {
-  return merge(inputPodcastsMap, updates)
-}
+  return merge(inputPodcastsMap, updates);
+};
 
 const generateHtml = (templatePath, dataObj, outputPath, appendTitle) => {
   const finalObj = appendTitle
     ? podcastsMapUpdate(dataObj, {
-      header: { title: `${dataObj.header.title} - ${appendTitle}` }
-    })
-    : dataObj
+        header: { title: `${dataObj.header.title} - ${appendTitle}` }
+      })
+    : dataObj;
 
   try {
-    nunjucks.configure(templatesFolder, { autoescape: false })
-    const htmlData = nunjucks.render(templatePath, finalObj)
-    return fs.writeFile(`${wwwFinalFolder}/${outputPath}`, htmlData)
+    nunjucks.configure(templatesFolder, { autoescape: false });
+    const htmlData = nunjucks.render(templatePath, finalObj);
+    return fs.writeFile(`${wwwFinalFolder}/${outputPath}`, htmlData);
   } catch (e) {
     console.error(
       `HTML Generation Error template ${templatePath}, output ${outputPath}`,
       e
-    )
+    );
   }
-}
+};
 
 const generate404HTML = async podcastsMap => {
-  return generateHtml(`404.html`, podcastsMap, '404.html', '404')
-}
+  return generateHtml(`404.html`, podcastsMap, "404.html", "404");
+};
 const generateAboutHTML = async podcastsMap => {
   return generateHtml(
     `about-us.html`,
     podcastsMap,
-    'about-us.html',
+    "about-us.html",
     podcastsMap.lang.team
-  )
-}
+  );
+};
 const generateContactHTML = async podcastsMap => {
   return generateHtml(
     `contact.html`,
     podcastsMap,
-    'contact.html',
+    "contact.html",
     podcastsMap.lang.contact
-  )
-}
+  );
+};
 const generateIndexHTML = async podcastsMap => {
   return generateHtml(
     `index.html`,
     podcastsMap,
-    'index.html',
+    "index.html",
     podcastsMap.lang.welcome
-  )
-}
+  );
+};
 
 const generateTermsHTML = async podcastsMap => {
   return generateHtml(
     `terms.html`,
     podcastsMap,
-    'terms.html',
+    "terms.html",
     podcastsMap.lang.terms
-  )
-}
+  );
+};
 
 const generatePodcastsPages = async podcastsMap => {
-  const limit = promiseLimit(PODCAST_GEN_LIMIT)
-  const promises = []
-  const podcasts = podcastsMap['podcasts']
+  const limit = promiseLimit(PODCAST_GEN_LIMIT);
+  const promises = [];
+  const podcasts = podcastsMap["podcasts"];
 
   const generatePodcastPageHTML = async (podcastsMap, episodePath) => {
-    return generateHtml(`podcast.html`, podcastsMap, episodePath)
-  }
+    return generateHtml(`podcast.html`, podcastsMap, episodePath);
+  };
 
   const generatePodcastsIndexHTML = async (podcastsMap, podcastPath) => {
     return generateHtml(
       `podcasts.html`,
       podcastsMap,
       `${podcastPath}/index.html`
-    )
-  }
+    );
+  };
 
   Object.keys(podcasts).forEach(podcastKey => {
-    const podcastInfos = podcasts[podcastKey]
+    const podcastInfos = podcasts[podcastKey];
     const {
       podcastPath,
       title,
@@ -105,8 +105,8 @@ const generatePodcastsPages = async podcastsMap => {
       applePodcastsLink,
       googlePodcastsLink,
       social
-    } = podcastInfos
-    const [lastEpisode, ...othersEpisodes] = episodes
+    } = podcastInfos;
+    const [lastEpisode, ...othersEpisodes] = episodes;
 
     const podcastsMapPodcast = podcastsMapUpdate(podcastsMap, {
       header: {
@@ -124,16 +124,16 @@ const generatePodcastsPages = async podcastsMap => {
       lastEpisode,
       othersEpisodes,
       podcast: podcastInfos
-    })
+    });
 
     // check if podcast folder exists, if not create directory
-    fs.ensureDirSync(`${wwwFinalFolder}/${podcastPath}`)
+    fs.ensureDirSync(`${wwwFinalFolder}/${podcastPath}`);
 
     promises.push(
       limit(() => generatePodcastsIndexHTML(podcastsMapPodcast, podcastPath))
-    )
+    );
     episodes.forEach((episodeInfos, episodeIndex) => {
-      const { episodePath, title, description } = episodeInfos
+      const { episodePath, title, description } = episodeInfos;
       const podcastMapEpisode = podcastsMapUpdate(podcastsMapPodcast, {
         header: {
           title: `${podcastsMap.header.title} - ${title}`,
@@ -149,30 +149,30 @@ const generatePodcastsPages = async podcastsMap => {
           episodeIndex < episodes.length - 1
             ? episodes[episodeIndex + 1]
             : undefined
-      })
+      });
       promises.push(
         limit(() => generatePodcastPageHTML(podcastMapEpisode, episodePath))
-      )
-    })
-  })
+      );
+    });
+  });
 
   return Promise.all(promises).catch(e =>
-    console.error('HTML Podcasts Generation error : ', e)
-  )
-}
+    console.error("HTML Podcasts Generation error : ", e)
+  );
+};
 
 module.exports = podcastsMap => {
   // console.log(podcastsMap.header)
 
   const copyTerms = fs.copy(
-    filePath('../../terms.html'),
+    filePath("../../terms.html"),
     `${templatesFolder}/terms_base.html`
-  )
+  );
 
   const prepareWwwFinal = fs
     .remove(wwwFinalFolder)
     .then(() => fs.ensureDir(wwwFinalFolder))
-    .then(() => fs.copy(baseAssetsFolder, wwwFinalAssetsFolder))
+    .then(() => fs.copy(baseAssetsFolder, wwwFinalAssetsFolder));
 
   return Promise.all([copyTerms, prepareWwwFinal])
     .then(() =>
@@ -185,5 +185,5 @@ module.exports = podcastsMap => {
         generatePodcastsPages(cloneDeep(podcastsMap))
       ])
     )
-    .then(() => console.log('Website generated'))
-}
+    .then(() => podcastsMap);
+};

@@ -1,0 +1,53 @@
+{
+  "podcast": "test",
+  "season": 0,
+  "episode": 4,
+
+  "title": "DTV 004 - Ceci est un test complet : et, avec, virgule",
+  "description": "This is a description / subtitle",
+  "paragraphs": [
+    "Premier paragraphe.... ! ",
+    "Second paragraphe, avec ce <a href='https://google.fr'> lien </a> hab stood ap"
+  ],
+  "date": "2018-04-03",
+  "tags": ["podcast", "auphonic api", "metadata", "test"],
+  "chapters": [
+    {
+      "start": "00:00:00",
+      "visible": false,
+      "title": "carillon",
+      "url": "http://auphonic.com"
+    },
+    {
+      "start": "00:00:07",
+      "visible": true,
+      "title": "Test Second Chapter"
+    },
+    {
+      "start": "00:00:22",
+      "visible": true,
+      "title": "12 cents de metres",
+      "url": "http://europe1.fr"
+    }
+  ],
+  "location": {
+    "latitude": "43.6042600",
+    "longitude": "1.4436700"
+  },
+
+  "input_file":
+    "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/s01e02.mp3",
+
+  "gallery": [
+    {
+      "title": "Ceci est un titre 1",
+      "link":
+        "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
+    },
+    {
+      "title": "Ceci est un titre 2 ",
+      "link":
+        "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
+    }
+  ]
+}

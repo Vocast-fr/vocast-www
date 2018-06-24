@@ -57,12 +57,12 @@
 	<div class="podcast-links">
 		<div class="container">
 			<ul class="podcast-links-list">
-				{% for chapter in episode.chapters %}
+				{% for chapter in episode.chapters %} {% if chapter.visible %}
 				<li>
 					<a onclick="document.getElementById('audioPlayer').currentTime={{ chapter.startSec }}" class="btn btn-success btn-sm"> {{ chapter.start }} </a>
 					<span class="podcast-link-cite">{{ chapter.title }}</span>
 				</li>
-				{% endfor %}
+				{% endif %} {% endfor %}
 			</ul>
 		</div>
 	</div>

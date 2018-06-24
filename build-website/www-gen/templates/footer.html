@@ -78,7 +78,7 @@
                             </a>
                         </li>
                         <li class="social-item">
-                            <a rel="noopener" target="_blank" href="https://twitter.com/share?url={{ header.url }}&via={{ header.social.twitter.via }}&related={{ header.social.twitter.related }}&hashtags={{ header.social.twitter.hashtags }}&text={{ header.social.twitter.text }}"
+                            <a rel="noopener" target="_blank" href="https://twitter.com/share?url={{ header.url }}&via={{ header.social.twitter.via }}&related={{ header.social.twitter.related }}&hashtags={% for hashtag in social.twitter.hashtags %}hashtag%2C{% endfor %}&text={{ header.social.twitter.text }}"
                                 <i class="fa fa-twitter">
                                 </i>
                             </a>
