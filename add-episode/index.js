@@ -1,26 +1,33 @@
-async function main () {
+async function main() {
   try {
-    require('dotenv').config()
-    const podcastsMap = require('../podcastsMap.json')
-    const newEpisode = require('../newEpisode.json')
-    const auphonicProcess = require('./auphonic')
-    const savePodcastMap = require('./save-podcastMap')
+    require("dotenv").config();
+    const podcastsMap = require("../podcastsMap.json");
+    const newEpisode = require("../newEpisode.json");
 
-    console.log('MAIN add-episode: Start!')
+    const imgProcess = require("./img");
+    const auphonicProcess = require("./auphonic");
+    const savePodcastMap = require("./save-podcastMap");
 
-    auphonicProcess(podcastsMap, newEpisode)
+    console.log("MAIN add-episode: Start!");
+
+    imgProcess(podcastsMap, newEpisode)
+      /*
+      .then(({ podcastsMap, newEpisode }) =>
+        auphonicProcess(podcastsMap, newEpisode)
+      )
       .then(savePodcastMap)
+    */
       .then(() => {
-        console.log('MAIN add-episode: Process ended.')
+        console.log("MAIN add-episode: Process ended.");
       })
       .catch(e => {
-        console.error('EXECUTION add-episode error', e)
-      })
+        console.error("EXECUTION add-episode error", e);
+      });
   } catch (e) {
-    console.error('MAIN add-episode: Error ', e)
+    console.error("MAIN add-episode: Error ", e);
   }
 }
 
 main().catch(e => {
-  console.error('GLOBAL: Error', e)
-})
+  console.error("GLOBAL: Error", e);
+});

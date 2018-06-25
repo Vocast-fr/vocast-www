@@ -1,9 +1,9 @@
 {
   "podcast": "test",
-  "season": 0,
+  "season": 1,
   "episode": 4,
 
-  "title": "DTV 004 - Ceci est un test complet : et, avec, virgule",
+  "title": "DTV 004 - Médialocales & Gantt radio",
   "description": "This is a description / subtitle",
   "paragraphs": [
     "Premier paragraphe.... ! ",
@@ -15,7 +15,7 @@
     {
       "start": "00:00:00",
       "visible": false,
-      "title": "carillon",
+      "title": "Débat",
       "url": "http://auphonic.com"
     },
     {

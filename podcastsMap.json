@@ -141,6 +141,8 @@
       "title": "Test Vocast",
       "description": "Ceci est un test....",
       "image": "https://s3.eu-west-3.amazonaws.com/vocast/desondes/bg.png",
+      "squareImg":
+        "https://s3.eu-west-3.amazonaws.com/vocast/test/logo-vocast.png",
       "rss": "https://www.spreaker.com/show/3031135/episodes/feed",
       "googlePodcastsLink":
         "https://www.google.com/podcasts?feed=aHR0cHM6Ly9wb2RuZXdzLm5ldC9yc3M%3D",
@@ -310,7 +312,7 @@
         "name": "Marc Rigo",
         "job": "Ingénieur du son, producteur, réalisateur",
         "description":
-          "Maintenacede la diffusion & réalisation d'émission radio en direct en extérieur pour le Groupe Mediameeting.",
+          "Maintenance de la diffusion & réalisation d'émission radio en direct en extérieur pour le Groupe Mediameeting.",
         "pic": "https://s3.eu-west-3.amazonaws.com/vocast/team/marc-rigo.jpeg",
         "linkedin": "https://fr.linkedin.com/in/marc-rigo-39ba8b92"
       },

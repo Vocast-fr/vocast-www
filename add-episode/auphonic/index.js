@@ -78,8 +78,9 @@ function updatePodcastsMapFromNewProduction(
 
 module.exports = async (podcastsMap, inputData, isClip = false) => {
   const {
-    input_file,
     podcast,
+    input_file,
+    image,
     title,
     description,
     paragraphs,
@@ -99,6 +100,7 @@ module.exports = async (podcastsMap, inputData, isClip = false) => {
   const year = date.split("-")[0];
 
   const data = {
+    image,
     input_file,
     preset: isClip ? preset_clips : preset,
     output_basename: title,

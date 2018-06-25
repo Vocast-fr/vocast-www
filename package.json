@@ -7,8 +7,7 @@
     "add-episode": "node add-episode/index.js",
     "add-and-build": "node add-episode/index.js && node build-website/index.js",
     "build-website": "node build-website/index.js",
-    "build-website-dev":
-      "DEV=1 nodemon -e js,json,css,scss,html --ignore build-website/www-gen/www-final build-website/index.js"
+    "build-website-dev": "DEV=1 nodemon -e js,json,css,scss,html --ignore build-website/www-gen/www-final build-website/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,14 +20,17 @@
   },
   "homepage": "https://github.com/antho31/vocast-www#readme",
   "dependencies": {
+    "aws-sdk": "^2.263.1",
     "deepmerge": "^2.1.0",
     "dotenv": "^5.0.1",
     "fs-extra": "^6.0.0",
+    "gm": "^1.23.1",
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
     "nunjucks": "^3.1.2",
     "promise-limit": "^2.6.0",
     "reload": "^2.2.2",
+    "s3urls": "^1.5.2",
     "superagent": "^3.8.3"
   },
   "devDependencies": {
