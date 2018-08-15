@@ -1,16 +1,18 @@
-const { get } = require("lodash");
+const { get, cloneDeep } = require("lodash");
 const moment = require("moment");
 const request = require("superagent");
+const htmlToText = require("html-to-text");
 
 const { sleep } = require("../../utils");
 
 const { AUPHONIC_USER, AUPHONIC_PWD } = process.env;
 
-const authAuphonicRequest = (method, endUri) =>
-  request[method](`https://auphonic.com/api/${endUri}`).auth(
+function authAuphonicRequest(method, endUri) {
+  return request[method](`https://auphonic.com/api/${endUri}`).auth(
     AUPHONIC_USER,
     AUPHONIC_PWD
   );
+}
 
 function postProduction(data) {
   return authAuphonicRequest("post", "productions.json")
@@ -76,43 +78,84 @@ function updatePodcastsMapFromNewProduction(
   return podcastsMap;
 }
 
-module.exports = async (podcastsMap, inputData, isClip = false) => {
+function getChapterSummary(description, chapter) {
+  const chapterDescription = cloneDeep(chapter.description);
+  const episodeDescription = cloneDeep(description);
+  episodeDescription.splice(1, 0, ...chapterDescription);
+  return episodeDescription;
+}
+
+function getEpisodeSummary(description, chapters) {
+  const episodeDescription = cloneDeep(description);
+  for (let i = chapters.length - 1; i >= 0; i--) {
+    const chapter = chapters[i];
+    episodeDescription.splice(1, 0, chapter.description.join("<br/>"));
+  }
+  return episodeDescription;
+}
+
+function CDataSummary(summaryArray) {
+  return `<![CDATA[
+${summaryArray.map(p => "<p>" + p + "</p>")}
+]]>`;
+}
+
+function htmlTransform(htmlArray) {
+  return htmlToText.fromString(
+    htmlArray.map(p => "<p>" + p + "</p>").join(""),
+    { wordwrap: null }
+  );
+}
+
+module.exports = async ({ podcast, episode }) => {
   const {
-    podcast,
     input_file,
     image,
     title,
+    subtitle,
     description,
-    paragraphs,
     date,
     tags,
     location,
     chapters
-  } = inputData;
+  } = episode;
 
-  const { preset, preset_clips } = get(podcastsMap, ["podcasts", podcast]);
+  const { slug, preset, preset_clips } = podcast;
 
-  if (typeof preset === "undefined") {
-    throw new Error(`No preset for episode  podcast ${podcast}`);
+  if (typeof preset === "undefined" || typeof preset_clips === "undefined") {
+    throw new Error(
+      `No preset for episode  podcast ${podcast}:  ${preset} / ${preset_clips}`
+    );
   }
 
-  const summary = paragraphs.join("\n");
+  const summary = htmlTransform(getEpisodeSummary(description, chapters));
+
+  /*
+
+  const summary = getEpisodeSummary(description, chapters).map(
+    p => `
+    ${p}
+    `
+  ); // CDataSummary(getEpisodeSummary(description, chapters));
+
+  */
+
   const year = date.split("-")[0];
 
   const data = {
     image,
     input_file,
-    preset: isClip ? preset_clips : preset,
+    preset,
     output_basename: title,
     metadata: {
       title,
-      subtitle: description,
+      subtitle,
       summary,
       year,
-      tags,
+      tags: [`${slug}complete`].concat(tags),
       location
     },
-    chapters
+    chapters //: omit(cloneDeep(chapters), 'image'
   };
 
   let uuid;
@@ -122,17 +165,24 @@ module.exports = async (podcastsMap, inputData, isClip = false) => {
       uuid = get(res, "body.data.uuid");
       return startProduction(uuid);
     })
-    .then(() => {
-      if (isClip) {
-        return inputData;
-      } else {
-        return getProductionUntilDone(uuid).then(productionResult =>
-          updatePodcastsMapFromNewProduction(
-            podcastsMap,
-            inputData,
-            productionResult
-          )
-        );
-      }
+    .then(() => getProductionUntilDone(uuid))
+    .then(productionResult => {
+      // durationSec = productionResult.format.length_sec
+
+      // get audio file from spreaker api productionResult[type='spreaker'].result_urls[0]
+      // add prefix : https://dts.podtrac.com...
+      console.log("donnnne:: ", productionResult.outgoing_services);
     });
+
+  /*
+  for (let chapter of chapters) {
+    const chapterSummary = CDataSummary(
+      getChapterSummary(description, chapter)
+    );
+    console.log("*********************************************************");
+    console.log("chapter ", chapterSummary);
+    console.log("*********************************************************");
+  }
+  
+*/
 };

@@ -1,6 +1,15 @@
 const moment = require("moment");
+const { cloneDeep } = require("lodash");
+const { dateSort, getFromDb } = require("../../utils");
 
-const { dateSort, getFromDb, putDb } = require("../../utils");
+function getEpisodeSummary(description, chapters) {
+  const episodeDescription = cloneDeep(description);
+  for (let i = chapters.length - 1; i >= 0; i--) {
+    const chapter = chapters[i];
+    episodeDescription.splice(1, 0, chapter.description.join("<br/>"));
+  }
+  return episodeDescription;
+}
 
 module.exports = async () => {
   const {
@@ -46,13 +55,11 @@ module.exports = async () => {
     const episodes = podcastsMap.podcasts[podcastKey].episodes;
     podcastsMap.podcasts[podcastKey].episodes = episodes
       .map(e =>
-        Object.assign(
-          {
-            friendlyDate: moment(e.date).format("LL"),
-            episodePath: `${podcastPath}/s${e.season}e${e.episode}.html`
-          },
-          e
-        )
+        Object.assign({}, e, {
+          friendlyDate: moment(e.date).format("LL"),
+          description: getEpisodeSummary(e.description, e.chapters),
+          episodePath: `${podcastPath}/s${e.season}e${e.episode}.html`
+        })
       )
       .sort((a, b) => dateSort(a.date, b.date, false));
   });

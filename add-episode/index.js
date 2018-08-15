@@ -1,23 +1,17 @@
 async function main() {
   try {
     require("dotenv").config();
-    const podcastsMap = require("../podcastsMap.json");
-    const newEpisode = require("../newEpisode.json");
 
+    const getNewEpisodes = require("./get-new-episodes");
     const imgProcess = require("./img");
     const auphonicProcess = require("./auphonic");
-    const savePodcastMap = require("./save-podcastMap");
 
     console.log("MAIN add-episode: Start!");
 
-    imgProcess(podcastsMap, newEpisode)
-      /*
-      .then(({ podcastsMap, newEpisode }) =>
-        auphonicProcess(podcastsMap, newEpisode)
-      )
-      .then(savePodcastMap)
-    */
-      .then(() => {
+    getNewEpisodes()
+      .then(data => Promise.all(data.map(imgProcess)))
+      .then(data => Promise.all(data.map(auphonicProcess)))
+      .then(res => {
         console.log("MAIN add-episode: Process ended.");
       })
       .catch(e => {

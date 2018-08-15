@@ -1,7 +1,8 @@
 const fs = require("fs-extra");
 const superagent = require("superagent");
 
-const { TMP_PATH } = process.env;
+const os = require("os");
+const TMP_PATH = os.tmpdir();
 
 function downloadFromUrl(url, fileName) {
   return new Promise((resolve, reject) => {
