@@ -9,6 +9,9 @@ Procédures utilisées pour la gestion des podcasts du projet [Vocast](https://v
 
 ## Installations
 
+### Version de node 
+Testé avec la version v10.0.0
+
 ### Génération automatique d'images
 
 ```

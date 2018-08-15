@@ -1,36 +1,55 @@
 const fs = require("fs-extra");
 const gm = require("gm");
+const path = require("path");
+
 const { get } = require("lodash");
 
-const { uploadLocalFileToS3 } = require("../../utils");
-// https://github.com/Automattic/node-canvas
+const { downloadFromUrl, uploadLocalFileToS3 } = require("../../utils");
+
+const { TMP_PATH } = process.env;
+
 module.exports = async (podcastsMap, episodeData) => {
   if (!episodeData.image) {
-    const { podcast, title } = episodeData;
-    const { squareImg } = get(podcastsMap, ["podcasts", podcast]);
+    const { podcast, title, number } = episodeData;
+    const {
+      imgTextColor,
+      imgTextFont,
+      imgTextFontSize,
+      imgText1W,
+      imgText1H,
+      imgText2W,
+      imgText2H,
+      squareImg
+    } = get(podcastsMap, ["podcasts", podcast]);
 
-    const imgName = "logo-vocast-1400 (copie).png"; // `${title}.png`;
-    const imgPath = `./${imgName}`;
+    const imgFilename = `${title}.png`;
+    const imgPathSource = await downloadFromUrl(squareImg, imgFilename);
+    const imgPathFinal = `${TMP_PATH}/${imgFilename}`;
 
     await new Promise(resolve => {
-      gm(imgPath)
-        .fill("#f1f1f1")
-        .font("/home/anthony/Téléchargements/Montserrat-ExtraBold.ttf", 72)
-        .drawText(120, 680, "Innovation")
-        .drawText(120, 780, "#007")
-        .write(imgPath + "2", function(err) {
-          if (err) return console.dir(arguments);
+      gm(imgPathSource)
+        .fill(imgTextColor)
+        .font(
+          `${path.resolve(__dirname, "fonts")}/${imgTextFont}`,
+          imgTextFontSize
+        )
+        .drawText(imgText1W, imgText1H, title)
+        .drawText(imgText2W, imgText2H, number)
+        .write(imgPathFinal, function(err) {
+          if (err) reject(err);
           resolve();
         });
     });
 
     episodeData.image = await uploadLocalFileToS3(
-      imgPath,
+      imgPathFinal,
       `${podcast}/${imgName}`
     );
-    fs.removeSync(imgPath);
+
+    await Prmise.all[(fs.remove(imgPathSource), fs.remove(imgPathFinal))];
   }
 
   console.log(episodeData);
+
   return { podcastsMap, episodeData };
 };

@@ -1,4 +1,5 @@
 {
+  "slug": "vocast",
   "_": { "title": "Vocast" },
   "comingsoon": [
     {
@@ -28,11 +29,14 @@
   },
   "header": {
     "author": "Vocast Team",
+    "contact": "contact@vocast.fr",
     "title": "Vocast",
     "description": "Vocast : Radio, Podcasts, Innovation média - vocast.fr",
+    "url": "https://vocast.fr",
+    "gaId": "UA-118778699-1",
     "keywords":
       "vocast, podcast, radio, webradio, smartradio, innovation, archive, zapping, vocal, application, anthony, gourraud",
-    "image": "/assets/img/simple-background.jpg",
+    "image": "https://s3.eu-west-3.amazonaws.com/vocast/radio-background.jpg",
     "altLogo": "Logo Vocast",
     "rss": "https://www.spreaker.com/show/2886866/episodes/feed",
     "iTunesAppId": "XXXXXX",
@@ -82,7 +86,10 @@
       "title": "Des Ondes Vocast",
       "description":
         "Des Ondes Vocast : la radio d'hier, d'aujourd'hui et de demain en un podcast",
-      "image": "https://s3.eu-west-3.amazonaws.com/vocast/desondes/bg.png",
+      "image": "https://s3.eu-west-3.amazonaws.com/vocast/radio-background.jpg",
+      "squareImg":
+        "https://s3.eu-west-3.amazonaws.com/vocast/test/logo-vocast.png",
+
       "rss": "https://www.spreaker.com/show/2886866/episodes/feed",
       "googlePodcastsLink":
         "https://www.google.com/podcasts?feed=aHR0cHM6Ly9wb2RuZXdzLm5ldC9yc3M%3D",
@@ -100,178 +107,9 @@
             "Des Ondes Vocast : le podcast sur l'univers de la radio ! Archives, actualités, débats et innovation"
         }
       },
-      "preset": "nthbgdfsebrvf",
-      "episodes": [
-        {
-          "season": 0,
-          "episode": 0,
-          "audioUrl":
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/s00e00.mp3",
-          "durationMin": 2,
-          "title": "DOV 000 Pilote!",
-          "description": "Ceci est le pilote\n Retour à la ligne effectué!",
-          "paragraphs": [
-            "Ceci est un paragraphe 1, <a href='http://google.fr'> très court </a>",
-            "Long maintaining an enchanted silence, Ahab stood apart; and every time the tetering ship loweringly pitched down her bowsprit, he turned to eye the bright sun's rays produced ahead; and when she profoundly settled by the stern, he turned behind, and saw the sun's rearward place, and how the same yellow rays were blending with his undeviating wake."
-          ],
-          "date": "2018-04-03",
-          "tags": ["Radio", "Podcast", "Innovation", "Archive"],
-          "chapters": [
-            { "startSec": 0, "start": "00:00:00", "title": "Partie 1" },
-            { "startSec": 7, "start": "00:00:07", "title": "Partie 2" },
-            { "startSec": 11, "start": "00:00:11", "title": "Partie 3" }
-          ],
-          "squareImg": "/assets/img/favicon.png",
-          "gallery": [
-            {
-              "title": "Ceci est un titre 1",
-              "link":
-                "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
-            },
-            {
-              "title": "Ceci est un titre 2 ",
-              "link":
-                "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
-            }
-          ]
-        }
-      ]
-    },
-    "test": {
-      "title": "Test Vocast",
-      "description": "Ceci est un test....",
-      "image": "https://s3.eu-west-3.amazonaws.com/vocast/desondes/bg.png",
-      "squareImg":
-        "https://s3.eu-west-3.amazonaws.com/vocast/test/logo-vocast.png",
-      "rss": "https://www.spreaker.com/show/3031135/episodes/feed",
-      "googlePodcastsLink":
-        "https://www.google.com/podcasts?feed=aHR0cHM6Ly9wb2RuZXdzLm5ldC9yc3M%3D",
-      "applePodcastsLink":
-        "https://itunes.apple.com/fr/podcast/tvnr/id702587884?mt=2",
-      "iTunesAppId": "702587884",
-      "social": {
-        "twitter": {
-          "site": "AnthonyGourraud",
-          "creator": "AnthonyGourraud",
-          "via": "AnthonyGourraud",
-          "related": "AnthonyGourraud",
-          "hashtags": ["desondes", "vocast", "radio", "podcast", "innovation"],
-          "text": "Test Vocast"
-        }
-      },
       "preset": "7mnCSPyhvfdbcD4MNnGJ4X",
       "preset_clips": "h4CWT89ZyBaEbhPnFJajWg",
-      "episodes": [
-        {
-          "audioUrl":
-            "http://vocast.s3.amazonaws.com/test/DTV_003_-_Ceci_est_un_test_complet_-_et_avec_virgule.mp3",
-          "squareImg":
-            "https://auphonic.com/api/download/audio-upload/AfBXLAYrCPri95MDoBpGmf/logo-vocast.png",
-          "durationMin": 1,
-          "podcast": "test",
-          "season": 0,
-          "episode": 3,
-          "title": "DTV 003 - Ceci est un test complet : et, avec, virgule",
-          "description": "This is a description / subtitle",
-          "paragraphs": [
-            "Ceci est un paragraphe 1, \n très court",
-            "Long <p> maintaining </p> an enchanted silence, <br/>  \n Ahab stood apart; and every time the tetering ship loweringly pitched down her bowsprit, he turned to eye the bright sun's rays produced ahead; and when she profoundly settled by the stern, he turned behind, and saw the sun's rearward place, and how the same yellow rays were blending with his undeviating wake."
-          ],
-          "date": "2018-04-03",
-          "tags": ["podcast", "auphonic api", "metadata", "test"],
-          "chapters": [
-            {
-              "startSec": 0,
-              "start": "00:00:00",
-              "visible": false,
-              "title": "carillon",
-              "url": "http://auphonic.com"
-            },
-            {
-              "startSec": 7,
-              "start": "00:00:07",
-              "visible": true,
-              "title": "Test Second Chapter"
-            },
-            {
-              "startSec": 22,
-              "start": "00:00:22",
-              "visible": true,
-              "title": "12 cents de metres",
-              "url": "http://europe1.fr"
-            }
-          ],
-          "location": { "latitude": "43.6042600", "longitude": "1.4436700" },
-          "input_file": "/home/anthony/Téléchargements/testfile.mp3",
-          "gallery": [
-            {
-              "title": "Ceci est un titre 1",
-              "link":
-                "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
-            },
-            {
-              "title": "Ceci est un titre 2 ",
-              "link":
-                "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
-            }
-          ]
-        },
-        {
-          "audioUrl":
-            "http://vocast.s3.amazonaws.com/test/DTV_004_-_Ceci_est_un_test_complet_-_et_avec_virgule.mp3",
-          "squareImg":
-            "https://auphonic.com/api/download/audio-upload/sk7Ct8HefU5A5khH9Zk4nP/logo-vocast.png",
-          "durationMin": 1,
-          "podcast": "test",
-          "season": 0,
-          "episode": 4,
-          "title": "DTV 004 - Ceci est un test complet : et, avec, virgule",
-          "description": "This is a description / subtitle",
-          "paragraphs": [
-            "Premier paragraphe.... ! ",
-            "Second paragraphe, avec ce <a href='https://google.fr'> lien </a> hab stood ap"
-          ],
-          "date": "2018-04-03",
-          "tags": ["podcast", "auphonic api", "metadata", "test"],
-          "chapters": [
-            {
-              "startSec": 0,
-              "start": "00:00:00",
-              "visible": false,
-              "title": "carillon",
-              "url": "http://auphonic.com"
-            },
-            {
-              "startSec": 7,
-              "start": "00:00:07",
-              "visible": true,
-              "title": "Test Second Chapter"
-            },
-            {
-              "startSec": 22,
-              "start": "00:00:22",
-              "visible": true,
-              "title": "12 cents de metres",
-              "url": "http://europe1.fr"
-            }
-          ],
-          "location": { "latitude": "43.6042600", "longitude": "1.4436700" },
-          "input_file":
-            "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/s01e02.mp3",
-          "gallery": [
-            {
-              "title": "Ceci est un titre 1",
-              "link":
-                "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
-            },
-            {
-              "title": "Ceci est un titre 2 ",
-              "link":
-                "https://s3.eu-west-3.amazonaws.com/vocast/sample-test/image-1.jpg"
-            }
-          ]
-        }
-      ]
+      "episodes": []
     }
   },
   "team": {

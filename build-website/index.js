@@ -1,28 +1,31 @@
-async function main () {
+async function main() {
   try {
-    require('dotenv').config()
-    const podcastsMap = require('../podcastsMap.json')
-    const podcastsMapFulfiller = require('./podcastsMap-fulfiller')
-    const wwwGenerator = require('./www-gen')
+    require("dotenv").config();
+    const util = require("util");
+    const podcastsMapFulfiller = require("./podcastsMap-fulfiller");
+    const wwwGenerator = require("./www-gen");
 
-    console.log('MAIN build-site: Start!')
+    console.log("MAIN build-site: Start!");
 
-    podcastsMapFulfiller(podcastsMap)
+    podcastsMapFulfiller()
       .then(wwwGenerator)
-      .then(() => {
+      .then(podcastsMap => {
         if (process.env.DEV) {
           while (true) {}
         }
-        console.log('MAIN build-site: Process ended.')
+        console.log(
+          "MAIN build-site: Process ended."
+          //   util.inspect(podcastsMap, { showHidden: false, depth: null })
+        );
       })
       .catch(e => {
-        console.error('EXECUTION build-site error', e)
-      })
+        console.error("EXECUTION build-site error", e);
+      });
   } catch (e) {
-    console.error('MAIN build-site: Error ', e)
+    console.error("MAIN build-site: Error ", e);
   }
 }
 
 main().catch(e => {
-  console.error('GLOBAL: Error', e)
-})
+  console.error("GLOBAL: Error", e);
+});

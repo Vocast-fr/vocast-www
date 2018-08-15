@@ -26,7 +26,6 @@
 				<!-- ===== PAGE HEADER CONTENT ===== -->
 				<div class="page-header-content text-center">
 					<h2>{{ episode.title }}</h2>
-					<p> {{ episode.description }} </p>
 				</div>
 
 			</div>
@@ -80,7 +79,7 @@
 					<!-- ===== PAGE MAIN CONTENT ===== -->
 					<div class="page-content">
 
-						{% for paragraph in episode.paragraphs %}
+						{% for paragraph in episode.description %}
 						<p>{{ paragraph }}</p>
 						{% endfor %}
 
@@ -141,7 +140,7 @@
 									</a>
 								</li>
 								<li class="social-item twitter">
-									<a rel="noopener" target="_blank" href="https://twitter.com/share?url={{ header.url }}&via={{ header.social.twitter.via }}&related={{ header.social.twitter.related }}&hashtags={{ episode.tags }}&text={{ episode.title }} - {{ episode.description }}"
+									<a rel="noopener" target="_blank" href="https://twitter.com/share?url={{ header.url }}&via={{ header.social.twitter.via }}&related={{ header.social.twitter.related }}&text={{ podcast.title }} - {{ episode.title }}"
 									 <i class="fa fa-twitter">
 										</i>
 									</a>
@@ -152,7 +151,7 @@
 									</a>
 								</li>
 								<li class="social-item email">
-									<a href="mailto:?&subject={{ episode.title }}&body={{ episode.description }} - {{ header.url }}" target="_blank">
+									<a href="mailto:?&subject={{ episode.title }}&body={{ header.url }}" target="_blank">
 										<i class="fa fa-envelope"></i>
 									</a>
 								</li>

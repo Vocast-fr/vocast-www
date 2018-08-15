@@ -1,6 +1,5 @@
 const aws = require("aws-sdk");
 const fs = require("fs-extra");
-var s3urls = require("s3urls");
 
 const { AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_S3_BUCKET } = process.env;
 
@@ -13,16 +12,15 @@ const s3 = new aws.S3({
 
 function uploadToS3(data, s3Path) {
   return new Promise((resolve, reject) => {
-    const putObjectOptions = {
+    const uploadOptions = {
       Bucket: AWS_S3_BUCKET,
       Key: s3Path,
       Body: data,
       ACL: "public-read"
     };
-    s3.putObject(putObjectOptions, function(err, res) {
+    s3.upload(uploadOptions, function(err, data) {
       if (err) reject(err);
-      const urls = s3urls.toUrl(AWS_S3_BUCKET, s3Path);
-      resolve(urls["bucket-in-host"]);
+      resolve(data.Location);
     });
   });
 }
