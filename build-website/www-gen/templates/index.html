@@ -16,7 +16,7 @@
 		<div class="container">
 
 			<!-- ===== SECTION TITLE ===== -->
-			<h2 class="title-default">Podcasts "{{ podcast.title }}"</h2>
+			<h2 class="title-default">Podcast "{{ podcast.title }}"</h2>
 
 			<div class="row">
 
@@ -38,9 +38,11 @@
 							<h2 class="podcast-title">
 								<a href="/{{ podcast.episodes[1].episodePath }}">{{ podcast.episodes[1].title }}</a>
 							</h2>
+							<!--
 							<p class="podcast-excerpt">
 								<a href="/{{ podcast.episodes[1].episodePath }}">{{ podcast.episodes[1].description }}</a>
 							</p>
+							-->
 							<ul class="podcast-meta">
 								<li class="item">
 									<i class="fa fa-clock-o"></i> {{ podcast.episodes[1].durationMin }} min</li>

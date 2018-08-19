@@ -1772,7 +1772,7 @@ form .form-callback.error {
 .podcast-card .podcast-image img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: scale-down;
 }
 
 .podcast-card .podcast-content {

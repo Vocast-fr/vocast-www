@@ -1,11 +1,14 @@
+const fileExtension = require("file-extension");
+const fs = require("fs-extra");
+const htmlToText = require("html-to-text");
 const { get, cloneDeep } = require("lodash");
 const moment = require("moment");
 const request = require("superagent");
-const htmlToText = require("html-to-text");
 
-const { sleep } = require("../../utils");
+const chaptering = require("./chaptering");
+const { downloadFromUrl, putDb, sleep } = require("../../utils");
 
-const { AUPHONIC_USER, AUPHONIC_PWD } = process.env;
+const { AUPHONIC_USER, AUPHONIC_PWD, DB_EPISODES } = process.env;
 
 function authAuphonicRequest(method, endUri) {
   return request[method](`https://auphonic.com/api/${endUri}`).auth(
@@ -47,35 +50,26 @@ function getProductionUntilDone(uuid) {
   });
 }
 
-function updatePodcastsMapFromNewProduction(
-  podcastsMap,
-  episodeData,
-  productionData
-) {
-  const { podcast } = episodeData;
+async function updateEpisodeInDbFromAuphonicResult({
+  podcast,
+  episode,
+  auphonicResult
+}) {
+  const { podcastService, audioUrlPrefix } = podcast;
+  const { outgoing_services, length } = auphonicResult;
+  const ogResults = outgoing_services.find(
+    ({ type }) => type === podcastService
+  );
+  const audioUrl = ogResults.result_urls[0].replace("http://", "https://");
 
-  episodeData.chapters = episodeData.chapters.map(c => {
-    const { start } = c;
-    const startSec = moment.duration(start).asSeconds();
-    return Object.assign({ startSec }, c);
+  Object.assign(episode, {
+    audioUrl: `${audioUrlPrefix}${audioUrl}`,
+    squareImg: episode.image,
+    durationMin: Math.ceil(length / 60),
+    readyForPub: true
   });
 
-  const { image, outgoing_services, length } = productionData;
-  const awsResult = outgoing_services.find(({ type }) => type === "amazons3");
-  const audioUrl = awsResult.result_urls[0].replace("http://", "https://");
-
-  podcastsMap.podcasts[podcast].episodes.push(
-    Object.assign(
-      {
-        audioUrl,
-        squareImg: image,
-        durationMin: Math.ceil(length / 60)
-      },
-      episodeData
-    )
-  );
-
-  return podcastsMap;
+  await putDb(DB_EPISODES, episode);
 }
 
 function getChapterSummary(description, chapter) {
@@ -89,15 +83,11 @@ function getEpisodeSummary(description, chapters) {
   const episodeDescription = cloneDeep(description);
   for (let i = chapters.length - 1; i >= 0; i--) {
     const chapter = chapters[i];
-    episodeDescription.splice(1, 0, chapter.description.join("<br/>"));
+    if (chapter.description.length) {
+      episodeDescription.splice(1, 0, chapter.description.join("<br/>"));
+    }
   }
   return episodeDescription;
-}
-
-function CDataSummary(summaryArray) {
-  return `<![CDATA[
-${summaryArray.map(p => "<p>" + p + "</p>")}
-]]>`;
 }
 
 function htmlTransform(htmlArray) {
@@ -117,30 +107,84 @@ module.exports = async ({ podcast, episode }) => {
     date,
     tags,
     location,
-    chapters
+    chapters,
+    number
   } = episode;
 
   const { slug, preset, preset_clips } = podcast;
+  const year = date.split("-")[0];
+
+  const debug = require("debug")(`vocast-tools/auphonic/${slug}/${title}`);
 
   if (typeof preset === "undefined" || typeof preset_clips === "undefined") {
     throw new Error(
-      `No preset for episode  podcast ${podcast}:  ${preset} / ${preset_clips}`
+      `No preset for episode ! Podcast ${podcast}:  ${preset} / ${preset_clips}`
     );
   }
 
-  const summary = htmlTransform(getEpisodeSummary(description, chapters));
+  debug(`Downloading input file...`);
+  const tmpCompleteFilePath = await downloadFromUrl(input_file, title);
+  const tmpCompleteFileExt = fileExtension(tmpCompleteFilePath);
+  debug(
+    `Input file downloaded, file can be found here : ${tmpCompleteFilePath}`
+  );
 
-  /*
+  debug(`Now have to process ${chapters.length} chapters`);
 
-  const summary = getEpisodeSummary(description, chapters).map(
-    p => `
-    ${p}
-    `
-  ); // CDataSummary(getEpisodeSummary(description, chapters));
+  for (let i = 0; i < chapters.length; i++) {
+    const chapter = chapters[i];
+    try {
+      const { visible, start, end, title: chapterTitle } = chapter;
 
-  */
+      if (visible) {
+        const summary = htmlTransform(getChapterSummary(description, chapter));
+        chapter.durationSec =
+          moment.duration(end).asSeconds() - moment.duration(start).asSeconds();
+        chapter.startSec = moment.duration(start).asSeconds();
 
-  const year = date.split("-")[0];
+        chapter.input_file = await chaptering(chapter, {
+          tmpCompleteFilePath,
+          tmpCompleteFileExt,
+          s3Folder: `${slug}/${number}`
+        });
+
+        const data = {
+          image: chapter.image,
+          input_file: chapter.input_file,
+          preset: preset_clips,
+          output_basename: chapterTitle,
+          metadata: {
+            title: chapterTitle,
+            //  subtitle,
+            summary,
+            year,
+            tags: [`${slug}part`],
+            location
+          }
+        };
+
+        debug(
+          `${chapterTitle}:: Ready to request Auphonic API --> POST /production.json...`
+        );
+        const auphonicChapterRes = await postProduction(data);
+        const uuid = get(auphonicChapterRes, "body.data.uuid");
+        debug(
+          `${chapterTitle}:: POST /production.json Auphonic uuid: ${uuid}. Now starting Auphonic process...`
+        );
+        await startProduction(uuid);
+        debug(`${chapterTitle}:: Auphonic proess done.`);
+      } else {
+        debug(`Chapter ${i} should not be processed (visible = false)`);
+      }
+    } catch (e) {
+      console.error("chaptering error :: ", e);
+    }
+    chapters[i] = chapter;
+  }
+
+  fs.removeSync(tmpCompleteFilePath);
+
+  debug("Now Auphonic process for the entire episode");
 
   const data = {
     image,
@@ -150,39 +194,28 @@ module.exports = async ({ podcast, episode }) => {
     metadata: {
       title,
       subtitle,
-      summary,
+      summary: htmlTransform(getEpisodeSummary(description, chapters)),
       year,
       tags: [`${slug}complete`].concat(tags),
       location
     },
-    chapters //: omit(cloneDeep(chapters), 'image'
+    chapters
   };
 
-  let uuid;
+  const auphonicEpisodeRes = await postProduction(data);
+  episode.auphonic_uuid = get(auphonicEpisodeRes, "body.data.uuid");
+  debug(
+    `UUID Auphonic process for the entire episode : ${episode.auphonic_uuid}`
+  );
+  await startProduction(episode.auphonic_uuid);
+  debug(`Auphonic process started waiting it's done (can be very long)...`);
+  const auphonicResult = await getProductionUntilDone(episode.auphonic_uuid);
 
-  return postProduction(data, input_file)
-    .then(function(res) {
-      uuid = get(res, "body.data.uuid");
-      return startProduction(uuid);
-    })
-    .then(() => getProductionUntilDone(uuid))
-    .then(productionResult => {
-      // durationSec = productionResult.format.length_sec
-
-      // get audio file from spreaker api productionResult[type='spreaker'].result_urls[0]
-      // add prefix : https://dts.podtrac.com...
-      console.log("donnnne:: ", productionResult.outgoing_services);
-    });
-
-  /*
-  for (let chapter of chapters) {
-    const chapterSummary = CDataSummary(
-      getChapterSummary(description, chapter)
-    );
-    console.log("*********************************************************");
-    console.log("chapter ", chapterSummary);
-    console.log("*********************************************************");
-  }
-  
-*/
+  debug("Auphonic's process is finished! Now ready to update db...");
+  await updateEpisodeInDbFromAuphonicResult({
+    podcast,
+    episode,
+    auphonicResult
+  });
+  debug("Episode updated in db");
 };

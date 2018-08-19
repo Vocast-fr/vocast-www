@@ -1,22 +1,25 @@
 async function main() {
   try {
     require("dotenv").config();
+    const debug = require("debug")("vocast-tools/build-website");
     const util = require("util");
     const podcastsMapFulfiller = require("./podcastsMap-fulfiller");
     const wwwGenerator = require("./www-gen");
+    const ftpPublish = require("./ftp-publish");
 
-    console.log("MAIN build-site: Start!");
+    debug("Start!");
 
     podcastsMapFulfiller()
       .then(wwwGenerator)
-      .then(podcastsMap => {
+      .then(wwwFinalFolder => {
         if (process.env.DEV) {
           while (true) {}
         }
-        console.log(
-          "MAIN build-site: Process ended."
-          //   util.inspect(podcastsMap, { showHidden: false, depth: null })
-        );
+        return wwwFinalFolder;
+      })
+      .then(ftpPublish)
+      .then(() => {
+        debug("Ended with success");
       })
       .catch(e => {
         console.error("EXECUTION build-site error", e);

@@ -1,3 +1,5 @@
+const debug = require("debug")("vocast-tools/podcastsMap-fulfiller");
+
 const moment = require("moment");
 const { cloneDeep } = require("lodash");
 const { dateSort, getFromDb } = require("../../utils");
@@ -23,6 +25,8 @@ module.exports = async () => {
   const [site] = await getFromDb(DB_SITES, { slug: SITE_SLUG });
   const podcasts = await getFromDb(DB_PODCASTS);
 
+  debug(`Got ${podcasts.length} podcasts from db `);
+
   for (let podcast of podcasts) {
     try {
       const { slug } = podcast;
@@ -30,6 +34,8 @@ module.exports = async () => {
         podcast: slug,
         readyForPub: true
       });
+      debug(`Got ${episodes.length} episodes from db for podcast ${slug} `);
+
       Object.assign(podcast, { episodes });
     } catch (e) {
       console.error("Error getting episodes for podcast", podcast);
@@ -102,6 +108,8 @@ module.exports = async () => {
       };
     }
   );
+
+  debug(`podcastsMap correctly set up`);
 
   return podcastsMap;
 };

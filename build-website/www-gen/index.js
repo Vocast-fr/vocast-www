@@ -7,6 +7,8 @@ const path = require("path");
 const promiseLimit = require("promise-limit");
 
 module.exports = podcastsMap => {
+  const debug = require("debug")("vocast-tools/www-gen");
+
   const {
     header: { url }
   } = podcastsMap;
@@ -46,7 +48,7 @@ module.exports = podcastsMap => {
   };
 
   const generate404HTML = async podcastsMap => {
-    return generateHtml(`404.html`, podcastsMap, "404.html", "404");
+    return generateHtml(`error404.html`, podcastsMap, "error404.html", "404");
   };
   const generateAboutHTML = async podcastsMap => {
     return generateHtml(
@@ -170,8 +172,6 @@ module.exports = podcastsMap => {
 
   /* ***** Main exec ***********/
 
-  // console.log(podcastsMap.header)
-
   const copyTerms = fs.copy(
     filePath("../../terms.html"),
     `${templatesFolder}/terms_base.html`
@@ -193,5 +193,8 @@ module.exports = podcastsMap => {
         generatePodcastsPages(cloneDeep(podcastsMap))
       ])
     )
-    .then(() => podcastsMap);
+    .then(() => {
+      debug(`Webpages successfully generated to ${wwwFinalFolder}`);
+      return wwwFinalFolder;
+    });
 };

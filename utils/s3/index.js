@@ -10,13 +10,13 @@ const s3 = new aws.S3({
   }
 });
 
-function uploadToS3(data, s3Path) {
+function uploadToS3(data, s3Path, ACL = "public-read") {
   return new Promise((resolve, reject) => {
     const uploadOptions = {
       Bucket: AWS_S3_BUCKET,
       Key: s3Path,
       Body: data,
-      ACL: "public-read"
+      ACL
     };
     s3.upload(uploadOptions, function(err, data) {
       if (err) reject(err);
@@ -25,7 +25,7 @@ function uploadToS3(data, s3Path) {
   });
 }
 
-function uploadLocalFileToS3(localPath, s3Path) {
+function uploadLocalFileToS3(localPath, s3Path, ACL) {
   return new Promise((resolve, reject) => {
     fs.readFile(localPath, function(err, data) {
       try {
@@ -33,7 +33,7 @@ function uploadLocalFileToS3(localPath, s3Path) {
           reject(new Error(`Can't read file ${localPath}`));
         }
 
-        uploadToS3(data, s3Path)
+        uploadToS3(data, s3Path, ACL)
           .then(resolve)
           .catch(reject);
       } catch (e) {

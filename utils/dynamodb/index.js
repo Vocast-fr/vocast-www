@@ -35,7 +35,6 @@ async function getFromDb(TableName, inputFilter) {
         ExpressionAttributeValues,
         FilterExpression
       });
-      //console.log(ExpressionAttributeValues, FilterExpression);
     }
 
     dynamodb.scan(scanObj, function(err, data) {

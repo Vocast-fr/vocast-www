@@ -48,65 +48,81 @@ async function generateAndUploadImg({
 }
 
 module.exports = async ({ podcast, episode }) => {
-  if (!episode.image) {
-    const {
-      title,
-      subtitle,
-      number,
-      season,
-      episode: episodeNumber,
-      chapters
-    } = episode;
-    const {
-      imgTextColor,
-      imgTextFont,
-      imgTextFontSize,
-      imgText1W,
-      imgText1H,
-      imgText2W,
-      imgText2H,
-      slug,
-      squareImg
-    } = podcast;
+  // if (!episode.image) {
+  const {
+    title,
+    subtitle,
+    number,
+    season,
+    episode: episodeNumber,
+    chapters
+  } = episode;
+  const {
+    imgTextColor,
+    imgTextFont,
+    imgTextFontSize,
+    imgText1W,
+    imgText1H,
+    imgText2W,
+    imgText2H,
+    slug,
+    squareImg
+  } = podcast;
 
-    const imgFilename = `${title}.png`;
-    const imgPathSource = await downloadFromUrl(squareImg, imgFilename);
-    const fontPath = await downloadFromUrl(imgTextFont, `${title}-font`);
+  const debug = require("debug")(`vocast-tools/img/${slug}/${title}`);
 
-    const processDataObj = {
-      title,
-      subtitle1: subtitle,
-      subtitle2: `S${season}E${episodeNumber}`,
-      slug,
-      number,
-      imgPathSource,
-      imgTextColor,
-      fontPath,
-      imgTextFontSize,
-      imgText1W,
-      imgText1H,
-      imgText2W,
-      imgText2H
-    };
+  const imgFilename = title;
 
-    episode.image = await generateAndUploadImg(processDataObj);
+  debug("Downloading img & font...");
+  const imgPathSource = await downloadFromUrl(squareImg, imgFilename);
+  debug("Image downloaded.");
+  const fontPath = await downloadFromUrl(imgTextFont, `${title}-font`);
+  debug("Font downloaded.");
 
-    for (let i = 0; i < chapters.length; i++) {
-      try {
-        const { section } = chapters[i];
-        episode.chapters[i].image = await generateAndUploadImg(
-          Object.assign({}, processDataObj, {
-            title: section,
-            subtitle1: section
-          })
-        );
-      } catch (e) {
-        console.error("cannot process img chapter ", e);
-      }
+  const processDataObj = {
+    title,
+    subtitle1: subtitle,
+    subtitle2: `S${season}E${episodeNumber}`,
+    slug,
+    number,
+    imgPathSource,
+    imgTextColor,
+    fontPath,
+    imgTextFontSize,
+    imgText1W,
+    imgText1H,
+    imgText2W,
+    imgText2H
+  };
+
+  debug("Generating image for episode...");
+  episode.image = await generateAndUploadImg(processDataObj);
+  debug("Image for episode generated.");
+
+  debug("Generating images for chapters...");
+  for (let i = 0; i < chapters.length; i++) {
+    try {
+      const { section } = chapters[i];
+      episode.chapters[i].image = await generateAndUploadImg(
+        Object.assign({}, processDataObj, {
+          title: section,
+          subtitle1: section
+        })
+      );
+    } catch (e) {
+      console.error(`img/${slug}/${title}:: cannot process img chapter `, e);
     }
-
-    await Promise.all[(fs.remove(fontPath), fs.remove(imgPathSource))];
   }
 
+  await Promise.all[(fs.remove(fontPath), fs.remove(imgPathSource))];
+
+  /*
+  } else {
+   console.log(`Episode ${episode.title} already has an image`) 
+   
+    // @TODO Handle input img ...
+    
+  }
+*/
   return { podcast, episode };
 };
