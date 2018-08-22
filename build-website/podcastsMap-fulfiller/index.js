@@ -74,6 +74,8 @@ module.exports = async () => {
    ******* FOOTER & HEADER ***********
    ***********************************/
 
+  const { allepisodes } = site.header;
+
   if (!podcastsMap.footer) podcastsMap.footer = {};
   podcastsMap.footer.year = moment().year();
 
@@ -89,9 +91,7 @@ module.exports = async () => {
         episodes.length > MAX_EPISODES_MENU
           ? episodes.slice(0, MAX_EPISODES_MENU)
           : episodes;
-      keptEpisodes = [
-        { title: "Tous les épisodes", episodePath: podcastPath }
-      ].concat(
+      keptEpisodes = [{ title: allepisodes, episodePath: podcastPath }].concat(
         keptEpisodes
         /* .map(kE => {
           const { title, episodePath, friendlyDate } = kE

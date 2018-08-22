@@ -61,10 +61,15 @@
 
     <!-- GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'> {% if header.shouldBeAmp %}
-    <!-- AMP -->
-    <link rel="amphtml" href="https://mercury.postlight.com/amp?url={{ header.url }}"> {% endif %} {% if header.isPodcastHomepage %}
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+    <!-- AMP 
+    {% if header.shouldBeAmp %}
+        <link rel="amphtml" href="https://mercury.postlight.com/amp?url={{ header.url }}">
+    {% endif %} 
+    -->
+
     <!-- Audio SEO via RSS -->
+    {% if header.isPodcastHomepage %}
     <link type="application/rss+xml" rel="alternate" title="{{ header.title }}" href="{{ header.rss }}" /> {% endif %}
     <!-- Apple Podcast / iTunes -->
     <meta name="apple-itunes-app" content="app-id={{ header.iTunesAppId }}">
