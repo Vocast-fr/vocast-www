@@ -48,20 +48,32 @@ module.exports = podcastsMap => {
   };
 
   const generate404HTML = async podcastsMap => {
-    return generateHtml(`error404.html`, podcastsMap, "error404.html", "404");
+    return generateHtml(
+      `error404.html`,
+      podcastsMapUpdate(podcastsMap, { header: { description: "" } }),
+      "error404.html",
+      "404"
+    );
   };
+
   const generateAboutHTML = async podcastsMap => {
     return generateHtml(
       `about-us.html`,
-      podcastsMap,
+      podcastsMapUpdate(podcastsMap, {
+        header: { description: podcastsMap.team.description }
+      }),
       "about-us.html",
       podcastsMap.lang.team
     );
   };
+
   const generateContactHTML = async podcastsMap => {
+    const { title, description } = podcastsMap.contact;
     return generateHtml(
       `contact.html`,
-      podcastsMap,
+      podcastsMapUpdate(podcastsMap, {
+        header: { description: `${title} ${description}` }
+      }),
       "contact.html",
       podcastsMap.lang.contact
     );
@@ -78,7 +90,9 @@ module.exports = podcastsMap => {
   const generateTermsHTML = async podcastsMap => {
     return generateHtml(
       `terms.html`,
-      podcastsMap,
+      podcastsMapUpdate(podcastsMap, {
+        header: { description: podcastsMap.lang.terms }
+      }),
       "terms.html",
       podcastsMap.lang.terms
     );
@@ -146,7 +160,7 @@ module.exports = podcastsMap => {
         const podcastMapEpisode = podcastsMapUpdate(podcastsMapPodcast, {
           header: {
             title: `${podcastsMap.header.title} - ${title}`,
-            description: description,
+            description: description[0],
             url: `${url}/${episodePath}`,
             isPodcastHomepage: false,
             shouldBeAmp: true

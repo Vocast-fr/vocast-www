@@ -74,7 +74,7 @@ module.exports = async () => {
    ******* FOOTER & HEADER ***********
    ***********************************/
 
-  const { allepisodes } = site.header;
+  const { allepisodes } = site.lang;
 
   if (!podcastsMap.footer) podcastsMap.footer = {};
   podcastsMap.footer.year = moment().year();
