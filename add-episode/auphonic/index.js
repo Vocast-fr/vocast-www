@@ -57,13 +57,26 @@ async function updateEpisodeInDbFromAuphonicResult({
 }) {
   const { podcastService, audioUrlPrefix } = podcast;
   const { outgoing_services, length } = auphonicResult;
-  const ogResults = outgoing_services.find(
-    ({ type }) => type === podcastService
-  );
-  const audioUrl = ogResults.result_urls[0].replace("http://", "https://");
+
+  const fromOutGoingServicesToUrl = service => {
+    const ogResults = outgoing_services.find(({ type }) => type === service);
+
+    const url =
+      ogResults.result_urls &&
+      ogResults.result_urls.length > 0 &&
+      !!ogResults.result_urls[0]
+        ? ogResults.result_urls[0]
+        : ogResults.result_page;
+
+    return url.replace("http://", "https://");
+  };
+
+  const audioUrl = fromOutGoingServicesToUrl(podcastService);
+  const youtubeUrl = fromOutGoingServicesToUrl("youtube");
 
   Object.assign(episode, {
     audioUrl: `${audioUrlPrefix}${audioUrl}`,
+    youtubeUrl,
     squareImg: episode.image,
     durationMin: Math.ceil(length / 60),
     readyForPub: true

@@ -64,6 +64,12 @@
                                 <i class="fa fa-google"></i>
                             </a>
                         </li>
+                        {% endif %}{% if header.youtubeLink %}
+                        <li class="social-item">
+                            <a href="{{ header.youtubeLink }}" target="_blank">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
                         {% endif %}
                     </ul>
                 </div>
@@ -88,6 +94,13 @@
                                 <i class="fa fa-linkedin"></i>
                             </a>
                         </li>
+                        {% if header.mediumLink %}
+                        <li class="social-item">
+                            <a href="{{ header.mediumLink }}" target="_blank">
+                                <i class="fa fa-medium"></i>
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
 

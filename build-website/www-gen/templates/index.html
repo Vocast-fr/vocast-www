@@ -59,6 +59,10 @@
 								<li class="item">
 									<i class="fa fa-clock-o"></i> {{ podcast.episodes[1].durationMin }} min</li>
 								<li class="item">
+									<a href="{{ podcast.episodes[1].youtubeUrl }}" class="podcast-play">
+										<i class="fa fa-youtube"></i> Youtube </a>
+								</li>
+								<li class="item">
 									<a href="{{ podcast.episodes[1].audioUrl }}" class="podcast-play">
 										<i class="fa fa-play"></i> {{ lang.download }} </a>
 								</li>

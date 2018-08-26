@@ -20,6 +20,10 @@
 						<i class="fa fa-clock-o"></i> {{ lastEpisode.durationMin }} min
 					</li>
 					<li class="item">
+						<a href="{{ lastEpisode.youtubeUrl }}" target="_blank" class="podcast-hero-download">
+							<i class="fa fa-youtube"></i> Youtube</a>
+					</li>
+					<li class="item">
 						<a href="{{ lastEpisode.audioUrl }}" target="_blank" class="podcast-hero-download">
 							<i class="fa fa-download"></i> {{ lang.download }}</a>
 					</li>
@@ -79,6 +83,10 @@
 								<li class="item">
 									<a href="{{ otherEpisode.audioUrl }}" target="_blank" class="podcast-play">
 										<i class="fa fa-download"></i> {{ lang.download }}</a>
+								</li>
+								<li class="item">
+									<a href="{{ otherEpisode.youtubeUrl }}" target="_blank" class="podcast-play">
+										<i class="fa fa-youtube"></i> Youtube</a>
 								</li>
 							</ul>
 						</div>

@@ -127,6 +127,8 @@ module.exports = podcastsMap => {
         iTunesAppId,
         applePodcastsLink,
         googlePodcastsLink,
+        youtubeLink,
+        mediumLink,
         social
       } = podcastInfos;
       const [lastEpisode, ...othersEpisodes] = episodes;
@@ -141,6 +143,8 @@ module.exports = podcastsMap => {
           iTunesAppId,
           applePodcastsLink,
           googlePodcastsLink,
+          youtubeLink,
+          mediumLink,
           social,
           isPodcastHomepage: true
         },
