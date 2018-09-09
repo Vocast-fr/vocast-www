@@ -160,11 +160,12 @@ module.exports = podcastsMap => {
         limit(() => generatePodcastsIndexHTML(podcastsMapPodcast, podcastPath))
       );
       episodes.forEach((episodeInfos, episodeIndex) => {
-        const { episodePath, title, description } = episodeInfos;
+        const { episodePath, title, description, image } = episodeInfos;
         const podcastMapEpisode = podcastsMapUpdate(podcastsMapPodcast, {
           header: {
             title: `${podcastsMap.header.title} - ${title}`,
             description: description[0],
+            image,
             url: `${url}/${episodePath}`,
             isPodcastHomepage: false,
             shouldBeAmp: true
