@@ -147,7 +147,7 @@ module.exports = async ({ podcast, episode }) => {
   for (let i = 0; i < chapters.length; i++) {
     const chapter = chapters[i];
     try {
-      const { visible, start, end, title: chapterTitle } = chapter;
+      const { visible, start, end, title: chapterTitle, section } = chapter;
 
       if (visible) {
         const summary = htmlTransform(getChapterSummary(description, chapter));
@@ -171,7 +171,7 @@ module.exports = async ({ podcast, episode }) => {
             //  subtitle,
             summary,
             year,
-            tags: [`${slug}part`],
+            tags: [`${slug}part`, section],
             location
           }
         };
