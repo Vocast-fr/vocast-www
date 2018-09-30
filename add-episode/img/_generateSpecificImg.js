@@ -10,7 +10,7 @@ let imgPathSource =
   imgText1H = "680",
   imgText2H = 780,
   imgText2W = 120,
-  subtitle1 = "Extraits",
+  subtitle1 = "Raconte M40",
   subtitle2 = "",
   imgPathFinal = "/home/anthony/Téléchargements/final.png";
 

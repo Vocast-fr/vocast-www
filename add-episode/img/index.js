@@ -74,7 +74,7 @@ module.exports = async ({ podcast, episode }) => {
   const imgFilename = title;
 
   debug("Downloading img & font...");
-  const imgPathSource = await downloadFromUrl(squareImg, imgFilename);
+  const imgPathSource = await downloadFromUrl(squareImg, `${title}-base`);
   debug("Image downloaded.");
   const fontPath = await downloadFromUrl(imgTextFont, `${title}-font`);
   debug("Font downloaded.");
