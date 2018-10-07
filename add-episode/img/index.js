@@ -1,15 +1,12 @@
-const fs = require("fs-extra");
-const gm = require("gm");
-const os = require("os");
-const path = require("path");
+const fs = require('fs-extra')
+const gm = require('gm')
+const os = require('os')
 
-const { get } = require("lodash");
+const { downloadFromUrl, uploadLocalFileToS3 } = require('../../utils')
 
-const { downloadFromUrl, uploadLocalFileToS3 } = require("../../utils");
+const TMP_PATH = os.tmpdir()
 
-const TMP_PATH = os.tmpdir();
-
-async function generateAndUploadImg({
+async function generateAndUploadImg ({
   slug,
   number,
   title,
@@ -24,8 +21,8 @@ async function generateAndUploadImg({
   imgText2W,
   imgText2H
 }) {
-  const imgFilename = `${subtitle1}.png`;
-  const imgPathFinal = `${TMP_PATH}/${imgFilename}`;
+  const imgFilename = `${subtitle1}.png`
+  const imgPathFinal = `${TMP_PATH}/${imgFilename}`
 
   await new Promise((resolve, reject) => {
     gm(imgPathSource)
@@ -33,18 +30,18 @@ async function generateAndUploadImg({
       .font(fontPath, imgTextFontSize)
       .drawText(imgText1W, imgText1H, subtitle1)
       .drawText(imgText2W, imgText2H, subtitle2)
-      .write(imgPathFinal, function(err) {
-        if (err) reject(err);
-        resolve();
-      });
-  });
+      .write(imgPathFinal, function (err) {
+        if (err) reject(err)
+        resolve()
+      })
+  })
 
   const imgFinalUrl = await uploadLocalFileToS3(
     imgPathFinal,
     `${slug}/${number}/${imgFilename}`
-  );
-  fs.removeSync(imgPathFinal);
-  return imgFinalUrl;
+  )
+  fs.removeSync(imgPathFinal)
+  return imgFinalUrl
 }
 
 module.exports = async ({ podcast, episode }) => {
@@ -56,7 +53,7 @@ module.exports = async ({ podcast, episode }) => {
     season,
     episode: episodeNumber,
     chapters
-  } = episode;
+  } = episode
   const {
     imgTextColor,
     imgTextFont,
@@ -67,17 +64,15 @@ module.exports = async ({ podcast, episode }) => {
     imgText2H,
     slug,
     squareImg
-  } = podcast;
+  } = podcast
 
-  const debug = require("debug")(`vocast-tools/img/${slug}/${title}`);
+  const debug = require('debug')(`vocast-tools/img/${slug}/${title}`)
 
-  const imgFilename = title;
-
-  debug("Downloading img & font...");
-  const imgPathSource = await downloadFromUrl(squareImg, `${title}-base`);
-  debug("Image downloaded.");
-  const fontPath = await downloadFromUrl(imgTextFont, `${title}-font`);
-  debug("Font downloaded.");
+  debug('Downloading img & font...')
+  const imgPathSource = await downloadFromUrl(squareImg, `${title}-base`)
+  debug('Image downloaded.')
+  const fontPath = await downloadFromUrl(imgTextFont, `${title}-font`)
+  debug('Font downloaded.')
 
   const processDataObj = {
     title,
@@ -93,36 +88,36 @@ module.exports = async ({ podcast, episode }) => {
     imgText1H,
     imgText2W,
     imgText2H
-  };
+  }
 
-  debug("Generating image for episode...");
-  episode.image = await generateAndUploadImg(processDataObj);
-  debug("Image for episode generated.");
+  debug('Generating image for episode...')
+  episode.image = await generateAndUploadImg(processDataObj)
+  debug('Image for episode generated.')
 
-  debug("Generating images for chapters...");
+  debug('Generating images for chapters...')
   for (let i = 0; i < chapters.length; i++) {
     try {
-      const { section } = chapters[i];
+      const { section } = chapters[i]
       episode.chapters[i].image = await generateAndUploadImg(
         Object.assign({}, processDataObj, {
           title: section,
           subtitle1: section
         })
-      );
+      )
     } catch (e) {
-      console.error(`img/${slug}/${title}:: cannot process img chapter `, e);
+      console.error(`img/${slug}/${title}:: cannot process img chapter `, e)
     }
   }
 
-  await Promise.all[(fs.remove(fontPath), fs.remove(imgPathSource))];
+  await Promise.all[(fs.remove(fontPath), fs.remove(imgPathSource))]
 
   /*
   } else {
-   console.log(`Episode ${episode.title} already has an image`) 
-   
+   console.log(`Episode ${episode.title} already has an image`)
+
     // @TODO Handle input img ...
-    
+
   }
 */
-  return { podcast, episode };
-};
+  return { podcast, episode }
+}

@@ -1,13 +1,12 @@
-async function main() {
-  try {
-    require("dotenv").config();
-    const debug = require("debug")("vocast-tools/build-website");
-    const util = require("util");
-    const podcastsMapFulfiller = require("./podcastsMap-fulfiller");
-    const wwwGenerator = require("./www-gen");
-    const ftpPublish = require("./ftp-publish");
+require('dotenv').config()
+const debug = require('debug')('vocast-tools/build-website')
+const podcastsMapFulfiller = require('./podcastsMap-fulfiller')
+const wwwGenerator = require('./www-gen')
+const ftpPublish = require('./ftp-publish')
 
-    debug("Start!");
+async function main () {
+  try {
+    debug('Start!')
 
     podcastsMapFulfiller()
       .then(wwwGenerator)
@@ -15,20 +14,20 @@ async function main() {
         if (process.env.DEV) {
           while (true) {}
         }
-        return wwwFinalFolder;
+        return wwwFinalFolder
       })
       .then(ftpPublish)
       .then(() => {
-        debug("Ended with success");
+        debug('Ended with success')
       })
       .catch(e => {
-        console.error("EXECUTION build-site error", e);
-      });
+        console.error('EXECUTION build-site error', e)
+      })
   } catch (e) {
-    console.error("MAIN build-site: Error ", e);
+    console.error('MAIN build-site: Error ', e)
   }
 }
 
 main().catch(e => {
-  console.error("GLOBAL: Error", e);
-});
+  console.error('GLOBAL: Error', e)
+})

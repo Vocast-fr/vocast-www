@@ -1,57 +1,57 @@
-require("dotenv").config();
+require('dotenv').config()
 
-const aws = require("aws-sdk");
-const { Marshaller } = require("@aws/dynamodb-auto-marshaller");
+const aws = require('aws-sdk')
+const { Marshaller } = require('@aws/dynamodb-auto-marshaller')
 
-const { AWS_ACCESS_KEY, AWS_SECRET_KEY } = process.env;
+const { AWS_ACCESS_KEY, AWS_SECRET_KEY } = process.env
 
 const dynamodb = new aws.DynamoDB({
   credentials: {
     accessKeyId: AWS_ACCESS_KEY,
     secretAccessKey: AWS_SECRET_KEY
   },
-  region: "eu-west-3"
-});
+  region: 'eu-west-3'
+})
 
-const marshaller = new Marshaller({ unwrapNumbers: true });
+const marshaller = new Marshaller({ unwrapNumbers: true })
 
-async function getFromDb(TableName, inputFilter) {
+async function getFromDb (TableName, inputFilter) {
   return new Promise((resolve, reject) => {
-    const scanObj = { TableName };
-    const hasFilter = inputFilter && Object.keys(inputFilter).length > 0;
+    const scanObj = { TableName }
+    const hasFilter = inputFilter && Object.keys(inputFilter).length > 0
 
     if (hasFilter) {
-      const filter = {};
+      const filter = {}
       Object.keys(inputFilter).forEach(k => {
-        filter[`:${k}`] = inputFilter[k];
-      });
-      const ExpressionAttributeValues = marshaller.marshallItem(filter);
+        filter[`:${k}`] = inputFilter[k]
+      })
+      const ExpressionAttributeValues = marshaller.marshallItem(filter)
 
       const FilterExpression = Object.keys(inputFilter)
         .map(k => `${k} = :${k}`)
-        .join(" and ");
+        .join(' and ')
 
       Object.assign(scanObj, {
         ExpressionAttributeValues,
         FilterExpression
-      });
+      })
     }
 
-    dynamodb.scan(scanObj, function(err, data) {
-      if (err) reject(err);
+    dynamodb.scan(scanObj, function (err, data) {
+      if (err) reject(err)
       else {
         const items = data.Items.map(item => {
-          return marshaller.unmarshallItem(item);
-        });
-        resolve(items);
+          return marshaller.unmarshallItem(item)
+        })
+        resolve(items)
       }
-    });
-  });
+    })
+  })
 }
 
-async function putDb(TableName, obj) {
+async function putDb (TableName, obj) {
   return new Promise((resolve, reject) => {
-    const Item = marshaller.marshallItem(obj);
+    const Item = marshaller.marshallItem(obj)
 
     dynamodb.putItem(
       {
@@ -59,16 +59,16 @@ async function putDb(TableName, obj) {
         TableName
       },
       (err, data) => {
-        if (err) reject(err);
+        if (err) reject(err)
         else {
-          resolve(data);
+          resolve(data)
         }
       }
-    );
-  });
+    )
+  })
 }
 
 module.exports = {
   getFromDb,
   putDb
-};
+}

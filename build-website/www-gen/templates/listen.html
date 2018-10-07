@@ -1,0 +1,19 @@
+{% include "header.html" %}
+
+
+<body>
+    <script>
+        if (navigator.userAgent.includes("Android")) {
+            window.location = "{{ header.googlePodcastsLink }}";
+        }
+        else if (
+            navigator.userAgent.includes("iPhone") ||
+            navigator.userAgent.includes("iPad") ||
+            navigator.userAgent.includes("iPod")) {
+            window.location = "{{ header.applePodcastsLink }}";
+        }
+        else { window.location = "{{ header.url }}"; }
+    </script>
+</body>
+
+{% include "footer.html" %}

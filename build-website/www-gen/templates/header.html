@@ -68,9 +68,104 @@
     {% endif %} 
     -->
 
+    <!-- =================================== -->
+    <!-- 		        SEO      			 -->
+    <!-- =================================== -->
+
+    <script type="application/ld+json">
+        { 
+            "@context": "http://schema.org",
+            "@type": "Organization",            
+            "name": "{{ _.title }}",
+            "url": "{{ _.baseUrl }}",
+            "logo": "{{ header.image }}",
+            "foundingDate": "{{ footer.year }}",
+            "founders": [ 
+                { "givenName": "{{ author.givenName }}", "familyName": "{{ author.familyName}}" } 
+            ],
+            "contactPoint": [
+                { 
+                    "@type": "ContactPoint",
+                    "email": "{{ header.contact }}",
+                    "url": "{{ _.baseUrl }}/contact.html",
+                    "contactType": "customer service"
+                }
+            ],
+            "sameAs": [ 
+                "https://twitter.com/{{ header.social.twitter.via }}"
+            ] 
+        }
+    </script>
+
+
+
+    <script type="application/ld+json">
+
+        {
+          "@context": "http://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+          
+          {% for podcast in header.podcasts %}
+          {% for podcastEpisode in podcast.episodes %}
+          {% if loop.first %} 
+          {% else %}
+          {
+            "@type": "ListItem",
+            "position": {{ loop.revindex }},
+            "item": {
+              "@type": "Webpage",
+              "@id": "{{ _.baseUrl}}/{{ podcastEpisode.episodePath }}",
+              "name": "{{ podcastEpisode.title }}"
+            }
+          }{% if loop.last %}{% else %},{% endif %}
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+          ]
+        }
+       
+    </script>
+
+    {% if header.isPodcastPage %}
+    <script type="application/ld+json">
+        { 
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": { 
+                  "@type": "WebPage",
+                  "@id": "{{ header.url }}"
+            },
+            "headline": "{{ header.title }}", 
+            "image": { 
+                "@type": "ImageObject",
+                "url": "{{ header.image }}",
+                "width": 1400,
+                "height": 1400 
+            },
+            "datePublished": "{{ header.date }}",
+            "dateModified": "{{ header.date }}",
+            "author": { 
+                "@type": "Person",
+                "name": "{{ author.name }}" 
+            }, 
+            "publisher": { 
+                "@type": "Organization", 
+                "name": "{{ _.title }}", 
+                "logo": { 
+                    "@type": "ImageObject",
+                    "url": "{{ _.logo }}", 
+                    "width": 60, "height": 60 
+                } 
+            } 
+        } 
+    </script>
+    {% endif %}
+
     <!-- Audio SEO via RSS -->
     {% if header.isPodcastHomepage %}
     <link type="application/rss+xml" rel="alternate" title="{{ header.title }}" href="{{ header.rss }}" /> {% endif %}
+
     <!-- Apple Podcast / iTunes -->
     <meta name="apple-itunes-app" content="app-id={{ header.iTunesAppId }}">
 
@@ -160,8 +255,8 @@
 
             <!-- ===== LOGO ===== -->
             <h1 class="logo">
-                <a href="/index.html">
-                    <img itemprop="logo" src="/assets/img/logo.png" alt="{{ header.altLogo }}" title="{{ _.title }}" />
+                <a href="{{ _.baseUrl }}">
+                    <img src="/assets/img/logo.png" alt="{{ header.altLogo }}" title="{{ _.title }}" />
                 </a>
             </h1>
 
