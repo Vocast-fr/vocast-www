@@ -144,7 +144,7 @@ module.exports = podcastsMap => {
 
       const podcastsMapPodcast = podcastsMapUpdate(podcastsMap, {
         header: {
-          title: `${podcastsMap.header.title} - ${title}`,
+          title, // `${podcastsMap.header.title} - ${title}`,
           description: description,
           url: `${url}/${podcastPath}`,
           image: image,
@@ -175,13 +175,13 @@ module.exports = podcastsMap => {
         const { episodePath, title, description, image, date } = episodeInfos
         const podcastMapEpisode = podcastsMapUpdate(podcastsMapPodcast, {
           header: {
-            title: `${podcastsMap.header.title} - ${title}`,
+            title, // : `${podcastsMapPodcast.podcast.title} - ${title}`,
             description: description[0],
             image,
             date: moment(date).format(),
             url: `${url}/${episodePath}`,
             isPodcastHomepage: false,
-            isPodcastPage: true
+            isEpisodePage: true
           },
           episode: episodeInfos,
           previousEpisode:

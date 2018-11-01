@@ -98,36 +98,53 @@
     </script>
 
 
-
+    {% if header.isPodcastHomepage %}
     <script type="application/ld+json">
-
         {
           "@context": "http://schema.org",
           "@type": "BreadcrumbList",
-          "itemListElement": [
-          
-          {% for podcast in header.podcasts %}
-          {% for podcastEpisode in podcast.episodes %}
-          {% if loop.first %} 
-          {% else %}
-          {
-            "@type": "ListItem",
-            "position": {{ loop.revindex }},
-            "item": {
-              "@type": "Webpage",
-              "@id": "{{ _.baseUrl}}/{{ podcastEpisode.episodePath }}",
-              "name": "{{ podcastEpisode.title }}"
-            }
-          }{% if loop.last %}{% else %},{% endif %}
-          {% endif %}
-          {% endfor %}
-          {% endfor %}
+          "itemListElement": [               
+                {
+                    "@type": "ListItem",
+                    "position":1,
+                    "item": {
+                        "@type": "Webpage",
+                        "@id": "{{ header.url }}",
+                        "name": "{{ header.title }}"
+                    }
+                } 
           ]
-        }
-       
+    }       
     </script>
+    {% endif %}
 
-    {% if header.isPodcastPage %}
+    {% if header.isEpisodePage  %}
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [   
+                {
+                    "@type": "ListItem",
+                    "position":1,
+                    "item": {
+                        "@type": "Webpage",
+                        "@id": "{{ _.baseUrl }}/{{ podcast.slug }}",
+                        "name": "{{ podcast.title }}"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position":2,
+                    "item": {
+                        "@type": "Webpage",
+                        "@id": "{{ header.url }}",
+                        "name": "{{ header.title }}"
+                    }
+                } 
+          ]
+    }       
+    </script>
     <script type="application/ld+json">
         { 
             "@context": "http://schema.org",
@@ -163,8 +180,7 @@
     {% endif %}
 
     <!-- Audio SEO via RSS -->
-    {% if header.isPodcastHomepage %}
-    <link type="application/rss+xml" rel="alternate" title="{{ header.title }}" href="{{ header.rss }}" /> {% endif %}
+    <link type="application/rss+xml" rel="alternate" title="{{ header.title }}" href="{{ header.rss }}" /> 
 
     <!-- Apple Podcast / iTunes -->
     <meta name="apple-itunes-app" content="app-id={{ header.iTunesAppId }}">

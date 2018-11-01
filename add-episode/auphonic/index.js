@@ -39,15 +39,20 @@ function getProduction (uuid) {
 }
 
 function getProductionUntilDone (uuid) {
-  return getProduction(uuid).then(async res => {
-    const status = get(res, ['body', 'data', 'status_string'])
-    if (status === 'Done') {
-      return res.body.data
-    } else {
-      await sleep(5000)
+  return getProduction(uuid)
+    .then(async res => {
+      const status = get(res, ['body', 'data', 'status_string'])
+      if (status === 'Done') {
+        return res.body.data
+      } else {
+        await sleep(5000)
+        return getProductionUntilDone(uuid)
+      }
+    })
+    .catch(e => {
+      console.error('Error in auphonic request, retrying...')
       return getProductionUntilDone(uuid)
-    }
-  })
+    })
 }
 
 async function updateEpisodeInDbFromAuphonicResult ({
@@ -64,11 +69,11 @@ async function updateEpisodeInDbFromAuphonicResult ({
     const url =
       ogResults.result_urls &&
       ogResults.result_urls.length > 0 &&
-      !!ogResults.result_urls[0]
+      ogResults.result_urls[0]
         ? ogResults.result_urls[0]
         : ogResults.result_page
 
-    return url.replace('http://', 'https://')
+    return url && url.replace ? url.replace('http://', 'https://') : ''
   }
 
   const audioUrl = fromOutGoingServicesToUrl(podcastService)

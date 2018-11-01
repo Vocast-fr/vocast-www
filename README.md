@@ -22,9 +22,9 @@ Testé avec la version v10.0.0
 ### GraphicsMagick pour la génération des images
 
 ```
-sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:rwky/graphicsmagick
-sudo apt-get update
+sudo apt-get install software-properties-common &&
+sudo add-apt-repository ppa:rwky/graphicsmagick &&
+sudo apt-get update &&
 sudo apt-get install graphicsmagick
 ```
 
