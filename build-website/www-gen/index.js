@@ -6,6 +6,7 @@ const nunjucks = require('nunjucks')
 const os = require('os')
 const path = require('path')
 const promiseLimit = require('promise-limit')
+const sm = require('sitemap')
 
 module.exports = podcastsMap => {
   const debug = require('debug')('vocast-tools/www-gen')
@@ -24,6 +25,10 @@ module.exports = podcastsMap => {
   const wwwFinalFolder = TMP_PATH + '/www-final'
   const assetsFolder = `assets`
   const wwwFinalAssetsFolder = `${wwwFinalFolder}/${assetsFolder}`
+
+  const sitemap = sm.createSitemap({
+    hostname: url
+  })
 
   const podcastsMapUpdate = (inputPodcastsMap, updates) => {
     return merge(inputPodcastsMap, updates)
@@ -58,6 +63,8 @@ module.exports = podcastsMap => {
   }
 
   const generateAboutHTML = async podcastsMap => {
+    sitemap.add({ url: `/about-us.html`, priority: 0.4 })
+
     return generateHtml(
       `about-us.html`,
       podcastsMapUpdate(podcastsMap, {
@@ -70,6 +77,9 @@ module.exports = podcastsMap => {
 
   const generateContactHTML = async podcastsMap => {
     const { title, description } = podcastsMap.contact
+
+    sitemap.add({ url: `/contact.html`, priority: 0.5 })
+
     return generateHtml(
       `contact.html`,
       podcastsMapUpdate(podcastsMap, {
@@ -79,7 +89,9 @@ module.exports = podcastsMap => {
       podcastsMap.lang.contact
     )
   }
+
   const generateIndexHTML = async podcastsMap => {
+    sitemap.add({ url: `/`, priority: 1 })
     return generateHtml(
       `index.html`,
       podcastsMap,
@@ -105,10 +117,13 @@ module.exports = podcastsMap => {
     const podcasts = podcastsMap['podcasts']
 
     const generatePodcastPageHTML = async (podcastsMap, episodePath) => {
+      sitemap.add({ url: `/${episodePath}`, priority: 0.8 })
+
       return generateHtml(`podcast.html`, podcastsMap, episodePath)
     }
 
     const generatePodcastsIndexHTML = async (podcastsMap, podcastPath) => {
+      sitemap.add({ url: `/${podcastPath}/`, priority: 0.9 })
       return generateHtml(
         `podcasts.html`,
         podcastsMap,
@@ -117,6 +132,7 @@ module.exports = podcastsMap => {
     }
 
     const generatePodcastsListenHTML = async (podcastsMap, podcastPath) => {
+      sitemap.add({ url: `/${podcastPath}/listen.html`, priority: 0.9 })
       return generateHtml(
         `listen.html`,
         podcastsMap,
@@ -226,6 +242,7 @@ module.exports = podcastsMap => {
       ])
     )
     .then(() => {
+      fs.writeFileSync(`${wwwFinalFolder}/sitemap.xml`, sitemap.toString())
       debug(`Webpages successfully generated to ${wwwFinalFolder}`)
       return wwwFinalFolder
     })

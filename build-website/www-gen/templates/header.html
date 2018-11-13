@@ -272,7 +272,7 @@
             <!-- ===== LOGO ===== -->
             <h1 class="logo">
                 <a href="{{ _.baseUrl }}">
-                    <img src="/assets/img/logo.png" alt="{{ header.altLogo }}" title="{{ _.title }}" />
+                    <img src="/assets/img/logo.png" alt="{{ header.title }}" title="{{ header.title }}" />
                 </a>
             </h1>
 
@@ -281,7 +281,7 @@
                 <!-- ===== MENU ===== -->
                 <ul class="menu">
                     <li class="menuitem">
-                        <a href="/index.html">{{ lang.home }}</a>
+                        <a href="/">{{ lang.home }}</a>
                     </li>
 
                     {% for podcast in header.podcasts %}
