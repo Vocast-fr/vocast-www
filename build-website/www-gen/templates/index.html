@@ -11,6 +11,10 @@
 					<br/>
 					<br/>
 					<a href="{{ header.podcasts[0].podcastPath }}/listen.html" class="btn btn-primary btn-lg">{{ lang.listen }} "{{ header.podcasts[0].title }}"</a>
+					<br/>
+					<br/>
+					<a href="#vocalagents" class="btn btn-primary btn-lg">{{ lang.gotovocalagents }}</a>
+
 				</h2>
 
 			</div>
@@ -82,27 +86,27 @@
 	</section>
 	{% endfor %}
 
-	<!-- ===== COMING SOON ===== -->
-	<section id="coming-soon" class="section-negative">
+	<!-- ===== VOCAL AGENTS ===== -->
+	<section id="vocalagents" class="section-negative">
 		<div class="container">
 
 			<!-- ===== SECTION TITLE ===== -->
-			<h2 class="title-default">{{ lang.comingsoon }}</h2>
+			<h2 class="title-default">{{ lang.vocalagents }}</h2>
 
 			<div class="row mb-30 row-eq-height">
 
 				<!-- ===== TEAM CARD ===== -->
-				{% for csoon in comingsoon %}
+				{% for vocalagentsunit in vocalagents %}
 				<div class="col-md-6 mb-20">
 					<div class="team-card">
 						<figure class="team-card-image">
-							<img src="{{ csoon.image }}" alt="{{ csoon.altImage }}" title="{{ csoon.title }}" />
+							<img src="{{ vocalagentsunit.image }}" alt="{{ vocalagentsunit.altImage }}" title="{{ vocalagentsunit.title }}" />
 						</figure>
 						<div class="team-card-content">
 
-							<h2 class="team-card-title">{{ csoon.title }}</h2>
-							<p class="team-card-job">{{ csoon.when }}</p>
-							<p class="team-card-description">{{ csoon.description }}</p>
+							<h2 class="team-card-title">{{ vocalagentsunit.title }}</h2>
+							<!-- p class="team-card-job">{{ vocalagentsunit.when }}</p -->
+							<p class="team-card-description">{{ vocalagentsunit.description }}</p>
 							<br/>
 
 						</div>

@@ -16,7 +16,7 @@ async function main () {
         }
         return wwwFinalFolder
       })
-      .then(ftpPublish)
+     // .then(ftpPublish)
       .then(() => {
         debug('Ended with success')
       })

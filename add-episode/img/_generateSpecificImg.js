@@ -1,17 +1,17 @@
 const gm = require('gm')
 
 let imgPathSource =
-  '/home/anthony/Téléchargements/logo-desondes-vocast-1400.png'
+  '/home/anthony/Downloads/logo-desondes-vocast-1400.png'
 let imgTextColor = '#f1f1f1'
-let fontPath = '/home/anthony/Téléchargements/Montserrat-ExtraBold.ttf'
+let fontPath = '/home/anthony/Downloads/Montserrat-ExtraBold.ttf'
 let imgTextFontSize = '54'
 let imgText1W = '120'
 let imgText1H = '680'
 let imgText2H = 780
 let imgText2W = 120
-let subtitle1 = 'Raconte M40'
-let subtitle2 = ''
-let imgPathFinal = '/home/anthony/Téléchargements/final.png'
+let subtitle1 = 'Anthony Gourraud'
+let subtitle2 = 'anthony@vocast.fr'
+let imgPathFinal = '/home/anthony/Downloads/final.png'
 
 async function generateImg () {
   await new Promise((resolve, reject) => {
