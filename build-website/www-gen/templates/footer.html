@@ -26,7 +26,7 @@
           </ul>
         </div>
 
-        <!-- ===== PODCASTS EPISODES ===== -->
+        <!-- ===== PODCASTS EPISODES =====
         <div class="col-sm-3 mb-40">
           <h2 class="title-separator white">{{ lang.lastEpisode }}</h2>
           <ul class="footer-complement">
@@ -40,6 +40,7 @@
             {% endfor %}
           </ul>
         </div>
+        -->
 
         <!-- ===== PODCASTING CONNECTION ===== -->
         <div class="col-sm-3 mb-40">
@@ -61,12 +62,6 @@
             <li class="social-item">
               <a href="{{ header.googlePodcastsLink }}" target="_blank">
                 <i class="fa fa-google"></i>
-              </a>
-            </li>
-            {% endif %}{% if header.youtubeLink %}
-            <li class="social-item">
-              <a href="{{ header.youtubeLink }}" target="_blank">
-                <i class="fa fa-youtube"></i>
               </a>
             </li>
             {% endif %}
@@ -113,10 +108,29 @@
                 <i class="fa fa-linkedin"></i>
               </a>
             </li>
-            {% if header.mediumLink %}
+          </ul>
+        </div>
+
+        <!-- ===== OTHER LINKS ===== -->
+        <div class="col-sm-3 mb-40">
+          <h2 class="title-separator white">{{ lang.otherLinks }}</h2>
+          <ul class="social-list">
+            {% if header.youtubeLink %}
+            <li class="social-item">
+              <a href="{{ header.youtubeLink }}" target="_blank">
+                <i class="fa fa-youtube"></i>
+              </a>
+            </li>
+            {% endif %} {% if header.mediumLink %}
             <li class="social-item">
               <a href="{{ header.mediumLink }}" target="_blank">
                 <i class="fa fa-medium"></i>
+              </a>
+            </li>
+            {% endif %} {% if header.githubLink %}
+            <li class="social-item">
+              <a href="{{ header.githubLink }}" target="_blank">
+                <i class="fa fa-github"></i>
               </a>
             </li>
             {% endif %}
@@ -145,11 +159,10 @@
 
         <!-- ===== CREDIT LOGO ===== -->
         <div class="col-sm-6 text-right">
-          Generated with
-          <a href="https://github.com/antho31/vocast-www" target="_blank">
-            Vocast tools</a
-          >. {{ _.title }} - {{ footer.year }}.
-          <a href="{{ pressFolderLink }}" target="_blank">{{ lang.press }}</a> - <a href="/terms.html" target="_blank"> {{ lang.terms }} </a>
+          {{ _.footline }} <br/>  
+          <a href="{{ pressFolderLink }}" target="_blank">{{ lang.press }}</a> -
+          <a href="/terms.html" target="_blank"> {{ lang.terms }}</a> <br/> 
+         <!-- {{ footer.year }} -->
         </div>
       </div>
     </div>

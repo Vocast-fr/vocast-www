@@ -1,6 +1,7 @@
 const { cloneDeep } = require('lodash')
 const fs = require('fs-extra')
 const merge = require('deepmerge')
+const htmlToText = require('html-to-text')
 const moment = require('moment')
 const nunjucks = require('nunjucks')
 const os = require('os')
@@ -192,7 +193,7 @@ module.exports = podcastsMap => {
         const podcastMapEpisode = podcastsMapUpdate(podcastsMapPodcast, {
           header: {
             title, // : `${podcastsMapPodcast.podcast.title} - ${title}`,
-            description: description[0],
+            description: htmlToText.fromString(description[0], { wordwrap: false, ignoreHref: true }),
             image,
             date: moment(date).format(),
             url: `${url}/${episodePath}`,
