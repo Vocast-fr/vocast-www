@@ -48,19 +48,19 @@
           <ul class="social-list">
             {% if header.rss %}
             <li class="social-item">
-              <a href="{{ header.rss }}" target="_blank">
+              <a href="{{ header.rss }}" target="_blank" rel="noreferrer">
                 <i class="fa fa-rss"></i>
               </a>
             </li>
             {% endif %} {% if header.applePodcastsLink %}
             <li class="social-item">
-              <a href="{{ header.applePodcastsLink }}" target="_blank">
+              <a href="{{ header.applePodcastsLink }}" target="_blank" rel="noreferrer">
                 <i class="fa fa-podcast"></i>
               </a>
             </li>
             {% endif %} {% if header.googlePodcastsLink %}
             <li class="social-item">
-              <a href="{{ header.googlePodcastsLink }}" target="_blank">
+              <a href="{{ header.googlePodcastsLink }}" target="_blank" rel="noreferrer">
                 <i class="fa fa-google"></i>
               </a>
             </li>
@@ -78,7 +78,7 @@
                   header.url
                 }}"
                 rel="noopener"
-                target="_blank"
+                target="_blank" rel="noreferrer"
               >
                 <i class="fa fa-facebook"></i>
               </a>
@@ -86,7 +86,7 @@
             <li class="social-item">
               <a
                 rel="noopener"
-                target="_blank"
+                target="_blank" rel="noreferrer"
                 href="https://twitter.com/share?url={{ header.url }}&via={{
                   header.social.twitter.via
                 }}&related={{
@@ -103,7 +103,7 @@
                 href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{
                   header.url
                 }}"
-                target="_blank"
+                target="_blank" rel="noreferrer"
               >
                 <i class="fa fa-linkedin"></i>
               </a>
@@ -117,19 +117,19 @@
           <ul class="social-list">
             {% if header.youtubeLink %}
             <li class="social-item">
-              <a href="{{ header.youtubeLink }}" target="_blank">
+              <a href="{{ header.youtubeLink }}" target="_blank" rel="noreferrer">
                 <i class="fa fa-youtube"></i>
               </a>
             </li>
             {% endif %} {% if header.mediumLink %}
             <li class="social-item">
-              <a href="{{ header.mediumLink }}" target="_blank">
+              <a href="{{ header.mediumLink }}" target="_blank" rel="noreferrer">
                 <i class="fa fa-medium"></i>
               </a>
             </li>
             {% endif %} {% if header.githubLink %}
             <li class="social-item">
-              <a href="{{ header.githubLink }}" target="_blank">
+              <a href="{{ header.githubLink }}" target="_blank" rel="noreferrer">
                 <i class="fa fa-github"></i>
               </a>
             </li>
@@ -160,8 +160,8 @@
         <!-- ===== CREDIT LOGO ===== -->
         <div class="col-sm-6 text-right">
           {{ _.footline }} <br/>  
-          <a href="{{ pressFolderLink }}" target="_blank">{{ lang.press }}</a> -
-          <a href="/terms.html" target="_blank"> {{ lang.terms }}</a> <br/> 
+          <a href="{{ pressFolderLink }}" target="_blank" rel="noreferrer">{{ lang.press }}</a> -
+          <a href="/terms.html" target="_blank" rel="noreferrer"> {{ lang.terms }}</a> <br/> 
          <!-- {{ footer.year }} -->
         </div>
       </div>

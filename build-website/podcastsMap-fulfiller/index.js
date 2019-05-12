@@ -90,6 +90,7 @@ module.exports = async () => {
       const {
         title,
         description,
+        audioUrlPrefix,
         episodes,
         podcastPath
       } = podcastsMap.podcasts[podcastKey]
@@ -110,6 +111,7 @@ module.exports = async () => {
         title,
         description,
         podcastPath,
+        audioUrlPrefix,
         episodes: keptEpisodes
       }
     }

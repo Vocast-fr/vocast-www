@@ -60,7 +60,7 @@ async function updateEpisodeInDbFromAuphonicResult ({
   episode,
   auphonicResult
 }) {
-  const { podcastService, audioUrlPrefix } = podcast
+  const { podcastService } = podcast
   const { outgoing_services, length } = auphonicResult
 
   const fromOutGoingServicesToUrl = service => {
@@ -80,7 +80,7 @@ async function updateEpisodeInDbFromAuphonicResult ({
   const youtubeUrl = fromOutGoingServicesToUrl('youtube')
 
   Object.assign(episode, {
-    audioUrl: `${audioUrlPrefix}${audioUrl}`,
+    audioUrl,
     youtubeUrl,
     squareImg: episode.image,
     durationMin: Math.ceil(length / 60),
