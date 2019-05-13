@@ -92,7 +92,8 @@ module.exports = async () => {
         description,
         audioUrlPrefix,
         episodes,
-        podcastPath
+        podcastPath,
+        podcastSmartLink
       } = podcastsMap.podcasts[podcastKey]
       let keptEpisodes =
         episodes.length > MAX_EPISODES_MENU
@@ -112,7 +113,8 @@ module.exports = async () => {
         description,
         podcastPath,
         audioUrlPrefix,
-        episodes: keptEpisodes
+        episodes: keptEpisodes,
+        podcastSmartLink
       }
     }
   )
