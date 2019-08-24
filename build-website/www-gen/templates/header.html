@@ -180,7 +180,7 @@
     {% endif %}
 
     <!-- Audio SEO via RSS -->
-    <link type="application/rss+xml" rel="alternate" title="{{ header.title }}" href="{{ header.rss }}" /> 
+    <link type="application/rss+xml" rel="alternate" title="{{ _.title }}" href="{{ header.rss }}" /> 
 
     <!-- Apple Podcast / iTunes -->
     <meta name="apple-itunes-app" content="app-id={{ header.iTunesAppId }}">
@@ -298,6 +298,21 @@
                         </ul>
                     </li>
                     {% endfor %}
+
+                    {% if bonus %}                    
+                    <li class="menuitem dropdown">
+                        <a href="#">Bonus</a>
+                        <ul class="droplist">
+
+                            {% for bonusItem in bonus %}
+                            <li class="droplist-item">
+                                <a href="{{ bonusItem.link }}" target='_blank' rel='noopener'>{{ bonusItem.title }}</a>
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                    </li>
+                    {% endif %}
 
                     <li class="menuitem">
                         <a href="/about-us.html">{{ lang.team }}</a>

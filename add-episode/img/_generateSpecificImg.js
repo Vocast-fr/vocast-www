@@ -9,8 +9,8 @@ let imgText1W = '120'
 let imgText1H = '680'
 let imgText2H = 780
 let imgText2W = 120
-let subtitle1 = 'Anthony Gourraud'
-let subtitle2 = 'anthony@vocast.fr'
+let subtitle1 = 'Premium'
+let subtitle2 = ''
 let imgPathFinal = '/home/anthony/Downloads/final.png'
 
 async function generateImg () {

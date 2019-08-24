@@ -24,7 +24,7 @@ module.exports = podcastsMap => {
   const baseAssetsFolder = filePath('assets_base')
   const templatesFolder = filePath('templates')
   const wwwFinalFolder = TMP_PATH + '/www-final'
-  const assetsFolder = `assets`
+  const assetsFolder = 'assets'
   const wwwFinalAssetsFolder = `${wwwFinalFolder}/${assetsFolder}`
 
   const sitemap = sm.createSitemap({
@@ -38,7 +38,7 @@ module.exports = podcastsMap => {
   const generateHtml = (templatePath, dataObj, outputPath, appendTitle) => {
     const finalObj = appendTitle
       ? podcastsMapUpdate(dataObj, {
-        header: { title: `${dataObj.header.title} - ${appendTitle}` }
+        header: { title: `${appendTitle} - ${dataObj.header.title}` }
       })
       : dataObj
 
@@ -56,7 +56,7 @@ module.exports = podcastsMap => {
 
   const generate404HTML = async podcastsMap => {
     return generateHtml(
-      `error404.html`,
+      'error404.html',
       podcastsMapUpdate(podcastsMap, { header: { description: '' } }),
       'error404.html',
       '404'
@@ -64,10 +64,10 @@ module.exports = podcastsMap => {
   }
 
   const generateAboutHTML = async podcastsMap => {
-    sitemap.add({ url: `/about-us.html`, priority: 0.4 })
+    sitemap.add({ url: '/about-us.html', priority: 0.4 })
 
     return generateHtml(
-      `about-us.html`,
+      'about-us.html',
       podcastsMapUpdate(podcastsMap, {
         header: { description: podcastsMap.team.description }
       }),
@@ -79,10 +79,10 @@ module.exports = podcastsMap => {
   const generateContactHTML = async podcastsMap => {
     const { title, description } = podcastsMap.contact
 
-    sitemap.add({ url: `/contact.html`, priority: 0.5 })
+    sitemap.add({ url: '/contact.html', priority: 0.5 })
 
     return generateHtml(
-      `contact.html`,
+      'contact.html',
       podcastsMapUpdate(podcastsMap, {
         header: { description: `${title} ${description}` }
       }),
@@ -92,18 +92,18 @@ module.exports = podcastsMap => {
   }
 
   const generateIndexHTML = async podcastsMap => {
-    sitemap.add({ url: `/`, priority: 1 })
+    sitemap.add({ url: '/', priority: 1 })
     return generateHtml(
-      `index.html`,
+      'index.html',
       podcastsMap,
       'index.html',
-      podcastsMap.lang.welcome
+      '' // podcastsMap.lang.welcome
     )
   }
 
   const generateTermsHTML = async podcastsMap => {
     return generateHtml(
-      `terms.html`,
+      'terms.html',
       podcastsMapUpdate(podcastsMap, {
         header: { description: podcastsMap.lang.terms }
       }),
@@ -115,18 +115,18 @@ module.exports = podcastsMap => {
   const generatePodcastsPages = async podcastsMap => {
     const limit = promiseLimit(PODCAST_GEN_LIMIT)
     const promises = []
-    const podcasts = podcastsMap['podcasts']
+    const podcasts = podcastsMap.podcasts
 
     const generatePodcastPageHTML = async (podcastsMap, episodePath) => {
       sitemap.add({ url: `/${episodePath}`, priority: 0.8 })
 
-      return generateHtml(`podcast.html`, podcastsMap, episodePath)
+      return generateHtml('podcast.html', podcastsMap, episodePath)
     }
 
     const generatePodcastsIndexHTML = async (podcastsMap, podcastPath) => {
       sitemap.add({ url: `/${podcastPath}/`, priority: 0.9 })
       return generateHtml(
-        `podcasts.html`,
+        'podcasts.html',
         podcastsMap,
         `${podcastPath}/index.html`
       )
@@ -135,7 +135,7 @@ module.exports = podcastsMap => {
     const generatePodcastsListenHTML = async (podcastsMap, podcastPath) => {
       sitemap.add({ url: `/${podcastPath}/listen.html`, priority: 0.9 })
       return generateHtml(
-        `listen.html`,
+        'listen.html',
         podcastsMap,
         `${podcastPath}/listen.html`
       )
@@ -155,13 +155,14 @@ module.exports = podcastsMap => {
         googlePodcastsLink,
         youtubeLink,
         mediumLink,
-        social
+        social,
+        subtitle
       } = podcastInfos
       const [lastEpisode, ...othersEpisodes] = episodes
 
       const podcastsMapPodcast = podcastsMapUpdate(podcastsMap, {
         header: {
-          title, // `${podcastsMap.header.title} - ${title}`,
+          title: `${title} | ${subtitle}`,
           description: description,
           url: `${url}/${podcastPath}`,
           image: image,
@@ -189,11 +190,14 @@ module.exports = podcastsMap => {
         limit(() => generatePodcastsListenHTML(podcastsMapPodcast, podcastPath))
       )
       episodes.forEach((episodeInfos, episodeIndex) => {
-        const { episodePath, title, description, image, date } = episodeInfos
+        const { title, description, image, date, episode, season, episodePath } = episodeInfos
         const podcastMapEpisode = podcastsMapUpdate(podcastsMapPodcast, {
           header: {
-            title, // : `${podcastsMapPodcast.podcast.title} - ${title}`,
-            description: htmlToText.fromString(description[0], { wordwrap: false, ignoreHref: true }),
+            title: `${title} | ${podcastsMap.lang.listen} podcast ${podcastsMapPodcast.podcast.title} S${season}E${episode} `,
+            description: htmlToText.fromString(description[0], {
+              wordwrap: false,
+              ignoreHref: true
+            }),
             image,
             date: moment(date).format(),
             url: `${url}/${episodePath}`,
