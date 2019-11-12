@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html lang="{{ lang._ }}">
-
-<head>
-
+  <head>
     <!-- =================================== -->
-    <!-- 		  Google analytics 			 -->
+    <!-- 		  Scripts analytics          -->
     <!-- =================================== -->
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     {% if header.gaId %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ header.gaId }}"></script>
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id={{ header.gaId }}"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-        gtag('config', '{{ header.gaId }}');
-    </script> {% endif %}
+      gtag("config", "{{ header.gaId }}");
+    </script>
+    <!-- End Google Analytics -->
+    {% endif %} {% if header.gtagId %}
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "{{ header.gtagId }}");
+    </script>
+    <!-- End Google Tag Manager -->
+    {% endif %}
 
     <!-- =================================== -->
     <!-- 		  COMPATIBILITY 			 -->
     <!-- =================================== -->
 
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <!--[if IE
+      ]><meta http-equiv="X-UA-Compatible" content="IE=edge"
+    /><![endif]-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-
 
     <!-- =================================== -->
     <!-- 			  TITLE 			 	 -->
@@ -54,14 +74,25 @@
 
     <!-- THEME CSS -->
     <link href="/assets/css/style.css" rel="stylesheet" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
 
     <!-- CUSTOM CSS -->
     <link href="/assets/css/common.css" rel="stylesheet" />
 
     <!-- GOOGLE FONTS -->
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300"
+      rel="stylesheet"
+      type="text/css"
+    />
     <!-- AMP 
     {% if header.shouldBeAmp %}
         <link rel="amphtml" href="https://mercury.postlight.com/amp?url={{ header.url }}">
@@ -73,117 +104,121 @@
     <!-- =================================== -->
 
     <script type="application/ld+json">
-        { 
-            "@context": "http://schema.org",
-            "@type": "Organization",            
-            "name": "{{ _.title }}",
-            "url": "{{ _.baseUrl }}",
-            "logo": "{{ header.image }}",
-            "foundingDate": "{{ footer.year }}",
-            "founders": [ 
-                { "givenName": "{{ author.givenName }}", "familyName": "{{ author.familyName}}" } 
-            ],
-            "contactPoint": [
-                { 
-                    "@type": "ContactPoint",
-                    "email": "{{ header.contact }}",
-                    "url": "{{ _.baseUrl }}/contact.html",
-                    "contactType": "customer service"
-                }
-            ],
-            "sameAs": [ 
-                "https://twitter.com/{{ header.social.twitter.via }}"
-            ] 
-        }
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "{{ _.title }}",
+        "url": "{{ _.baseUrl }}",
+        "logo": "{{ header.image }}",
+        "foundingDate": "{{ footer.year }}",
+        "founders": [
+          {
+            "givenName": "{{ author.givenName }}",
+            "familyName": "{{ author.familyName}}"
+          }
+        ],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "email": "{{ header.contact }}",
+            "url": "{{ _.baseUrl }}/contact.html",
+            "contactType": "customer service"
+          }
+        ],
+        "sameAs": ["https://twitter.com/{{ header.social.twitter.via }}"]
+      }
     </script>
-
 
     {% if header.isPodcastHomepage %}
     <script type="application/ld+json">
-        {
-          "@context": "http://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [               
-                {
-                    "@type": "ListItem",
-                    "position":1,
-                    "item": {
-                        "@type": "Webpage",
-                        "@id": "{{ header.url }}",
-                        "name": "{{ header.title }}"
-                    }
-                } 
-          ]
-    }       
+      {
+        "@context": "http://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Webpage",
+              "@id": "{{ header.url }}",
+              "name": "{{ header.title }}"
+            }
+          }
+        ]
+      }
     </script>
-    {% endif %}
-
-    {% if header.isEpisodePage  %}
+    {% endif %} {% if header.isEpisodePage %}
     <script type="application/ld+json">
-        {
-          "@context": "http://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [   
-                {
-                    "@type": "ListItem",
-                    "position":1,
-                    "item": {
-                        "@type": "Webpage",
-                        "@id": "{{ _.baseUrl }}/{{ podcast.slug }}",
-                        "name": "{{ podcast.title }}"
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position":2,
-                    "item": {
-                        "@type": "Webpage",
-                        "@id": "{{ header.url }}",
-                        "name": "{{ header.title }}"
-                    }
-                } 
-          ]
-    }       
+      {
+        "@context": "http://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Webpage",
+              "@id": "{{ _.baseUrl }}/{{ podcast.slug }}",
+              "name": "{{ podcast.title }}"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Webpage",
+              "@id": "{{ header.url }}",
+              "name": "{{ header.title }}"
+            }
+          }
+        ]
+      }
     </script>
     <script type="application/ld+json">
-        { 
-            "@context": "http://schema.org",
-            "@type": "NewsArticle",
-            "mainEntityOfPage": { 
-                  "@type": "WebPage",
-                  "@id": "{{ header.url }}"
-            },
-            "headline": "{{ header.title }}", 
-            "image": { 
-                "@type": "ImageObject",
-                "url": "{{ header.image }}",
-                "width": 1400,
-                "height": 1400 
-            },
-            "datePublished": "{{ header.date }}",
-            "dateModified": "{{ header.date }}",
-            "author": { 
-                "@type": "Person",
-                "name": "{{ author.name }}" 
-            }, 
-            "publisher": { 
-                "@type": "Organization", 
-                "name": "{{ _.title }}", 
-                "logo": { 
-                    "@type": "ImageObject",
-                    "url": "{{ _.logo }}", 
-                    "width": 60, "height": 60 
-                } 
-            } 
-        } 
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "{{ header.url }}"
+        },
+        "headline": "{{ header.title }}",
+        "image": {
+          "@type": "ImageObject",
+          "url": "{{ header.image }}",
+          "width": 1400,
+          "height": 1400
+        },
+        "datePublished": "{{ header.date }}",
+        "dateModified": "{{ header.date }}",
+        "author": {
+          "@type": "Person",
+          "name": "{{ author.name }}"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "{{ _.title }}",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ _.logo }}",
+            "width": 60,
+            "height": 60
+          }
+        }
+      }
     </script>
     {% endif %}
 
     <!-- Audio SEO via RSS -->
-    <link type="application/rss+xml" rel="alternate" title="{{ _.title }}" href="{{ header.rss }}" /> 
+    <link
+      type="application/rss+xml"
+      rel="alternate"
+      title="{{ _.title }}"
+      href="{{ header.rss }}"
+    />
 
     <!-- Apple Podcast / iTunes -->
-    <meta name="apple-itunes-app" content="app-id={{ header.iTunesAppId }}">
+    <meta name="apple-itunes-app" content="app-id={{ header.iTunesAppId }}" />
 
     <!-- =================================== -->
     <!-- 		 	THEME COLOR 			 -->
@@ -196,15 +231,18 @@
     <!-- =================================== -->
 
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- =================================== -->
     <!-- 			 VIEWPORT 				 -->
     <!-- =================================== -->
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
+    />
 
     <!-- =================================== -->
     <!-- 			  AUTHOR 				 -->
@@ -227,7 +265,7 @@
     <!-- =================================== -->
 
     <meta name="GOOGLEBOT" content="INDEX, FOLLOW" />
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow" />
     <meta name="msnbot" content="NOODP" />
 
     <!-- =================================== -->
@@ -248,7 +286,10 @@
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@{{ header.social.twitter.site }}" />
-    <meta name="twitter:creator" content="@{{ header.social.twitter.creator }}" />
+    <meta
+      name="twitter:creator"
+      content="@{{ header.social.twitter.creator }}"
+    />
     <meta name="twitter:title" content="{{ header.title }}" />
     <meta name="twitter:description" content="{{ header.description }}" />
     <meta name="twitter:domain" content="{{ _.title }}" />
@@ -260,72 +301,90 @@
 
     <link rel="icon" href="/assets/img/favicon.png" />
     <link rel="shortcut icon" href="/assets/img/favicon.png" />
+  </head>
 
-</head>
-
-<body itemscope itemtype="http://schema.org/WebSite">
-
+  <body itemscope itemtype="http://schema.org/WebSite">
     <!-- ===== HEADER ===== -->
-    <header class="header absolute" itemscope itemtype="http://schema.org/Organization">
-        <div class="container">
+    <header
+      class="header absolute"
+      itemscope
+      itemtype="http://schema.org/Organization"
+    >
+      <div class="container">
+        <!-- ===== LOGO ===== -->
+        <h1 class="logo">
+          <a href="{{ _.baseUrl }}">
+            <img
+              src="/assets/img/logo.png"
+              alt="{{ header.title }}"
+              title="{{ header.title }}"
+            />
+          </a>
+        </h1>
 
-            <!-- ===== LOGO ===== -->
-            <h1 class="logo">
-                <a href="{{ _.baseUrl }}">
-                    <img src="/assets/img/logo.png" alt="{{ header.title }}" title="{{ header.title }}" />
-                </a>
-            </h1>
+        <!-- ===== NAVIGATION ===== -->
+        <nav class="navigation">
+          <!-- ===== MENU ===== -->
+          <ul class="menu">
+            <li class="menuitem">
+              <a href="/">{{ lang.home }}</a>
+            </li>
 
-            <!-- ===== NAVIGATION ===== -->
-            <nav class="navigation">
-                <!-- ===== MENU ===== -->
-                <ul class="menu">
-                    <li class="menuitem">
-                        <a href="/">{{ lang.home }}</a>
-                    </li>
+            {% for podcast in header.podcasts %}
+            <li class="menuitem dropdown">
+              <a href="#">{{ podcast.title }}</a>
+              <ul class="droplist">
+                {% for episode in podcast.episodes %}
+                <li class="droplist-item">
+                  <a href="/{{ episode.episodePath }}">{{ episode.title }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% endfor %} {% if bonus %}
+            <li class="menuitem dropdown">
+              <a href="#">Bonus</a>
+              <ul class="droplist">
+                {% for bonusItem in bonus %}
+                <li class="droplist-item">
+                  <a
+                    href="{{ bonusItem.link }}"
+                    target="_blank"
+                    rel="noopener"
+                    >{{ bonusItem.title }}</a
+                  >
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% endif %}
 
-                    {% for podcast in header.podcasts %}
-                    <li class="menuitem dropdown">
-                        <a href="#">{{ podcast.title }}</a>
-                        <ul class="droplist">
-
-                            {% for episode in podcast.episodes %}
-                            <li class="droplist-item">
-                                <a href="/{{ episode.episodePath }}">{{ episode.title }}</a>
-                            </li>
-                            {% endfor %}
-
-                        </ul>
-                    </li>
-                    {% endfor %}
-
-                    {% if bonus %}                    
-                    <li class="menuitem dropdown">
-                        <a href="#">Bonus</a>
-                        <ul class="droplist">
-
-                            {% for bonusItem in bonus %}
-                            <li class="droplist-item">
-                                <a href="{{ bonusItem.link }}" target='_blank' rel='noopener'>{{ bonusItem.title }}</a>
-                            </li>
-                            {% endfor %}
-
-                        </ul>
-                    </li>
-                    {% endif %}
-
-                    <li class="menuitem">
-                        <a href="/about-us.html">{{ lang.team }}</a>
-                    </li>
-                    <li class="menuitem">
-                        <a href="/contact.html">{{ lang.contact }}</a>
-                    </li>
-                </ul>
-                <!-- ===== HAMBURGUER ICON ===== -->
-                <a href="#" class="btn-hamburguer-menu">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </nav>
-
-        </div>
+            <li class="menuitem">
+              <a href="/about-us.html">{{ lang.team }}</a>
+            </li>
+            <li class="menuitem">
+              <a href="/contact.html">{{ lang.contact }}</a>
+            </li>
+          </ul>
+          <!-- ===== HAMBURGUER ICON ===== -->
+          <a href="#" class="btn-hamburguer-menu">
+            <i class="fa fa-bars"></i>
+          </a>
+        </nav>
+      </div>
     </header>
+
+    {% if header.gtagId %}
+    <!--  Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id={{ header.gtagId }}"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {% endif %}
+  </body>
+</html>
