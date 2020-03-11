@@ -18,7 +18,7 @@ module.exports = async wwwFinalFolder => {
   }
 
   // use with promises
-  debug('Ready to deploy...')
+  debug('Ready to deploy to FTP...')
   await ftpDeploy.deploy(config)
   debug('Deployed to FTP !')
 }

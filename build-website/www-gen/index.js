@@ -56,9 +56,9 @@ module.exports = podcastsMap => {
 
   const generate404HTML = async podcastsMap => {
     return generateHtml(
-      'error404.html',
+      '404.html',
       podcastsMapUpdate(podcastsMap, { header: { description: '' } }),
-      'error404.html',
+      '404.html',
       '404'
     )
   }
