@@ -1,5 +1,6 @@
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
@@ -11,6 +12,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
@@ -21,6 +23,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
@@ -32,6 +35,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
@@ -43,6 +47,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
@@ -55,6 +60,7 @@
 }
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
@@ -66,6 +72,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
@@ -76,6 +83,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
@@ -87,6 +95,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
@@ -98,6 +107,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;

@@ -1,5 +1,6 @@
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
@@ -11,6 +12,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
@@ -21,6 +23,7 @@
 }
 /* greek-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
@@ -31,6 +34,7 @@
 }
 /* greek */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
@@ -41,6 +45,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
@@ -52,6 +57,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
@@ -63,6 +69,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
@@ -75,6 +82,7 @@
 }
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
@@ -86,6 +94,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
@@ -96,6 +105,7 @@
 }
 /* greek-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
@@ -106,6 +116,7 @@
 }
 /* greek */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
@@ -116,6 +127,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
@@ -127,6 +139,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
@@ -138,6 +151,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
@@ -150,6 +164,7 @@
 }
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
@@ -161,6 +176,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
@@ -171,6 +187,7 @@
 }
 /* greek-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
@@ -181,6 +198,7 @@
 }
 /* greek */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
@@ -191,6 +209,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
@@ -202,6 +221,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
@@ -213,6 +233,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
@@ -225,6 +246,7 @@
 }
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
@@ -236,6 +258,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
@@ -246,6 +269,7 @@
 }
 /* greek-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
@@ -256,6 +280,7 @@
 }
 /* greek */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
@@ -266,6 +291,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
@@ -277,6 +303,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
@@ -288,6 +315,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;

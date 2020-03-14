@@ -42,6 +42,7 @@ class PodcryptButton extends HTMLElement {
                     <img
                         class="podcrypt-button-image"
                         src="https://podcrypt.app/podcrypt-${logoColor}-transparent.png"
+                        alt="Podcrypt logo"
                     >
                     <div>
                         <div class="podcrypt-button-top-text">Donate with</div>

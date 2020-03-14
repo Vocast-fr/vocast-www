@@ -36,12 +36,14 @@ class PodcryptButton extends HTMLElement {
             <a
                 class="podcrypt-button-anchor"
                 href="${href}"
+                rel="noreferrer"
                 target="_blank"
             >
                 <div class="podcrypt-button-container">
                     <img
                         class="podcrypt-button-image"
                         src="https://podcrypt.app/podcrypt-${logoColor}-transparent.png"
+                        alt="Podcrypt logo"
                     >
                     <div>
                         <div class="podcrypt-button-top-text">Donate with</div>

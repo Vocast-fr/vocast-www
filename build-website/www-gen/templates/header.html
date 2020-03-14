@@ -56,18 +56,43 @@
     <!-- =================================== -->
     <!-- 			MORDERNIZR 			 	 -->
     <!-- =================================== -->
-
     <script src="/assets/js/modernizr.js"></script>
 
     <!-- =================================== -->
-    <!-- 			  STYLES 				 -->
-    <!-- =================================== -->
-
-    <link href="/assets/styles.css" rel="stylesheet" />
+    <!-- 			  STYLES 				 - ->
     <link
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/assets/styles.css" />
+
+    <!-- =================================== -->
+
+    <link rel="preload" href="/assets/styles.css" as="style" />
+    <link
+      rel="stylesheet"
+      href="/assets/styles.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="/assets/styles.css"/></noscript>
+
+    <link
+      rel="preload"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      as="style"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    /></noscript>
 
     <!-- BOOTSTRAP MIN - ->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -240,7 +265,7 @@
 
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
     <!-- =================================== -->
