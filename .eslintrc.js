@@ -1,4 +1,8 @@
 module.exports = {
-  plugins: ["prettier"],
-  extends: "standard"
-};
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "extends": [
+    "standard"
+  ]
+}

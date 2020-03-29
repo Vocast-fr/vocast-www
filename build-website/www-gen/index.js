@@ -2,6 +2,7 @@ const { cloneDeep } = require('lodash')
 const fs = require('fs-extra')
 const merge = require('deepmerge')
 const htmlToText = require('html-to-text')
+var minify = require('html-minifier').minify
 const moment = require('moment')
 const nunjucks = require('nunjucks')
 const os = require('os')
@@ -45,7 +46,16 @@ module.exports = podcastsMap => {
     try {
       nunjucks.configure(templatesFolder, { autoescape: false })
       const htmlData = nunjucks.render(templatePath, finalObj)
-      return fs.writeFile(`${wwwFinalFolder}/${outputPath}`, htmlData)
+      return fs.writeFile(`${wwwFinalFolder}/${outputPath}`, minify(htmlData, {
+        collapseWhitespace: true,
+        html5: true,
+        minifyCSS: true,
+        minifyJS: true,
+        removeAttributeQuotes: true,
+        removeComments: true,
+        removeEmptyAttributes: true,
+        trimCustomFragments: true
+      }))
     } catch (e) {
       console.error(
         `HTML Generation Error template ${templatePath}, output ${outputPath}`,
@@ -56,9 +66,9 @@ module.exports = podcastsMap => {
 
   const generate404HTML = async podcastsMap => {
     return generateHtml(
-      'error404.html',
+      '404.html',
       podcastsMapUpdate(podcastsMap, { header: { description: '' } }),
-      'error404.html',
+      '404.html',
       '404'
     )
   }

@@ -1,0 +1,34 @@
+{% include "header.html" %}
+
+<!-- ===== MAIN ===== -->
+<main id="main" class="main">
+  <!-- ===== PAGE HEADER ===== -->
+  <section
+    class="page-error"
+    {%
+    if
+    header.piioKey
+    %}
+    data-piio-bck="{{ header.errorBackgroundUrl }}"
+    {%
+    else
+    %}
+    style="background-image: url({{ header.errorBackgroundUrl }})"
+    {%
+    endif
+    %}
+  >
+    <div class="page-error-inner">
+      <div class="container">
+        <!-- ===== PAGE HEADER CONTENT ===== -->
+        <div class="page-error-content text-center">
+          <h2>{{ notfound.title }}</h2>
+          <p class="mb-40">{{ notfound.text }}</p>
+          <a href="/" class="btn btn-info">{{ notfound.link }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% include "footer.html" %}

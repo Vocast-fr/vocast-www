@@ -57,7 +57,9 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
+# deployment env variables files
 .env
+netlify.toml
 
+# Code preferences
 .vscode

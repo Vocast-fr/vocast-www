@@ -1,0 +1,2 @@
+cat ./build-website/www-gen/assets_base/js-to-merge/*.js> build-website/www-gen/assets_base/scripts.js
+cat ./build-website/www-gen/assets_base/css-to-merge/*.css> build-website/www-gen/assets_base/styles.css 

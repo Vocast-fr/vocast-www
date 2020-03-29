@@ -148,11 +148,20 @@
         <div class="col-sm-6 footer-logo">
           <h2>
             <a href="/index.html">
+              {% if header.piioKey %}
               <img
-                src="/assets/img/logo.png"
+                data-piio="{{ header.logoUrl }}"
+                alt="{{ header.altLogo }}"
+                title="{{ _.title }}"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+f9vPQAJZAN2rlRQVAAAAABJRU5ErkJggg=="
+              />
+              {% else %}
+              <img
+                src="{{ header.logoUrl }}"
                 alt="{{ header.altLogo }}"
                 title="{{ _.title }}"
               />
+              {% endif %}
             </a>
           </h2>
         </div>
@@ -173,28 +182,30 @@
 <!-- 			  SCRIPTS 				 -->
 <!-- =================================== -->
 
-<!-- JQUERY -->
+<script async src="/assets/scripts.js"></script>
+
+<!-- JQUERY - ->
 <script src="/assets/js/jquery-1.11.min.js"></script>
 
-<!-- BOOTSTRAP JS -->
+<!-- BOOTSTRAP JS - ->
 <script src="/assets/js/bootstrap.min.js"></script>
 
-<!-- MEDIA ELEMENT -->
+<!-- MEDIA ELEMENT - ->
 <script src="/assets/js/mediaelement-and-player.min.js"></script>
 
-<!-- MAGNIFIC POPUP -->
+<!-- MAGNIFIC POPUP - ->
 <script src="/assets/js/magnific-popup.min.js"></script>
 
-<!-- FORM VALIDATE -->
+<!-- FORM VALIDATE - ->
 <script src="/assets/js/validate.min.js"></script>
 
-<!-- PLACEHOLDER FOR IE -->
+<!-- PLACEHOLDER FOR IE - ->
 <script src="/assets/js/placeholder.min.js"></script>
 
-<!-- THEME JS -->
+<!-- THEME JS - ->
 <script src="/assets/js/main.js"></script>
 
-<!-- Podcrypt -->
+<!-- Podcrypt - ->
 <script type="module" src="https://podcrypt.app/podcrypt-button.js"></script>
 
 <!-- Sniply 
@@ -202,6 +213,12 @@
 <script type="text/javascript" src="https://gosniply.com/site/{{ header.sniply }}.js"></script>
 {% endif %}
 -->
+
+<!-- Piio to optimise imgs -->
+{% if header.piioKey %}
+<script src="//js.piio.co/{{ header.piioKey }}/piio.min.js"></script>
+{% endif %}
+
 
 </body>
 

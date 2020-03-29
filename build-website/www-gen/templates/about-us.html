@@ -1,87 +1,110 @@
 {% include "header.html" %}
 
-
 <!-- ===== MAIN ===== -->
 <main id="main" class="main">
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="page-header-inner">
+      <div class="container">
+        <!-- ===== PAGE HEADER CONTENT ===== -->
+        <div class="page-header-content text-center">
+          <h2>{{ lang.team }}</h2>
+        </div>
+      </div>
+    </div>
+  </header>
 
-	<!-- ===== PAGE HEADER ===== -->
-	<header class="page-header">
-		<div class="page-header-inner">
-			<div class="container">
+  <!-- ===== ABOUT US ===== -->
+  <section id="about-us" class="section-negative">
+    <div class="container">
+      <!-- ===== SECTION TITLE ===== -->
+      <h2 class="title-default">{{ team.title }}</h2>
 
-				<!-- ===== PAGE HEADER CONTENT ===== -->
-				<div class="page-header-content text-center">
-					<h2>{{ lang.team }}</h2>
-				</div>
-
-			</div>
-		</div>
-	</header>
-
-	<!-- ===== ABOUT US ===== -->
-	<section id="about-us" class="section-negative">
-		<div class="container">
-
-			<!-- ===== SECTION TITLE ===== -->
-			<h2 class="title-default">{{ team.title }}</h2>
-
-			<div class="row mb-30 row-eq-height">
-
-				{% for member in team.members %}
-				<!-- ===== TEAM CARD =====  -->
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-20">
-					<div class="team-card">
-						<figure class="team-card-image">
-							<img src="{{ member.pic }}" alt="{{ member.name }}" title="{{ member.name }}" />
-						</figure>
-						<div class="team-card-content">
-							<h2 class="team-card-title">{{ member.name }}</h2>
-							<p class="team-card-job">{{ member.job }}</p>
-							<p class="team-card-description">{{ member.description }}</p>
-							<ul class="team-card-social">
-
-								{% if member.linkedin %}
-								<li class="social-item">
-									<a href="{{ member.linkedin }}" target="_blank" rel="noreferrer">
-										<i class="fa fa-linkedin"></i>
-									</a>
-								</li>
-								{% endif %} {% if member.twitter %}
-								<li class="social-item">
-									<a href="{{ member.twitter }}" target="_blank" rel="noreferrer">
-										<i class="fa fa-twitter"></i>
-									</a>
-								</li>
-								{% endif %} {% if member.facebook %}
-								<li class="social-item">
-									<a href="{{ member.facebook }}" target="_blank" rel="noreferrer">
-										<i class="fa fa-facebook"></i>
-									</a>
-								</li>
-								{% endif %} {% if member.github %}
-								<li class="social-item">
-									<a href="{{ member.github }}" target="_blank" rel="noreferrer">
-										<i class="fa fa-github"></i>
-									</a>
-								</li>
-								{% endif %} {% if member.website %}
-								<li class="social-item">
-									<a href="{{ member.website }}" target="_blank" rel="noreferrer">
-										<i class="fa fa-link"></i>
-									</a>
-								</li>
-								{% endif %}
-
-							</ul>
-						</div>
-					</div>
-				</div>
-				{% endfor %}
-			</div>
-
-		</div>
-	</section>
-
+      <div class="row mb-30 row-eq-height">
+        {% for member in team.members %}
+        <!-- ===== TEAM CARD =====  -->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-20">
+          <div class="team-card">
+            <figure class="team-card-image">
+              {% if header.piioKey %}
+              <img
+                data-piio="{{ member.pic }}"
+                alt="{{ member.name }}"
+                title="{{ member.name }}"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+f9vPQAJZAN2rlRQVAAAAABJRU5ErkJggg=="
+              />
+              {% else %}
+              <img
+                src="{{ member.pic }}"
+                alt="{{ member.name }}"
+                title="{{ member.name }}"
+              />
+              {% endif %}
+            </figure>
+            <div class="team-card-content">
+              <h2 class="team-card-title">{{ member.name }}</h2>
+              <p class="team-card-job">{{ member.job }}</p>
+              <p class="team-card-description">{{ member.description }}</p>
+              <ul class="team-card-social">
+                {% if member.linkedin %}
+                <li class="social-item">
+                  <a
+                    href="{{ member.linkedin }}"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li>
+                {% endif %} {% if member.twitter %}
+                <li class="social-item">
+                  <a
+                    href="{{ member.twitter }}"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                {% endif %} {% if member.facebook %}
+                <li class="social-item">
+                  <a
+                    href="{{ member.facebook }}"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                {% endif %} {% if member.github %}
+                <li class="social-item">
+                  <a
+                    href="{{ member.github }}"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i class="fa fa-github"></i>
+                  </a>
+                </li>
+                {% endif %} {% if member.website %}
+                <li class="social-item">
+                  <a
+                    href="{{ member.website }}"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i class="fa fa-link"></i>
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 </main>
 
 {% include "footer.html" %}

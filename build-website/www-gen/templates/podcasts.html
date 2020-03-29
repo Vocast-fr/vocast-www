@@ -3,7 +3,18 @@
 <!-- ===== LASTEST PODCAST (HERO) ===== -->
 <section
   class="podcast-hero"
+  {%
+  if
+  header.piioKey
+  %}
+  data-piio-bck="{{ podcast.backgroundUrl }}"
+  {%
+  else
+  %}
   style="background-image: url({{ podcast.backgroundUrl }})"
+  {%
+  endif
+  %}
 >
   <div class="podcast-hero-inner">
     <!-- ===== PODCAST INFO ===== -->
@@ -17,8 +28,7 @@
         </h2>
         <ul class="podcast-hero-meta">
           <li class="item">
-            {{ podcast.title }} S{{ lastEpisode.season }}E{{
-              lastEpisode.episode
+            {{ podcast.title }} S{{ lastEpisode.season }}E{{ lastEpisode.episode
             }}
           </li>
           <li class="item">
@@ -27,7 +37,8 @@
           <li class="item">
             <a
               href="{{ lastEpisode.youtubeUrl }}"
-              target="_blank" rel="noreferrer"
+              target="_blank"
+              rel="noreferrer"
               class="podcast-hero-download"
             >
               <i class="fa fa-youtube"></i> Youtube</a
@@ -36,7 +47,8 @@
           <li class="item">
             <a
               href="{{ podcast.audioUrlPrefix }}{{ lastEpisode.audioUrl }}"
-              target="_blank" rel="noreferrer"
+              target="_blank"
+              rel="noreferrer"
               class="podcast-hero-download"
             >
               <i class="fa fa-download"></i> {{ lang.download }}</a
@@ -50,7 +62,9 @@
     <div class="podcast-hero-player-content">
       <div class="container">
         <!-- ===== CUSTOM PLAYER ===== -->
-        <audio src="{{ podcast.audioUrlPrefix }}{{ lastEpisode.audioUrl }}"></audio>
+        <audio
+          src="{{ podcast.audioUrlPrefix }}{{ lastEpisode.audioUrl }}"
+        ></audio>
       </div>
     </div>
   </div>
@@ -70,12 +84,22 @@
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 mb-20">
           <div class="team-card">
             <figure class="team-card-image">
+              {% if header.piioKey %}
+              <img
+                class="team-card-image-piio"
+                data-piio="{{ link.img }}"
+                alt="{{ link.title }}"
+                title="{{ link.title }}"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+f9vPQAJZAN2rlRQVAAAAABJRU5ErkJggg=="
+              />
+              {% else %}
               <img
                 style="object-fit:scale-down"
                 src="{{ link.img }}"
                 alt="{{ link.title }}"
                 title="{{ link.title }}"
               />
+              {% endif %}
             </figure>
             <div class="team-card-content  text-center">
               <h2 class="team-card-title"></h2>
@@ -231,7 +255,7 @@
                     </g>
                   </svg>
                 </a>
-                <BR />
+                <br />
 
                 <a aria-label="apple-podcast" href="{{ link.applePodcasts }}">
                   <svg
@@ -339,7 +363,7 @@
                     </g>
                   </svg>
                 </a>
-                <BR />
+                <br />
 
                 <a aria-label="rss-podcast" href="{{ link.rss }}">
                   <svg
@@ -362,19 +386,15 @@
                       .st0 {
                         clip-path: url(#SVGID_2_);
                       }
-
                       .st1 {
                         fill: #777878;
                       }
-
                       .st2 {
-                        fill: #ffffff;
+                        fill: #fff;
                       }
-
                       .st3 {
-                        fill: #808080;
+                        fill: grey;
                       }
-
                       .st4 {
                         fill: url(#XMLID_2_);
                       }
@@ -1259,9 +1279,9 @@
                     </i:pgf>
                   </svg>
                 </a>
-                <BR />
+                <br />
 
-                <BR /><BR />
+                <br /><br />
 
                 <a aria-label="spotify-podcast" href="{{ link.spotify }}">
                   <svg
@@ -1300,7 +1320,7 @@
                     </g>
                   </svg>
                 </a>
-                <BR />
+                <br />
 
                 <a aria-label="deezer-podcast" href="{{ link.deezer }}">
                   <svg
@@ -1403,7 +1423,7 @@
                     </g>
                   </svg>
                 </a>
-                <BR />
+                <br />
 
                 <a aria-label="youtube-podcast" href="{{ link.youtube }}">
                   <svg
@@ -1496,14 +1516,15 @@
                     </g>
                   </svg>
                 </a>
-                <BR />
+                <br />
 
-                <BR /><BR />
+                <br /><br />
 
-                Crypto support : <BR />
+                Crypto support : <br />
 
-                <podcrypt-button href="https://podcrypt.app/podcast-overview?feedUrl={{ link.rss }}"></podcrypt-button>
-
+                <podcrypt-button
+                  href="https://podcrypt.app/podcast-overview?feedUrl={{ link.rss }}"
+                ></podcrypt-button>
               </div>
             </div>
           </div>
@@ -1526,19 +1547,28 @@
           <div class="podcast-card full">
             <figure class="podcast-image">
               <a href="/{{ otherEpisode.episodePath }}">
+                {% if header.piioKey %}
+                <img
+                  data-piio="{{ otherEpisode.squareImg }}"
+                  alt="{{ otherEpisode.title }}"
+                  title="{{ otherEpisode.episodePath }}"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+f9vPQAJZAN2rlRQVAAAAABJRU5ErkJggg=="
+                />
+                {% else %}
                 <img
                   src="{{ otherEpisode.squareImg }}"
                   alt="{{ otherEpisode.title }}"
                   title="{{ otherEpisode.episodePath }}"
                 />
+                {% endif %}
               </a>
             </figure>
             <div class="podcast-content">
               <span class="podcast-date">{{ otherEpisode.friendlyDate }}</span>
               <h2 class="podcast-title">
-                <a href="/{{ otherEpisode.episodePath }}">{{
-                  otherEpisode.title
-                }}</a>
+                <a href="/{{ otherEpisode.episodePath }}"
+                  >{{ otherEpisode.title }}</a
+                >
               </h2>
               <!--
         <p class="podcast-excerpt">
@@ -1548,8 +1578,7 @@
               <ul class="podcast-meta">
                 <li class="item">
                   {{ podcast.title }} S{{ otherEpisode.season }}E{{
-                    otherEpisode.episode
-                  }}
+                  otherEpisode.episode }}
                 </li>
                 <li class="item">
                   <i class="fa fa-clock-o"></i>
@@ -1558,7 +1587,8 @@
                 <li class="item">
                   <a
                     href="{{ podcast.audioUrlPrefix }}{{ otherEpisode.audioUrl }}"
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                     class="podcast-play"
                   >
                     <i class="fa fa-download"></i> {{ lang.download }}</a
@@ -1567,7 +1597,8 @@
                 <li class="item">
                   <a
                     href="{{ otherEpisode.youtubeUrl }}"
-                    target="_blank" rel="noreferrer"
+                    target="_blank"
+                    rel="noreferrer"
                     class="podcast-play"
                   >
                     <i class="fa fa-youtube"></i> Youtube</a
