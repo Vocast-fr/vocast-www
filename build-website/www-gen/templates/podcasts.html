@@ -3,7 +3,18 @@
 <!-- ===== LASTEST PODCAST (HERO) ===== -->
 <section
   class="podcast-hero"
+  {%
+  if
+  header.piioKey
+  %}
+  data-piio-bck="{{ podcast.backgroundUrl }}"
+  {%
+  else
+  %}
   style="background-image: url({{ podcast.backgroundUrl }})"
+  {%
+  endif
+  %}
 >
   <div class="podcast-hero-inner">
     <!-- ===== PODCAST INFO ===== -->
@@ -73,12 +84,22 @@
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 mb-20">
           <div class="team-card">
             <figure class="team-card-image">
+              {% if header.piioKey %}
+              <img
+                class="team-card-image-piio"
+                data-piio="{{ link.img }}"
+                alt="{{ link.title }}"
+                title="{{ link.title }}"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+f9vPQAJZAN2rlRQVAAAAABJRU5ErkJggg=="
+              />
+              {% else %}
               <img
                 style="object-fit:scale-down"
                 src="{{ link.img }}"
                 alt="{{ link.title }}"
                 title="{{ link.title }}"
               />
+              {% endif %}
             </figure>
             <div class="team-card-content  text-center">
               <h2 class="team-card-title"></h2>
@@ -1526,11 +1547,20 @@
           <div class="podcast-card full">
             <figure class="podcast-image">
               <a href="/{{ otherEpisode.episodePath }}">
+                {% if header.piioKey %}
+                <img
+                  data-piio="{{ otherEpisode.squareImg }}"
+                  alt="{{ otherEpisode.title }}"
+                  title="{{ otherEpisode.episodePath }}"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+f9vPQAJZAN2rlRQVAAAAABJRU5ErkJggg=="
+                />
+                {% else %}
                 <img
                   src="{{ otherEpisode.squareImg }}"
                   alt="{{ otherEpisode.title }}"
                   title="{{ otherEpisode.episodePath }}"
                 />
+                {% endif %}
               </a>
             </figure>
             <div class="podcast-content">

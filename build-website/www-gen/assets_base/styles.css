@@ -4284,7 +4284,12 @@ form .form-callback.error {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-}/* cyrillic-ext */
+}
+
+.team-card-image-piio {
+  object-fit: scale-down !important;
+}
+/* cyrillic-ext */
 @font-face {
   font-display: swap;
   font-family: 'Montserrat';

@@ -339,7 +339,19 @@
         <h1 class="logo">
           <a href="{{ _.baseUrl }}">
             <img
-              src="/assets/img/logo.png"
+              {%
+              if
+              header.piioKey
+              %}
+              data-piio="{{ header.logoUrl }}"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+f9vPQAJZAN2rlRQVAAAAABJRU5ErkJggg=="
+              {%
+              else
+              %}
+              src="{{ header.logoUrl }}"
+              {%
+              endif
+              %}
               alt="{{ header.title }}"
               title="{{ header.title }}"
             />

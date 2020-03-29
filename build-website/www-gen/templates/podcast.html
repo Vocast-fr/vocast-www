@@ -5,7 +5,18 @@
   <!-- ===== PAGE HEADER ===== -->
   <header
     class="page-header-podcast"
+    {%
+    if
+    header.piioKey
+    %}
+    data-piio-bck="{{ podcast.backgroundUrl }}"
+    {%
+    else
+    %}
     style="background-image: url({{ podcast.backgroundUrl }})"
+    {%
+    endif
+    %}
   >
     <div class="page-header-inner">
       <div class="container">
@@ -113,11 +124,20 @@
                     class="gallery-zoom"
                     title="{{ unitGallery.title }}"
                   >
+                    {% if header.piioKey %}
+                    <img
+                      data-piio="{{ unitGallery.link }}"
+                      alt="{{ unitGallery.title }}"
+                      title="{{ unitGallery.title }}"
+                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+f9vPQAJZAN2rlRQVAAAAABJRU5ErkJggg=="
+                    />
+                    {% else %}
                     <img
                       src="{{ unitGallery.link }}"
                       alt="{{ unitGallery.title }}"
                       title="{{ unitGallery.title }}"
                     />
+                    {% endif %}
                   </a>
                   <figcaption>{{ unitGallery.title }}</figcaption>
                 </figure>
