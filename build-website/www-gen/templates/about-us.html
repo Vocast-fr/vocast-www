@@ -18,10 +18,13 @@
   <section id="about-us" class="section-negative">
     <div class="container">
       <!-- ===== SECTION TITLE ===== -->
-      <h2 class="title-default">{{ team.title }}</h2>
+      {% for teamitem in team %}
+      <h2 class="title-default" id="members-{{ loop.index }}">
+        {{ teamitem.title }}
+      </h2>
 
       <div class="row mb-30 row-eq-height">
-        {% for member in team.members %}
+        {% for member in teamitem.persons %}
         <!-- ===== TEAM CARD =====  -->
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-20">
           <div class="team-card">
@@ -44,7 +47,17 @@
             <div class="team-card-content">
               <h2 class="team-card-title">{{ member.name }}</h2>
               <p class="team-card-job">{{ member.job }}</p>
-              <p class="team-card-description">{{ member.description }}</p>
+              <p class="team-card-description">
+                {{ member.description }} {% if member.apparitions %}
+                <br /><br /><b
+                  >{{ lang.apparitions }} : {% for appearLink in
+                  member.apparitions %}
+                  <a href="{{ appearLink }}" target="_blank" rel="noreferrer"
+                    >{{ lang.appearLink }}
+                  </a>
+                  {% endfor %} </b
+                >{% endif %}
+              </p>
               <ul class="team-card-social">
                 {% if member.linkedin %}
                 <li class="social-item">
@@ -103,6 +116,7 @@
         </div>
         {% endfor %}
       </div>
+      {% endfor %}
     </div>
   </section>
 </main>

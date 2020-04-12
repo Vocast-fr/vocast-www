@@ -27,7 +27,7 @@ module.exports = async () => {
 
   debug(`Got ${podcasts.length} podcasts from db `)
 
-  for (let podcast of podcasts) {
+  for (const podcast of podcasts) {
     try {
       const { slug } = podcast
       const episodes = await getFromDb(DB_EPISODES, {
@@ -46,7 +46,7 @@ module.exports = async () => {
   podcasts.forEach(({ slug }, i) => {
     site.podcasts[slug] = podcasts[i]
   })
-  let podcastsMap = site
+  const podcastsMap = site
 
   moment.locale(podcastsMap.lang._) // default the locale
 
@@ -81,7 +81,7 @@ module.exports = async () => {
 
   podcastsMap.generatedDate = moment().format()
 
-  podcastsMap.author = podcastsMap.team.members[0]
+  podcastsMap.author = podcastsMap.team[0].persons[0]
   podcastsMap.author.givenName = podcastsMap.author.name.split(' ')[0]
   podcastsMap.author.familyName = podcastsMap.author.name.split(' ')[1]
 
@@ -119,7 +119,7 @@ module.exports = async () => {
     }
   )
 
-  debug(`podcastsMap correctly set up`)
+  debug('podcastsMap correctly set up')
 
   return podcastsMap
 }
