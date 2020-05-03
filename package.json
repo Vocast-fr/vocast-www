@@ -7,7 +7,8 @@
     "add-episode": "node add-episode/index.js",
     "add-and-build": "npm run add-episode && npm run build-website",
     "build-website": "sh merges.sh && node build-website/index.js",
-    "build-website-dev": "DEV=1 nodemon -e js,json,css,scss,html --ignore build-website/www-gen/www-final build-website/index.js"
+    "build-website-dev": "DEV=1 nodemon -e js,json,css,scss,html --ignore build-website/www-gen/www-final build-website/index.js",
+    "generate-img": "node add-episode/img/_generateSpecificImg.js"
   },
   "repository": {
     "type": "git",
