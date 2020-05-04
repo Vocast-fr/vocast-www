@@ -64,11 +64,25 @@
         <!-- ===== CUSTOM PLAYER ===== -->
         <audio
           src="{{ podcast.audioUrlPrefix }}{{ lastEpisode.audioUrl }}"
+          id="audioPlayer"
+          preload="none"
         ></audio>
       </div>
     </div>
   </div>
 </section>
+<script>
+    function changeDurationText(){
+      if (document.getElementsByClassName('mejs-duration') && document.getElementsByClassName('mejs-duration')[0]) {
+        document.getElementsByClassName('mejs-duration')[0].textContent =
+                '{{ lastEpisode.durationMin }}:00'
+      }
+      else {
+          setTimeout(changeDurationText, 1000)
+      }
+    }
+    changeDurationText()                    
+</script>
 
 <!-- ===== MAIN ===== -->
 <main id="main" class="main">

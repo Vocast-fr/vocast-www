@@ -47,11 +47,24 @@
       <div class="container">
         <audio
           id="audioPlayer"
+          preload="none"
           src="{{ podcast.audioUrlPrefix }}{{ episode.audioUrl }}"
         ></audio>
       </div>
     </div>
   </div>
+  <script>
+  function changeDurationText(){
+    if (document.getElementsByClassName('mejs-duration') && document.getElementsByClassName('mejs-duration')[0]) {
+      document.getElementsByClassName('mejs-duration')[0].textContent =
+              '{{ episode.durationMin }}:00'
+    }
+    else {
+        setTimeout(changeDurationText, 1000)
+    }
+  }
+  changeDurationText()                    
+  </script>
 
   <!-- ===== PODCAST META ===== -->
   <div class="podcast-meta-element">
