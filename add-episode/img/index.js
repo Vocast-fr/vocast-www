@@ -1,11 +1,19 @@
+require('dotenv').config()
+
 const fs = require('fs-extra')
-const gm = require('gm').subClass({
-  imageMagick: true,
-  appPath: require('path').join(__dirname, '/')
-})
 const os = require('os')
 
 const { downloadFromUrl, uploadLocalFileToS3 } = require('../../utils')
+
+let gm ; 
+if (process.env.USE_BUILT_GM) {
+  gm = require('gm').subClass({
+    imageMagick: true,
+     appPath: require('path').join(__dirname, '/')
+     })
+} else {
+  gm = require('gm')
+}
 
 const TMP_PATH = os.tmpdir()
 
