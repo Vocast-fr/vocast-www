@@ -25,7 +25,6 @@
     <!-- =================================== -->
     <!-- 		  COMPATIBILITY 	          		 -->
     <!-- =================================== -->
-
     <!--[if IE
       ]><meta http-equiv="X-UA-Compatible" content="IE=edge"
     /><![endif]-->
@@ -35,7 +34,33 @@
     <!-- 		  WEBMONETIZATION         			 -->
     <!-- =================================== -->
     {% if header.monetization %}
-    <meta name="monetization" content="{{ header.monetization }}">
+    <!-- meta name="monetization" content="{{ header.monetization }}" -->
+    <script>
+      // Define your revenue share here.
+      // If these weights add to 100 then they represent the percent each pointer gets.
+      const pointers = {{ header.monetization.pointers }}
+  
+      function pickPointer () {
+        const sum = Object.values(pointers).reduce((sum, weight) => sum + weight, 0)
+        let choice = Math.random() * sum
+  
+        for (const pointer in pointers) {
+          const weight = pointers[pointer]
+          if ((choice -= weight) <= 0) {
+            return pointer
+          }
+        }
+      }
+  
+      window.addEventListener('load', () => {
+        const monetizationTag = document.createElement('meta')
+        monetizationTag.name = 'monetization'
+        const pickedPointer = pickPointer()
+        monetizationTag.content = pickedPointer
+  
+        document.head.appendChild(monetizationTag)
+      })
+    </script>
     {% endif %}
 
 
