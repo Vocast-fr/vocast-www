@@ -203,7 +203,7 @@ module.exports = podcastsMap => {
         const { title, description, image, date, episode, season, episodePath } = episodeInfos
         const podcastMapEpisode = podcastsMapUpdate(podcastsMapPodcast, {
           header: {
-            title: `${title} | ${podcastsMap.lang.listen} podcast ${podcastsMapPodcast.podcast.title} S${season}E${episode} `,
+            title: `${title} | ${podcastsMap.lang.listen} ${podcastsMapPodcast.podcast.title} S${season}E${episode} `,
             description: htmlToText.fromString(description[0], {
               wordwrap: false,
               ignoreHref: true
