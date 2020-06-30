@@ -1,6 +1,7 @@
 const { cloneDeep } = require('lodash')
 const fs = require('fs-extra')
 const merge = require('deepmerge')
+const deepReplaceInObject = require('deep-replace-in-object')
 const htmlToText = require('html-to-text')
 var minify = require('html-minifier').minify
 const moment = require('moment')
@@ -37,15 +38,41 @@ module.exports = podcastsMap => {
   }
 
   const generateHtml = (templatePath, dataObj, outputPath, appendTitle) => {
+
     const finalObj = appendTitle
       ? podcastsMapUpdate(dataObj, {
-        header: { title: `${appendTitle} - ${dataObj.header.title}` }
+        header: {
+          title: `${appendTitle} - ${dataObj.header.title}`,
+          canonicalUrl: `${url}/${outputPath.split('.html')[0].split('index')[0]}`
+        }
       })
-      : dataObj
+      : podcastsMapUpdate(dataObj, {
+        header: {
+          canonicalUrl: `${url}/${outputPath.split('.html')[0].split('index')[0]}`
+        }
+      })
 
     try {
       nunjucks.configure(templatesFolder, { autoescape: false })
-      const htmlData = nunjucks.render(templatePath, finalObj)
+      let htmlData = nunjucks.render(templatePath, finalObj)
+
+      htmlData = htmlData.replace(new RegExp("rel='noreferrer'", 'g'), '')
+      htmlData = htmlData.replace(new RegExp('rel=noreferrer', 'g'), '')
+      htmlData = htmlData.replace(new RegExp('rel="noreferrer"', 'g'), '')
+      htmlData = htmlData.replace(new RegExp("rel='noopener'", 'g'), '')
+      htmlData = htmlData.replace(new RegExp('rel=noopener', 'g'), '')
+      htmlData = htmlData.replace(new RegExp('rel="noopener"', 'g'), '')
+      htmlData = htmlData.replace(new RegExp("target='_blank'", 'g'), "target='_blank' rel='noreferrer noopener'")
+      htmlData = htmlData.replace(new RegExp('target=_blank', 'g'), "target='_blank' rel='noreferrer noopener'")
+      htmlData = htmlData.replace(new RegExp('target="_blank"', 'g'), "target='_blank' rel='noreferrer noopener'")
+
+
+      if (dataObj.replaces && dataObj.replaces.length) {
+        for (const [fromStr, toStr] of dataObj.replaces) {
+          htmlData = htmlData.replace(new RegExp(fromStr, 'g'), toStr, htmlData)
+        }
+      }
+
       return fs.writeFile(`${wwwFinalFolder}/${outputPath}`, minify(htmlData, {
         collapseWhitespace: true,
         html5: true,
@@ -74,7 +101,7 @@ module.exports = podcastsMap => {
   }
 
   const generateAboutHTML = async podcastsMap => {
-    sitemap.add({ url: '/about-us.html', priority: 0.4 })
+    sitemap.add({ url: '/about-us', priority: 0.4 })
 
     return generateHtml(
       'about-us.html',
@@ -89,7 +116,7 @@ module.exports = podcastsMap => {
   const generateContactHTML = async podcastsMap => {
     const { title, description } = podcastsMap.contact
 
-    sitemap.add({ url: '/contact.html', priority: 0.5 })
+    sitemap.add({ url: '/contact', priority: 0.5 })
 
     return generateHtml(
       'contact.html',
@@ -128,7 +155,7 @@ module.exports = podcastsMap => {
     const podcasts = podcastsMap.podcasts
 
     const generatePodcastPageHTML = async (podcastsMap, episodePath) => {
-      sitemap.add({ url: `/${episodePath}`, priority: 0.8 })
+      sitemap.add({ url: `/${episodePath.split('.html')[0]}`, priority: 0.8 })
 
       return generateHtml('podcast.html', podcastsMap, episodePath)
     }
@@ -143,7 +170,7 @@ module.exports = podcastsMap => {
     }
 
     const generatePodcastsListenHTML = async (podcastsMap, podcastPath) => {
-      sitemap.add({ url: `/${podcastPath}/listen.html`, priority: 0.9 })
+      sitemap.add({ url: `/${podcastPath}/listen`, priority: 0.9 })
       return generateHtml(
         'listen.html',
         podcastsMap,
@@ -246,15 +273,14 @@ module.exports = podcastsMap => {
     .then(() => fs.copy(baseAssetsFolder, wwwFinalAssetsFolder))
 
   return Promise.all([copyTerms, prepareWwwFinal])
-    .then(() =>
-      Promise.all([
-        generate404HTML(cloneDeep(podcastsMap)),
-        generateAboutHTML(cloneDeep(podcastsMap)),
-        generateContactHTML(cloneDeep(podcastsMap)),
-        generateIndexHTML(cloneDeep(podcastsMap)),
-        generateTermsHTML(cloneDeep(podcastsMap)),
-        generatePodcastsPages(cloneDeep(podcastsMap))
-      ])
+    .then(() => Promise.all([
+      generate404HTML(cloneDeep(podcastsMap)),
+      generateAboutHTML(cloneDeep(podcastsMap)),
+      generateContactHTML(cloneDeep(podcastsMap)),
+      generateIndexHTML(cloneDeep(podcastsMap)),
+      generateTermsHTML(cloneDeep(podcastsMap)),
+      generatePodcastsPages(cloneDeep(podcastsMap))
+    ])
     )
     .then(() => {
       fs.writeFileSync(`${wwwFinalFolder}/sitemap.xml`, sitemap.toString())

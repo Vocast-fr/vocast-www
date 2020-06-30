@@ -250,6 +250,8 @@
     </script>
     {% endif %}
 
+    <link rel="canonical" href="{{ header.canonicalUrl }}" />
+
     <!-- Audio SEO via RSS -->
     <link
       type="application/rss+xml"
@@ -353,7 +355,7 @@
     >
       <div class="container">
         <!-- ===== LOGO ===== -->
-        <h1 class="logo">
+        <div class="logo">
           <a href="{{ _.baseUrl }}">
             <img
               {%
@@ -373,7 +375,7 @@
               title="{{ header.title }}"
             />
           </a>
-        </h1>
+        </div>
 
         <!-- ===== NAVIGATION ===== -->
         <nav class="navigation">

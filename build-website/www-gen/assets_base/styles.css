@@ -3542,7 +3542,7 @@ form .form-callback.error {
 }
 
 .page-header h2,
-.page-header-podcast h2,
+.page-header-podcast h1,
 .page-error h2 {
 	margin: 90px 0 20px 0;
 	font-weight: 700;
@@ -3558,7 +3558,7 @@ form .form-callback.error {
 
 /* ========================= */
 
-.page-header-podcast h2 {
+.page-header-podcast h1 {
 	font-size: 30px;
 	font-size: 3rem;
 }
@@ -4126,12 +4126,12 @@ form .form-callback.error {
 }
 
 .page-header h2,
-.page-header-podcast h2,
+.page-header-podcast h1,
 .page-error h2 {
 	margin-top: 130px;
 }
 
-.page-header-podcast h2 {
+.page-header-podcast h1 {
 	font-size: 24px;
 	font-size: 2.4rem;
 	margin-top: 90px;
@@ -4241,13 +4241,13 @@ form .form-callback.error {
 @media screen and (max-width: 480px) {
 
 .page-header h2,
-.page-header-podcast h2,
+.page-header-podcast h1,
 .page-error h2 {
 	font-size: 34px;
 	font-size: 3.4rem;
 }
 
-.page-header-podcast h2 {
+.page-header-podcast h1 {
 	font-size: 20px;
 	font-size: 2rem;
 }

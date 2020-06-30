@@ -35,7 +35,7 @@
 
         <!-- ===== PAGE HEADER CONTENT ===== -->
         <div class="page-header-content text-center">
-          <h2>{{ episode.title }}</h2>
+          <h1>{{ episode.title }}</h1>
         </div>
       </div>
     </div>
@@ -100,6 +100,7 @@
       <ul class="podcast-links-list">
         {% for chapter in episode.chapters %} {% if chapter.visible %}
         <li>
+          <h2 style="font-size: 1.4rem;">
           <a
             onclick="document.getElementById('audioPlayer').currentTime={{
               chapter.startSec
@@ -109,6 +110,7 @@
             {{ chapter.start }}
           </a>
           <span class="podcast-link-cite">{{ chapter.title }}</span>
+          </h2>
         </li>
         {% endif %} {% endfor %}
       </ul>

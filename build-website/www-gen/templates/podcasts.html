@@ -23,9 +23,9 @@
         <span class="podcast-hero-date"
           >{{ lang.lastEpisode }} : {{ lastEpisode.friendlyDate }}</span
         >
-        <h2 class="podcast-hero-title">
+        <div class="podcast-hero-title">
           <a href="/{{ lastEpisode.episodePath }}">{{ lastEpisode.title }}</a>
-        </h2>
+        </div>
         <ul class="podcast-hero-meta">
           <li class="item">
             {{ podcast.title }} S{{ lastEpisode.season }}E{{ lastEpisode.episode
@@ -90,7 +90,7 @@
   <section id="podcasting" class="section-negative">
     <div class="container">
       <!-- ===== SECTION TITLE ===== -->
-      <h2 class="title-default">{{ lang.podcastLinks }}</h2>
+      <h1 class="title-default">{{ lang.podcastLinks }}</h1>
 
       <div class="row mb-30 row-eq-height">
         {% for link in podcast.links %}
@@ -116,7 +116,7 @@
               {% endif %}
             </figure>
             <div class="team-card-content  text-center">
-              <h2 class="team-card-title"></h2>
+              <h2 class="team-card-title">{{ link.title }}</h2>
               <p class="team-card-description">
                 {{ link.description }}
               </p>
@@ -1579,11 +1579,11 @@
             </figure>
             <div class="podcast-content">
               <span class="podcast-date">{{ otherEpisode.friendlyDate }}</span>
-              <h2 class="podcast-title">
+              <h3 class="podcast-title">
                 <a href="/{{ otherEpisode.episodePath }}"
                   >{{ otherEpisode.title }}</a
                 >
-              </h2>
+              </h3>
               <!--
         <p class="podcast-excerpt">
           <a href="/{{ otherEpisode.episodePath }}">{{ otherEpisode.description }}</a>

@@ -93,7 +93,7 @@ async function updateEpisodeInDbFromAuphonicResult ({
 function getChapterSummary (description, chapter) {
   const chapterDescription = cloneDeep(chapter.description)
   const episodeDescription = cloneDeep(description)
-  episodeDescription.splice(1, 0, ...chapterDescription)
+  episodeDescription.splice(0, 1, ...chapterDescription) // episodeDescription.splice(1, 0, ...chapterDescription)
   return episodeDescription
 }
 
