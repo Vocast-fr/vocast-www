@@ -59,7 +59,6 @@ typings/
 
 # deployment env variables files
 .env
-netlify.toml
 
 # Code preferences
 .vscode

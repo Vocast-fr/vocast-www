@@ -1,0 +1,69 @@
+[[plugins]]
+package = "netlify-plugin-image-optim"
+
+[[redirects]]
+  from = "https://modest-golick-0606ee.netlify.com/*"
+  to = "https://www.vocast.fr/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://piges.vocast.fr/*"
+  to = "https://piges.voca.st"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://zaps.vocast.fr/*"
+  to = "https://zaps.voca.st"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.vocast.fr/*"
+  to = "https://blog.voca.st"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://premium.vocast.fr/*"
+  to = "https://premium.voca.st"
+  status = 301
+  force = true
+
+
+[[redirects]]
+  from = "https://sondage.vocast.fr/*"
+  to = "https://www.vocast.fr/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://desondes.vocast.fr/*"
+  to = "https://www.vocast.fr/desondes/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.vocast.fr/vocazap/zaps"
+  to = "https://zaps.voca.st"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.vocast.fr/vocazap/zap"
+  to = "https://zaps.voca.st"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.vocast.fr/vocazap/records"
+  to = "https://piges.voca.st"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.vocast.fr/vocazap/record"
+  to = "https://piges.voca.st"
+  status = 301
+  force = true
