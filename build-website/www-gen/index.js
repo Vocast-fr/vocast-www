@@ -1,7 +1,6 @@
 const { cloneDeep } = require('lodash')
 const fs = require('fs-extra')
 const merge = require('deepmerge')
-const deepReplaceInObject = require('deep-replace-in-object')
 const htmlToText = require('html-to-text')
 var minify = require('html-minifier').minify
 const moment = require('moment')
