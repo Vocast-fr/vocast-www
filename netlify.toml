@@ -67,3 +67,11 @@ package = "netlify-plugin-image-optim"
   to = "https://piges.voca.st"
   status = 301
   force = true
+
+[[redirects]]
+  from = "https://medialocales.vocast.fr/*"
+  to = "https://airtable.com/shrQfH8HXqYYr6KbN"
+  status = 301
+  force = true
+
+  
