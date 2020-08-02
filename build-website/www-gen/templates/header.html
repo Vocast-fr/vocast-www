@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="{{ lang._ }}">
   <head>
-    <!-- =================================== -->
-    <!-- 		  Scripts analytics          -->
-    <!-- =================================== -->
 
+
+    {% if header.piioKey %}
+    <!-- piio script -->
+    <script type="text/javascript">
+      (function(i,m,a,g,e) {
+          e = i.getElementsByTagName(m)[0], (g = i.createElement(m)).src = "//pcdn.piiojs.com/"+a+"/image.min.js",
+          g.onerror = function() {
+              (g = i.createElement(m)).src = "https://fs.piio.co/image-failover.min.js",
+              e.parentNode.insertBefore(g, e);
+          }, e.parentNode.insertBefore(g, e);
+      }(document, "script", "{{ header.piioKey }}"));
+      </script>
+      <link rel="preconnect" href="//pcdn.piiojs.com">
+      <link rel="preload" as="script" href="//pcdn.piiojs.com/{{ header.piioKey }}/image.min.js">
+    <!-- End piio script -->   
+    {% endif %}
+
+  
     {% if header.gaId %}
     <!-- Google Analytics -->
     <script
@@ -363,7 +378,7 @@
               header.piioKey
               %}
               data-piio="{{ header.logoUrl }}"
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+f9vPQAJZAN2rlRQVAAAAABJRU5ErkJggg=="
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA"
               {%
               else
               %}
