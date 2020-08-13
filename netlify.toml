@@ -1,6 +1,3 @@
-[[plugins]]
-package = "netlify-plugin-image-optim"
-
 [[redirects]]
   from = "https://modest-golick-0606ee.netlify.com/*"
   to = "https://www.vocast.fr/:splat"
@@ -74,4 +71,8 @@ package = "netlify-plugin-image-optim"
   status = 301
   force = true
 
-  
+[[redirects]]
+  from = "/pep-sw.js"
+  to = "https://pep.dev/pep-sw.js"
+  status = 200
+  force = true

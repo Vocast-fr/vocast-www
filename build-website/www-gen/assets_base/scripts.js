@@ -214,9 +214,8 @@ for(c in g)g[c].css({position:"absolute",top:0,left:0});g.top.width(h).height(d)
 		});
 
 })(jQuery);class PodcryptButton extends HTMLElement {
-  connectedCallback () {
+  connectedCallback() {
     const href = this.getAttribute('href') || 'https://podcrypt.app'
-    const logoColor = this.getAttribute('logo-color') || 'black'
     const logoHeight = this.getAttribute('logo-height') || '50px'
 
     const shadowRoot = this.attachShadow({ mode: 'open' })
@@ -257,7 +256,7 @@ for(c in g)g[c].css({position:"absolute",top:0,left:0});g.top.width(h).height(d)
                 <div class="podcrypt-button-container">
                     <img
                         class="podcrypt-button-image"
-                        src="https://podcrypt.app/podcrypt-${logoColor}-transparent.png"
+                        src="/assets/img/podcrypt-black-transparent.png"
                         alt="Podcrypt logo"
                     >
                     <div>

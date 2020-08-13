@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="{{ lang._ }}">
   <head>
-
-
     {% if header.piioKey %}
-    <!-- piio script -->
+    <!-- piio img optimizer script -->
     <script type="text/javascript">
-      (function(i,m,a,g,e) {
-          e = i.getElementsByTagName(m)[0], (g = i.createElement(m)).src = "//pcdn.piiojs.com/"+a+"/image.min.js",
-          g.onerror = function() {
-              (g = i.createElement(m)).src = "https://fs.piio.co/image-failover.min.js",
-              e.parentNode.insertBefore(g, e);
-          }, e.parentNode.insertBefore(g, e);
-      }(document, "script", "{{ header.piioKey }}"));
-      </script>
-      <link rel="preconnect" href="//pcdn.piiojs.com">
-      <link rel="preload" as="script" href="//pcdn.piiojs.com/{{ header.piioKey }}/image.min.js">
-    <!-- End piio script -->   
+      ;(function(i, m, a, g, e) {
+        ;(e = i.getElementsByTagName(m)[0]),
+          ((g = i.createElement(m)).src =
+            '//pcdn.piiojs.com/' + a + '/image.min.js'),
+          (g.onerror = function() {
+            ;((g = i.createElement(m)).src =
+              'https://fs.piio.co/image-failover.min.js'),
+              e.parentNode.insertBefore(g, e)
+          }),
+          e.parentNode.insertBefore(g, e)
+      })(document, 'script', '{{ header.piioKey }}')
+    </script>
+    <link rel="preconnect" href="//pcdn.piiojs.com" />
+    <link
+      rel="preload"
+      as="script"
+      href="//pcdn.piiojs.com/{{ header.piioKey }}/image.min.js"
+    />
+    <!-- End piio script -->
     {% endif %}
-
-  
+    <!-- pep pwa script -->
+    {% if header.pepKey %}
+    <script
+      async
+      crossorigin
+      src="https://pep.dev/pep.js#{{ header.pepKey }}"
+    ></script>
+    {% endif %}
+    <!-- End pep script -->
     {% if header.gaId %}
     <!-- Google Analytics -->
     <script
@@ -54,11 +67,11 @@
       // Define your revenue share here.
       // If these weights add to 100 then they represent the percent each pointer gets.
       const pointers = {{ header.monetization.pointers }}
-  
+
       function pickPointer () {
         const sum = Object.values(pointers).reduce((sum, weight) => sum + weight, 0)
         let choice = Math.random() * sum
-  
+
         for (const pointer in pointers) {
           const weight = pointers[pointer]
           if ((choice -= weight) <= 0) {
@@ -66,18 +79,17 @@
           }
         }
       }
-  
+
       window.addEventListener('load', () => {
         const monetizationTag = document.createElement('meta')
         monetizationTag.name = 'monetization'
         const pickedPointer = pickPointer()
         monetizationTag.content = pickedPointer
-  
+
         document.head.appendChild(monetizationTag)
       })
     </script>
     {% endif %}
-
 
     <!-- =================================== -->
     <!-- 			  TITLE 			 	 -->
