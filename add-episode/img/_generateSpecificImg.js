@@ -1,17 +1,21 @@
 require('dotenv').config()
 
-let gm ; 
+let gm
 
 if (process.env.USE_BUILT_GM) {
   gm = require('gm').subClass({
     imageMagick: true,
-     appPath: require('path').join(__dirname, '/')
-     })
+    appPath: require('path').join(__dirname, '/')
+  })
 } else {
   gm = require('gm')
 }
 
-let imgPathSource = require('path').join(__dirname, '/', 'logo-desondes-vocast-1400.png')
+let imgPathSource = require('path').join(
+  __dirname,
+  '/',
+  'logo-desondes-vocast-1400.png'
+)
 let imgTextColor = '#f1f1f1'
 let fontPath = require('path').join(__dirname, '/', 'Montserrat-ExtraBold.ttf')
 let imgTextFontSize = '54'
@@ -19,9 +23,9 @@ let imgText1W = '120'
 let imgText1H = '680'
 let imgText2H = 780
 let imgText2W = 120
-let subtitle1 = 'Premium'
+let subtitle1 = 'Local 18-19 & Fun P3'
 let subtitle2 = ''
-let imgPathFinal = '/home/anthony/vocast-www/add-episode/img/final.png'
+let imgPathFinal = '/home/anthony/final.png'
 
 async function generateImg() {
   await new Promise((resolve, reject) => {
@@ -38,10 +42,8 @@ async function generateImg() {
 }
 
 generateImg()
- .then(() => console.log('done'))
- .catch(console.error)
-
-
+  .then(() => console.log('done'))
+  .catch(console.error)
 
 /* OLD ********
 
