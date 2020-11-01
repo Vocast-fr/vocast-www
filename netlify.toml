@@ -78,7 +78,37 @@
   force = true
 
 [[redirects]]
-  from = "/rss"
+  from = "/desondes/main/*"
+  to = "https://d2qx8kkaq3fdmc.cloudfront.net/desondes/main-feed/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/desondes/full-only/*"
+  to = "https://d2qx8kkaq3fdmc.cloudfront.net/desondes/full-only-feed/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/desondes/extracts-only/*"
+  to = "https://d2qx8kkaq3fdmc.cloudfront.net/desondes/extracts-only-feed/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/desondes/rss/main"
   to = "https://www.spreaker.com/show/2886866/episodes/feed"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/desondes/rss/full-only"
+  to = "https://feed.ausha.co/yORLSkl8k09o"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/desondes/rss/extracts-only"
+  to = "https://www.spreaker.com/show/3033352/episodes/feed"
   status = 200
   force = true

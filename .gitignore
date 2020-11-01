@@ -62,3 +62,6 @@ typings/
 
 # Code preferences
 .vscode
+
+# imgs 
+add-episode/img/final.png
