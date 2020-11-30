@@ -23,8 +23,8 @@ let imgText1W = '120'
 let imgText1H = '680'
 let imgText2H = 780
 let imgText2W = 120
-let subtitle1 = 'Rire & Prisma'
-let subtitle2 = 'S3E5'
+let subtitle1 = 'Foot de Virgin'
+let subtitle2 = 'S3E6'
 let imgPathFinal = require('path').join(__dirname, '/', 'final.png')
 
 async function generateImg() {
