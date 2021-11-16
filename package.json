@@ -23,7 +23,7 @@
   "dependencies": {
     "@aws/dynamodb-auto-marshaller": "^0.7.1",
     "@ffmpeg-installer/ffmpeg": "^1.0.15",
-    "aws-sdk": "^2.263.1",
+    "aws-sdk": "^2.814.0",
     "debug": "^3.1.0",
     "deepmerge": "^2.1.0",
     "dotenv": "^5.0.1",
