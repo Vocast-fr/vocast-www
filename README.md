@@ -26,8 +26,8 @@ Testé avec la version v12.14.1
 Si `USE_BUILT_GM` n'est pas présent dans le fichier `.env`, ou si la génération d'image ne fonctionne pas, il faut installer GM sur la machine :
 
 ```
+sudo apt-get update &&
 sudo apt-get install software-properties-common &&
-sudo add-apt-repository ppa:rwky/graphicsmagick &&
 sudo apt-get update &&
 sudo apt-get install graphicsmagick
 ```
