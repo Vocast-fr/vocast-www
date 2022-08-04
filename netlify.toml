@@ -66,12 +66,6 @@
   force = true
 
 [[redirects]]
-  from = "https://medialocales.vocast.fr/*"
-  to = "https://airtable.com/shrQfH8HXqYYr6KbN"
-  status = 200
-  force = true
-
-[[redirects]]
   from = "/pep-sw.js"
   to = "https://pep.dev/pep-sw.js"
   status = 200
@@ -112,3 +106,9 @@
   to = "https://www.spreaker.com/show/3033352/episodes/feed"
   status = 200
   force = true
+
+[[redirects]]
+  from = "https://earlocal.vocast.fr"
+  to = "https://datastudio.google.com/reporting/5f56926f-7b8b-40da-be7c-c74c69e2ccb3"
+  status = 301
+  force = true 
