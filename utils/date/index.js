@@ -1,6 +1,6 @@
 const moment = require('moment')
 
-function dateSort (a, b, asc = true) {
+function dateSort(a, b, asc = true) {
   const aMoment = moment(a)
   const bMoment = moment(b)
   if (aMoment.isBefore(bMoment)) return asc ? -1 : 1
